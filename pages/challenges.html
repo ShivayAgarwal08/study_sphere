@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - StudySphere</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">StudySphere</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="academic-data.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Academic Planner</span>
+                </a>
+                <a href="upload.html" class="nav-item">
+                    <span class="nav-icon">📤</span>
+                    <span class="nav-text">Upload Material</span>
+                </a>
+                <a href="progress.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Daily Progress</span>
+                </a>
+                <a href="flashcards.html" class="nav-item">
+                    <span class="nav-icon">🎴</span>
+                    <span class="nav-text">Flashcards</span>
+                </a>
+                <a href="quizzes.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+                <a href="friends.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Friends</span>
+                </a>
+                <a href="challenges.html" class="nav-item active">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text">Challenges</span>
+                </a>
+                <a href="leaderboard.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
+                </a>
+                <a href="profile-settings.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-level">Level 12</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="logout-btn" title="Logout">
+                    <span>🚪</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Challenges</h1>
+                    <p class="page-subtitle">Compete with friends and prove your knowledge</p>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                    <button class="btn-primary" id="createChallengeBtn">
+                        <span>⚔️</span> Create Challenge
+                    </button>
+                </div>
+            </header>
+
+            <div class="challenges-content">
+                <!-- Challenge Tabs -->
+                <div class="challenge-tabs">
+                    <button class="tab-btn active" data-tab="active">Active (2)</button>
+                    <button class="tab-btn" data-tab="pending">Pending (3)</button>
+                    <button class="tab-btn" data-tab="completed">Completed (8)</button>
+                </div>
+
+                <!-- Active Challenges -->
+                <div class="tab-content active" id="activeTab">
+                    <div class="challenges-grid">
+                        <div class="challenge-card active-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-type">
+                                    <span class="challenge-icon">⚔️</span>
+                                    <span class="challenge-label">Quiz Battle</span>
+                                </div>
+                                <span class="challenge-status status-active">Active</span>
+                            </div>
+                            <div class="challenge-participants">
+                                <div class="participant">
+                                    <div class="participant-avatar">JD</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">You</div>
+                                        <div class="participant-score">8/10</div>
+                                    </div>
+                                </div>
+                                <div class="vs-divider">VS</div>
+                                <div class="participant">
+                                    <div class="participant-avatar">SM</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">Sarah Miller</div>
+                                        <div class="participant-score">7/10</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-details">
+                                <div class="challenge-subject">
+                                    <span class="detail-icon">📚</span>
+                                    <span>Physics - Mechanics</span>
+                                </div>
+                                <div class="challenge-timer">
+                                    <span class="detail-icon">⏱️</span>
+                                    <span class="timer-text">2h 15m remaining</span>
+                                </div>
+                            </div>
+                            <div class="challenge-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                                <span class="progress-text">You're winning! 🎉</span>
+                            </div>
+                            <button class="btn-primary btn-full">View Details</button>
+                        </div>
+
+                        <div class="challenge-card active-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-type">
+                                    <span class="challenge-icon">🏃</span>
+                                    <span class="challenge-label">Study Sprint</span>
+                                </div>
+                                <span class="challenge-status status-active">Active</span>
+                            </div>
+                            <div class="challenge-participants">
+                                <div class="participant">
+                                    <div class="participant-avatar">JD</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">You</div>
+                                        <div class="participant-score">3.5 hrs</div>
+                                    </div>
+                                </div>
+                                <div class="vs-divider">VS</div>
+                                <div class="participant">
+                                    <div class="participant-avatar">EC</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">Emily Chen</div>
+                                        <div class="participant-score">4.2 hrs</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-details">
+                                <div class="challenge-subject">
+                                    <span class="detail-icon">🎯</span>
+                                    <span>Most study time this week</span>
+                                </div>
+                                <div class="challenge-timer">
+                                    <span class="detail-icon">⏱️</span>
+                                    <span class="timer-text">3 days remaining</span>
+                                </div>
+                            </div>
+                            <div class="challenge-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill losing" style="width: 45%"></div>
+                                </div>
+                                <span class="progress-text">Keep pushing! 💪</span>
+                            </div>
+                            <button class="btn-primary btn-full">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Challenges -->
+                <div class="tab-content" id="pendingTab" style="display: none;">
+                    <div class="challenges-grid">
+                        <div class="challenge-card pending-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-type">
+                                    <span class="challenge-icon">⚔️</span>
+                                    <span class="challenge-label">Quiz Battle</span>
+                                </div>
+                                <span class="challenge-status status-pending">Pending</span>
+                            </div>
+                            <div class="challenge-participants">
+                                <div class="participant">
+                                    <div class="participant-avatar">AJ</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">Alex Johnson</div>
+                                        <div class="participant-role">Challenger</div>
+                                    </div>
+                                </div>
+                                <div class="vs-divider">→</div>
+                                <div class="participant">
+                                    <div class="participant-avatar">JD</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">You</div>
+                                        <div class="participant-role">Challenged</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-details">
+                                <div class="challenge-subject">
+                                    <span class="detail-icon">📚</span>
+                                    <span>Calculus - Integration</span>
+                                </div>
+                                <div class="challenge-timer">
+                                    <span class="detail-icon">⏱️</span>
+                                    <span>15 questions • 20 min</span>
+                                </div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="btn-primary">Accept Challenge</button>
+                                <button class="btn-secondary">Decline</button>
+                            </div>
+                        </div>
+
+                        <div class="challenge-card pending-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-type">
+                                    <span class="challenge-icon">🔥</span>
+                                    <span class="challenge-label">Streak Battle</span>
+                                </div>
+                                <span class="challenge-status status-pending">Pending</span>
+                            </div>
+                            <div class="challenge-participants">
+                                <div class="participant">
+                                    <div class="participant-avatar">MP</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">Michael Park</div>
+                                        <div class="participant-role">Challenger</div>
+                                    </div>
+                                </div>
+                                <div class="vs-divider">→</div>
+                                <div class="participant">
+                                    <div class="participant-avatar">JD</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">You</div>
+                                        <div class="participant-role">Challenged</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-details">
+                                <div class="challenge-subject">
+                                    <span class="detail-icon">🎯</span>
+                                    <span>Longest streak in 30 days</span>
+                                </div>
+                                <div class="challenge-timer">
+                                    <span class="detail-icon">⏱️</span>
+                                    <span>30 days duration</span>
+                                </div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="btn-primary">Accept Challenge</button>
+                                <button class="btn-secondary">Decline</button>
+                            </div>
+                        </div>
+
+                        <div class="challenge-card pending-challenge">
+                            <div class="challenge-header">
+                                <div class="challenge-type">
+                                    <span class="challenge-icon">⚔️</span>
+                                    <span class="challenge-label">Quiz Battle</span>
+                                </div>
+                                <span class="challenge-status status-pending">Pending</span>
+                            </div>
+                            <div class="challenge-participants">
+                                <div class="participant">
+                                    <div class="participant-avatar">JD</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">You</div>
+                                        <div class="participant-role">Challenger</div>
+                                    </div>
+                                </div>
+                                <div class="vs-divider">→</div>
+                                <div class="participant">
+                                    <div class="participant-avatar">LR</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">Lisa Rodriguez</div>
+                                        <div class="participant-role">Waiting...</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-details">
+                                <div class="challenge-subject">
+                                    <span class="detail-icon">📚</span>
+                                    <span>Chemistry - Reactions</span>
+                                </div>
+                                <div class="challenge-timer">
+                                    <span class="detail-icon">⏱️</span>
+                                    <span>10 questions • 15 min</span>
+                                </div>
+                            </div>
+                            <button class="btn-secondary btn-full">Cancel Challenge</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completed Challenges -->
+                <div class="tab-content" id="completedTab" style="display: none;">
+                    <div class="challenges-grid">
+                        <div class="challenge-card completed-challenge winner">
+                            <div class="challenge-header">
+                                <div class="challenge-type">
+                                    <span class="challenge-icon">⚔️</span>
+                                    <span class="challenge-label">Quiz Battle</span>
+                                </div>
+                                <span class="challenge-status status-won">Won</span>
+                            </div>
+                            <div class="challenge-participants">
+                                <div class="participant winner-participant">
+                                    <div class="participant-avatar">JD</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">You 🏆</div>
+                                        <div class="participant-score">9/10</div>
+                                    </div>
+                                </div>
+                                <div class="vs-divider">VS</div>
+                                <div class="participant">
+                                    <div class="participant-avatar">DK</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">David Kim</div>
+                                        <div class="participant-score">7/10</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-details">
+                                <div class="challenge-subject">
+                                    <span class="detail-icon">📚</span>
+                                    <span>Biology - Genetics</span>
+                                </div>
+                                <div class="challenge-timer">
+                                    <span class="detail-icon">📅</span>
+                                    <span>Completed 2 days ago</span>
+                                </div>
+                            </div>
+                            <div class="challenge-reward">
+                                <span class="reward-icon">⭐</span>
+                                <span class="reward-text">+150 XP Earned</span>
+                            </div>
+                        </div>
+
+                        <div class="challenge-card completed-challenge loser">
+                            <div class="challenge-header">
+                                <div class="challenge-type">
+                                    <span class="challenge-icon">🏃</span>
+                                    <span class="challenge-label">Study Sprint</span>
+                                </div>
+                                <span class="challenge-status status-lost">Lost</span>
+                            </div>
+                            <div class="challenge-participants">
+                                <div class="participant">
+                                    <div class="participant-avatar">JD</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">You</div>
+                                        <div class="participant-score">2.5 hrs</div>
+                                    </div>
+                                </div>
+                                <div class="vs-divider">VS</div>
+                                <div class="participant winner-participant">
+                                    <div class="participant-avatar">SM</div>
+                                    <div class="participant-info">
+                                        <div class="participant-name">Sarah Miller 🏆</div>
+                                        <div class="participant-score">4.8 hrs</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="challenge-details">
+                                <div class="challenge-subject">
+                                    <span class="detail-icon">🎯</span>
+                                    <span>Most study time (7 days)</span>
+                                </div>
+                                <div class="challenge-timer">
+                                    <span class="detail-icon">📅</span>
+                                    <span>Completed 5 days ago</span>
+                                </div>
+                            </div>
+                            <div class="challenge-reward">
+                                <span class="reward-text">Better luck next time!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Create Challenge Modal -->
+    <div class="modal-overlay" id="createChallengeModal" style="display: none;">
+        <div class="modal" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2 class="modal-title">⚔️ Create Challenge</h2>
+                <button class="modal-close" id="closeCreateChallenge">×</button>
+            </div>
+            <div class="modal-body">
+                <!-- Challenge Type -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Challenge Type</h3>
+                    <div class="challenge-type-selector">
+                        <div class="challenge-type-option selected" data-type="quiz">
+                            <div class="challenge-type-icon">⚔️</div>
+                            <div class="challenge-type-name">Quiz Battle</div>
+                        </div>
+                        <div class="challenge-type-option" data-type="streak">
+                            <div class="challenge-type-icon">🔥</div>
+                            <div class="challenge-type-name">Streak Challenge</div>
+                        </div>
+                        <div class="challenge-type-option" data-type="consistency">
+                            <div class="challenge-type-icon">📊</div>
+                            <div class="challenge-type-name">Consistency</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Select Friend -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Challenge a Friend</h3>
+                    <div class="friend-selector">
+                        <div class="friend-selector-item" data-friend="sarah">
+                            <input type="radio" name="friend" value="sarah">
+                            <div class="user-avatar-small">SM</div>
+                            <div class="user-details">
+                                <div class="user-name-small">Sarah Miller</div>
+                                <div class="user-level-small">Level 16 • 🔥 25</div>
+                            </div>
+                        </div>
+                        <div class="friend-selector-item" data-friend="alex">
+                            <input type="radio" name="friend" value="alex">
+                            <div class="user-avatar-small">AJ</div>
+                            <div class="user-details">
+                                <div class="user-name-small">Alex Johnson</div>
+                                <div class="user-level-small">Level 18 • 🔥 28</div>
+                            </div>
+                        </div>
+                        <div class="friend-selector-item" data-friend="emily">
+                            <input type="radio" name="friend" value="emily">
+                            <div class="user-avatar-small">EC</div>
+                            <div class="user-details">
+                                <div class="user-name-small">Emily Chen</div>
+                                <div class="user-level-small">Level 20 • 🔥 35</div>
+                            </div>
+                        </div>
+                        <div class="friend-selector-item" data-friend="michael">
+                            <input type="radio" name="friend" value="michael">
+                            <div class="user-avatar-small">MP</div>
+                            <div class="user-details">
+                                <div class="user-name-small">Michael Park</div>
+                                <div class="user-level-small">Level 11 • 🔥 12</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duration -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Duration</h3>
+                    <div class="challenge-duration-selector">
+                        <div class="duration-option selected" data-duration="1">1 Day</div>
+                        <div class="duration-option" data-duration="3">3 Days</div>
+                        <div class="duration-option" data-duration="7">7 Days</div>
+                        <div class="duration-option" data-duration="14">14 Days</div>
+                        <div class="duration-option" data-duration="30">30 Days</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelCreateChallenge">Cancel</button>
+                <button class="btn-primary" id="sendChallenge">🚀 Send Challenge</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/theme.js"></script>
+    <script src="../scripts/challenges.js"></script>
+</body>
+</html>

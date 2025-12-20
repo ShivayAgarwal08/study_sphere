@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend Profile - StudySphere</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">StudySphere</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="academic-data.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Academic Planner</span>
+                </a>
+                <a href="upload.html" class="nav-item">
+                    <span class="nav-icon">📤</span>
+                    <span class="nav-text">Upload Material</span>
+                </a>
+                <a href="progress.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Daily Progress</span>
+                </a>
+                <a href="flashcards.html" class="nav-item">
+                    <span class="nav-icon">🎴</span>
+                    <span class="nav-text">Flashcards</span>
+                </a>
+                <a href="quizzes.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+                <a href="friends.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Friends</span>
+                </a>
+                <a href="challenges.html" class="nav-item">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text">Challenges</span>
+                </a>
+                <a href="leaderboard.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
+                </a>
+                <a href="profile-settings.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-level">Level 12</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="logout-btn" title="Logout">
+                    <span>🚪</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <a href="friends.html" class="back-link">← Back to Friends</a>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                </div>
+            </header>
+
+            <div class="profile-content">
+                <!-- Profile Header -->
+                <div class="profile-header-card">
+                    <div class="profile-banner"></div>
+                    <div class="profile-info-section">
+                        <div class="profile-avatar-large">SM</div>
+                        <div class="profile-details">
+                            <h1 class="profile-name">Sarah Miller</h1>
+                            <p class="profile-username">@sarahmiller</p>
+                            <div class="profile-status">
+                                <span class="status-indicator online"></span>
+                                <span>Online</span>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn-primary">Challenge Friend</button>
+                            <button class="btn-secondary">Send Message</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="profile-stats-grid">
+                    <div class="profile-stat-card">
+                        <div class="stat-icon-large">🔥</div>
+                        <div class="stat-value-large">23</div>
+                        <div class="stat-label-large">Day Streak</div>
+                    </div>
+                    <div class="profile-stat-card">
+                        <div class="stat-icon-large">⭐</div>
+                        <div class="stat-value-large">3,200</div>
+                        <div class="stat-label-large">Total XP</div>
+                    </div>
+                    <div class="profile-stat-card">
+                        <div class="stat-icon-large">🎖️</div>
+                        <div class="stat-value-large">Level 15</div>
+                        <div class="stat-label-large">Current Level</div>
+                    </div>
+                    <div class="profile-stat-card">
+                        <div class="stat-icon-large">🏆</div>
+                        <div class="stat-value-large">#8</div>
+                        <div class="stat-label-large">Leaderboard Rank</div>
+                    </div>
+                </div>
+
+                <!-- Badges -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Earned Badges</h2>
+                    </div>
+                    <div class="badges-grid">
+                        <div class="badge-item earned">
+                            <div class="badge-icon-large">🥇</div>
+                            <div class="badge-name">Top Learner</div>
+                            <div class="badge-description">Reached top 10 on leaderboard</div>
+                        </div>
+                        <div class="badge-item earned">
+                            <div class="badge-icon-large">🔥</div>
+                            <div class="badge-name">Streak Master</div>
+                            <div class="badge-description">Maintained 20+ day streak</div>
+                        </div>
+                        <div class="badge-item earned">
+                            <div class="badge-icon-large">🎯</div>
+                            <div class="badge-name">Quiz Champion</div>
+                            <div class="badge-description">Completed 50 quizzes</div>
+                        </div>
+                        <div class="badge-item earned">
+                            <div class="badge-icon-large">⚔️</div>
+                            <div class="badge-name">Challenge Winner</div>
+                            <div class="badge-description">Won 10 friend challenges</div>
+                        </div>
+                        <div class="badge-item earned">
+                            <div class="badge-icon-large">📚</div>
+                            <div class="badge-name">Bookworm</div>
+                            <div class="badge-description">Uploaded 25+ study materials</div>
+                        </div>
+                        <div class="badge-item locked">
+                            <div class="badge-icon-large">💎</div>
+                            <div class="badge-name">Elite Scholar</div>
+                            <div class="badge-description">Reach level 20</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Recent Activity</h2>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🎯</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Completed "Chemistry Quiz"</div>
+                                <div class="activity-time">1 hour ago</div>
+                            </div>
+                            <div class="activity-xp">+100 XP</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⚔️</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Won challenge against Alex</div>
+                                <div class="activity-time">3 hours ago</div>
+                            </div>
+                            <div class="activity-xp">+150 XP</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🔥</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Maintained 23-day streak</div>
+                                <div class="activity-time">Today</div>
+                            </div>
+                            <div class="activity-xp">+50 XP</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">📚</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Studied "Biology - Cell Division"</div>
+                                <div class="activity-time">Yesterday</div>
+                            </div>
+                            <div class="activity-xp">+75 XP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/theme.js"></script>
+    <script src="../scripts/friend-profile.js"></script>
+</body>
+</html>

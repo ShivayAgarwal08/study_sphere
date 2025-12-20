@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - StudySphere</title>
+    <meta name="description" content="Your personal learning dashboard with progress tracking and daily goals.">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text gradient-text">StudySphere</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="academic-data.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Academic Planner</span>
+                </a>
+                <a href="upload.html" class="nav-item">
+                    <span class="nav-icon">📤</span>
+                    <span class="nav-text">Upload Material</span>
+                </a>
+                <a href="progress.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Daily Progress</span>
+                </a>
+                <a href="flashcards.html" class="nav-item">
+                    <span class="nav-icon">🎴</span>
+                    <span class="nav-text">Flashcards</span>
+                </a>
+                <a href="quizzes.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+                <a href="friends.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Friends</span>
+                </a>
+                <a href="challenges.html" class="nav-item">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text">Challenges</span>
+                </a>
+                <a href="leaderboard.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
+                </a>
+                <a href="profile-settings.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-level">Level 12</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="logout-btn" title="Logout">
+                    <span>🚪</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                    <p class="page-subtitle">Welcome back, John! Ready to learn today?</p>
+                </div>
+                <div class="top-bar-actions">
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                    <button class="notification-btn">
+                        <span>🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Motivational Message -->
+                <div class="motivation-card">
+                    <div class="motivation-icon">✨</div>
+                    <div class="motivation-text">
+                        <p class="motivation-quote">"Success is the sum of small efforts repeated day in and day out."</p>
+                        <p class="motivation-author">— Robert Collier</p>
+                    </div>
+                </div>
+
+                <!-- Stats Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card glass streak-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-content">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Day Streak</div>
+                            <div class="stat-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <span class="progress-text">Keep it going!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card glass xp-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <div class="stat-value">2,450</div>
+                            <div class="stat-label">Total XP</div>
+                            <div class="stat-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                                <span class="progress-text">550 XP to Level 13</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card glass level-card">
+                        <div class="stat-icon">🎖️</div>
+                        <div class="stat-content">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Current Level</div>
+                            <div class="stat-badges">
+                                <span class="badge">🥇 Top 5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Study Analytics (New Enhancement) -->
+                <div class="analytics-card card glass">
+                    <div class="card-header">
+                        <h2 class="card-title">📊 Study Analytics</h2>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="dot primary"></span> Focus</span>
+                            <span class="legend-item"><span class="dot secondary"></span> Quizzes</span>
+                        </div>
+                    </div>
+                    <div class="mock-chart">
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" style="height: 60%" data-tooltip="Mon: 3h"></div>
+                            <div class="chart-bar" style="height: 85%" data-tooltip="Tue: 4.5h"></div>
+                            <div class="chart-bar" style="height: 45%" data-tooltip="Wed: 2h"></div>
+                            <div class="chart-bar" style="height: 90%" data-tooltip="Thu: 5h"></div>
+                            <div class="chart-bar" style="height: 70%" data-tooltip="Fri: 4h"></div>
+                            <div class="chart-bar" style="height: 30%" data-tooltip="Sat: 1.5h"></div>
+                            <div class="chart-bar active" style="height: 50%" data-tooltip="Today: 2.5h"></div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                        </div>
+                    </div>
+                </div>        
+                <!-- Academic Planner Grid -->
+                <div class="dashboard-grid">
+                    <!-- Exam Schedule -->
+                    <div class="card glass">
+                        <div class="card-header">
+                            <h2 class="card-title">📅 Upcoming Exams</h2>
+                            <button class="btn-icon">➕</button>
+                        </div>
+                        <div class="exam-list">
+                            <div class="exam-item">
+                                <div class="exam-date">
+                                    <span class="date-day">24</span>
+                                    <span class="date-month">DEC</span>
+                                </div>
+                                <div class="exam-info">
+                                    <h3 class="exam-subject">Physics Mid-Term</h3>
+                                    <p class="exam-topics">Mechanics, Waves, Optics</p>
+                                </div>
+                                <div class="exam-status status-urgent">4 Days Left</div>
+                            </div>
+                            <div class="exam-item">
+                                <div class="exam-date">
+                                    <span class="date-day">05</span>
+                                    <span class="date-month">JAN</span>
+                                </div>
+                                <div class="exam-info">
+                                    <h3 class="exam-subject">Calculus Finals</h3>
+                                    <p class="exam-topics">Integration, Derivatives, Series</p>
+                                </div>
+                                <div class="exam-status">16 Days Left</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Syllabus Progress -->
+                    <div class="card glass">
+                        <div class="card-header">
+                            <h2 class="card-title">📚 Syllabus Status</h2>
+                        </div>
+                        <div class="syllabus-list">
+                            <div class="syllabus-item">
+                                <div class="syllabus-header">
+                                    <span class="subject-name">Molecular Biology</span>
+                                    <span class="progress-percent">85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                                <p class="topics-summary">12/14 topics completed</p>
+                            </div>
+                            <div class="syllabus-item">
+                                <div class="syllabus-header">
+                                    <span class="subject-name">Organic Chemistry</span>
+                                    <span class="progress-percent">45%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%; background: var(--warning);"></div>
+                                </div>
+                                <p class="topics-summary">6/13 topics completed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today's Goals & Quick Actions -->
+                <div class="dashboard-grid">
+                    <!-- Today's Goals -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Today's Goals</h2>
+                            <span class="card-badge">3/5 Complete</span>
+                        </div>
+                        <div class="goals-list">
+                            <div class="goal-item completed">
+                                <input type="checkbox" id="goal1" checked>
+                                <label for="goal1">
+                                    <span class="goal-text">Complete daily quiz</span>
+                                    <span class="goal-xp">+50 XP</span>
+                                </label>
+                            </div>
+                            <div class="goal-item completed">
+                                <input type="checkbox" id="goal2" checked>
+                                <label for="goal2">
+                                    <span class="goal-text">Study for 30 minutes</span>
+                                    <span class="goal-xp">+30 XP</span>
+                                </label>
+                            </div>
+                            <div class="goal-item completed">
+                                <input type="checkbox" id="goal3" checked>
+                                <label for="goal3">
+                                    <span class="goal-text">Review 20 flashcards</span>
+                                    <span class="goal-xp">+40 XP</span>
+                                </label>
+                            </div>
+                            <div class="goal-item">
+                                <input type="checkbox" id="goal4">
+                                <label for="goal4">
+                                    <span class="goal-text">Upload new study material</span>
+                                    <span class="goal-xp">+25 XP</span>
+                                </label>
+                            </div>
+                            <div class="goal-item">
+                                <input type="checkbox" id="goal5">
+                                <label for="goal5">
+                                    <span class="goal-text">Challenge a friend</span>
+                                    <span class="goal-xp">+60 XP</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Quick Actions</h2>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="upload.html" class="action-btn">
+                                <div class="action-icon">📤</div>
+                                <div class="action-content">
+                                    <div class="action-title">Upload Material</div>
+                                    <div class="action-desc">Add new study content</div>
+                                </div>
+                            </a>
+                            <a href="progress.html" class="action-btn">
+                                <div class="action-icon">📝</div>
+                                <div class="action-content">
+                                    <div class="action-title">Log Progress</div>
+                                    <div class="action-desc">Track today's study session</div>
+                                </div>
+                            </a>
+                            <a href="quizzes.html" class="action-btn">
+                                <div class="action-icon">🎯</div>
+                                <div class="action-content">
+                                    <div class="action-title">Take Quiz</div>
+                                    <div class="action-desc">Test your knowledge</div>
+                                </div>
+                            </a>
+                            <a href="flashcards.html" class="action-btn">
+                                <div class="action-icon">🎴</div>
+                                <div class="action-content">
+                                    <div class="action-title">Study Flashcards</div>
+                                    <div class="action-desc">Review key concepts</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Streak Calendar & Achievements Row -->
+                <div class="dashboard-grid">
+                    <!-- Streak Calendar -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">🔥 Streak Calendar</h2>
+                            <span class="card-badge">December 2024</span>
+                        </div>
+                        <div class="streak-calendar" id="streakCalendar">
+                            <div class="streak-day header">Sun</div>
+                            <div class="streak-day header">Mon</div>
+                            <div class="streak-day header">Tue</div>
+                            <div class="streak-day header">Wed</div>
+                            <div class="streak-day header">Thu</div>
+                            <div class="streak-day header">Fri</div>
+                            <div class="streak-day header">Sat</div>
+                            <div class="streak-day active">1</div>
+                            <div class="streak-day active">2</div>
+                            <div class="streak-day active">3</div>
+                            <div class="streak-day active">4</div>
+                            <div class="streak-day missed">5</div>
+                            <div class="streak-day active">6<span class="fire-icon">🔥</span></div>
+                            <div class="streak-day active">7</div>
+                            <div class="streak-day active">8</div>
+                            <div class="streak-day active">9</div>
+                            <div class="streak-day active">10</div>
+                            <div class="streak-day active">11</div>
+                            <div class="streak-day active">12</div>
+                            <div class="streak-day active">13<span class="fire-icon">🔥</span></div>
+                            <div class="streak-day active">14</div>
+                            <div class="streak-day active">15</div>
+                            <div class="streak-day active">16</div>
+                            <div class="streak-day active">17</div>
+                            <div class="streak-day active">18</div>
+                            <div class="streak-day active">19</div>
+                            <div class="streak-day active today">20<span class="fire-icon">🔥</span></div>
+                            <div class="streak-day future">21</div>
+                            <div class="streak-day future">22</div>
+                            <div class="streak-day future">23</div>
+                            <div class="streak-day future">24</div>
+                            <div class="streak-day future">25</div>
+                            <div class="streak-day future">26</div>
+                            <div class="streak-day future">27</div>
+                            <div class="streak-day future">28</div>
+                        </div>
+                        <div class="streak-stats">
+                            <div class="streak-stat">
+                                <div class="streak-stat-value">15</div>
+                                <div class="streak-stat-label">Current Streak</div>
+                            </div>
+                            <div class="streak-stat">
+                                <div class="streak-stat-value">23</div>
+                                <div class="streak-stat-label">Best Streak</div>
+                            </div>
+                            <div class="streak-stat">
+                                <div class="streak-stat-value">45</div>
+                                <div class="streak-stat-label">Total Days</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Badges -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">🏆 Achievements</h2>
+                            <a href="#" class="view-all-link">View All</a>
+                        </div>
+                        <div class="achievements-grid">
+                            <div class="achievement-badge unlocked">
+                                <div class="achievement-icon">🔥</div>
+                                <div class="achievement-name">Streak Starter</div>
+                                <div class="achievement-desc">7 day streak</div>
+                            </div>
+                            <div class="achievement-badge unlocked">
+                                <div class="achievement-icon">⭐</div>
+                                <div class="achievement-name">XP Hunter</div>
+                                <div class="achievement-desc">Earn 1000 XP</div>
+                            </div>
+                            <div class="achievement-badge unlocked">
+                                <div class="achievement-icon">🎯</div>
+                                <div class="achievement-name">Quiz Master</div>
+                                <div class="achievement-desc">10 perfect quizzes</div>
+                            </div>
+                            <div class="achievement-badge unlocked">
+                                <div class="achievement-icon">🎴</div>
+                                <div class="achievement-name">Card Shark</div>
+                                <div class="achievement-desc">Review 500 cards</div>
+                            </div>
+                            <div class="achievement-badge locked">
+                                <div class="achievement-icon">🏅</div>
+                                <div class="achievement-name">Champion</div>
+                                <div class="achievement-desc">Win 50 challenges</div>
+                                <div class="achievement-progress">
+                                    <div class="achievement-progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="achievement-badge locked">
+                                <div class="achievement-icon">💎</div>
+                                <div class="achievement-name">Diamond</div>
+                                <div class="achievement-desc">Reach Level 25</div>
+                                <div class="achievement-progress">
+                                    <div class="achievement-progress-fill" style="width: 48%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card glass">
+                    <div class="card-header">
+                        <h2 class="card-title">🕗 Recent Activity</h2>
+                        <a href="#" class="view-all-link">View All</a>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon-small gradient-text">🎯</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Completed <strong>Physics Fundamentals</strong> Quiz</div>
+                                <div class="activity-time">2 hours ago</div>
+                            </div>
+                            <div class="activity-xp gradient-text">+150 XP</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon-small gradient-text">🎴</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Mastered 50 <strong>Molecular Biology</strong> Flashcards</div>
+                                <div class="activity-time">5 hours ago</div>
+                            </div>
+                            <div class="activity-xp gradient-text">+80 XP</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon-small gradient-text">📤</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Uploaded <strong>Organic Chemistry Synthesis.pdf</strong></div>
+                                <div class="activity-time">Yesterday</div>
+                            </div>
+                            <div class="activity-xp gradient-text">+25 XP</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon-small gradient-text">⚔️</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Defeated <strong>Sarah Miller</strong> in Quiz Battle</div>
+                                <div class="activity-time">Yesterday</div>
+                            </div>
+                            <div class="activity-xp gradient-text">+250 XP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/theme.js"></script>
+    <script src="../scripts/dashboard.js"></script>
+</body>
+</html>

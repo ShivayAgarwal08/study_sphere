@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Progress - StudySphere</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">StudySphere</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="academic-data.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Academic Planner</span>
+                </a>
+                <a href="upload.html" class="nav-item">
+                    <span class="nav-icon">📤</span>
+                    <span class="nav-text">Upload Material</span>
+                </a>
+                <a href="progress.html" class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Daily Progress</span>
+                </a>
+                <a href="flashcards.html" class="nav-item">
+                    <span class="nav-icon">🎴</span>
+                    <span class="nav-text">Flashcards</span>
+                </a>
+                <a href="quizzes.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+                <a href="friends.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Friends</span>
+                </a>
+                <a href="challenges.html" class="nav-item">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text">Challenges</span>
+                </a>
+                <a href="leaderboard.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
+                </a>
+                <a href="profile-settings.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-level">Level 12</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="logout-btn" title="Logout">
+                    <span>🚪</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Daily Progress</h1>
+                    <p class="page-subtitle">Track your study sessions and earn XP</p>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                </div>
+            </header>
+
+            <div class="progress-content">
+                <!-- Date Selector -->
+                <div class="date-selector">
+                    <button class="date-nav-btn" id="prevDay">←</button>
+                    <div class="current-date">
+                        <input type="date" id="dateInput" class="date-input" value="2025-12-20">
+                        <span class="date-display" id="dateDisplay">Today, December 20, 2025</span>
+                    </div>
+                    <button class="date-nav-btn" id="nextDay">→</button>
+                </div>
+
+                <!-- Progress Form -->
+                <div class="progress-form-card">
+                    <form id="progressForm" class="progress-form">
+                        <!-- Subject Selection -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">📚 Select Subject</h3>
+                            <div class="subject-grid">
+                                <label class="subject-option">
+                                    <input type="radio" name="subject" value="mathematics" required>
+                                    <span class="subject-card">
+                                        <span class="subject-icon">🔢</span>
+                                        <span class="subject-name">Mathematics</span>
+                                    </span>
+                                </label>
+                                <label class="subject-option">
+                                    <input type="radio" name="subject" value="physics">
+                                    <span class="subject-card">
+                                        <span class="subject-icon">⚛️</span>
+                                        <span class="subject-name">Physics</span>
+                                    </span>
+                                </label>
+                                <label class="subject-option">
+                                    <input type="radio" name="subject" value="chemistry">
+                                    <span class="subject-card">
+                                        <span class="subject-icon">🧪</span>
+                                        <span class="subject-name">Chemistry</span>
+                                    </span>
+                                </label>
+                                <label class="subject-option">
+                                    <input type="radio" name="subject" value="biology">
+                                    <span class="subject-card">
+                                        <span class="subject-icon">🧬</span>
+                                        <span class="subject-name">Biology</span>
+                                    </span>
+                                </label>
+                                <label class="subject-option">
+                                    <input type="radio" name="subject" value="english">
+                                    <span class="subject-card">
+                                        <span class="subject-icon">📖</span>
+                                        <span class="subject-name">English</span>
+                                    </span>
+                                </label>
+                                <label class="subject-option">
+                                    <input type="radio" name="subject" value="history">
+                                    <span class="subject-card">
+                                        <span class="subject-icon">🏛️</span>
+                                        <span class="subject-name">History</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Topics Studied -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">📝 Topics Studied</h3>
+                            <textarea 
+                                id="topics" 
+                                class="form-textarea" 
+                                placeholder="Enter the topics you studied today (e.g., Calculus - Derivatives, Integration by parts)"
+                                rows="4"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <!-- Time Spent -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">⏱️ Time Spent</h3>
+                            <div class="time-selector">
+                                <div class="time-option-group">
+                                    <label class="time-option">
+                                        <input type="radio" name="timeSpent" value="15" required>
+                                        <span class="time-card">15 min</span>
+                                    </label>
+                                    <label class="time-option">
+                                        <input type="radio" name="timeSpent" value="30">
+                                        <span class="time-card">30 min</span>
+                                    </label>
+                                    <label class="time-option">
+                                        <input type="radio" name="timeSpent" value="45">
+                                        <span class="time-card">45 min</span>
+                                    </label>
+                                    <label class="time-option">
+                                        <input type="radio" name="timeSpent" value="60">
+                                        <span class="time-card">1 hour</span>
+                                    </label>
+                                    <label class="time-option">
+                                        <input type="radio" name="timeSpent" value="90">
+                                        <span class="time-card">1.5 hours</span>
+                                    </label>
+                                    <label class="time-option">
+                                        <input type="radio" name="timeSpent" value="120">
+                                        <span class="time-card">2 hours</span>
+                                    </label>
+                                    <label class="time-option">
+                                        <input type="radio" name="timeSpent" value="180">
+                                        <span class="time-card">3+ hours</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz Completed -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">🎯 Additional Activities</h3>
+                            <div class="checkbox-group">
+                                <label class="checkbox-card">
+                                    <input type="checkbox" id="quizCompleted">
+                                    <span class="checkbox-content">
+                                        <span class="checkbox-icon">✓</span>
+                                        <span class="checkbox-label">Completed a quiz today</span>
+                                        <span class="checkbox-xp">+50 XP</span>
+                                    </span>
+                                </label>
+                                <label class="checkbox-card">
+                                    <input type="checkbox" id="flashcardsReviewed">
+                                    <span class="checkbox-content">
+                                        <span class="checkbox-icon">✓</span>
+                                        <span class="checkbox-label">Reviewed flashcards</span>
+                                        <span class="checkbox-xp">+30 XP</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-primary btn-large btn-full">
+                            Submit Progress & Earn XP
+                        </button>
+                    </form>
+                </div>
+
+                <!-- XP Reward Animation (Hidden by default) -->
+                <div class="xp-reward-overlay" id="xpReward" style="display: none;">
+                    <div class="xp-reward-content">
+                        <div class="xp-animation">
+                            <div class="xp-icon">⭐</div>
+                            <div class="xp-amount" id="xpAmount">+80 XP</div>
+                        </div>
+                        <h2 class="xp-title">Great Work!</h2>
+                        <p class="xp-message">Keep up the amazing progress!</p>
+                        <button class="btn-primary" id="closeXpReward">Continue</button>
+                    </div>
+                </div>
+
+                <!-- Today's Summary -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Today's Summary</h2>
+                    </div>
+                    <div class="summary-stats">
+                        <div class="summary-stat">
+                            <div class="summary-icon">📚</div>
+                            <div class="summary-content">
+                                <div class="summary-value">3</div>
+                                <div class="summary-label">Subjects Studied</div>
+                            </div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="summary-icon">⏱️</div>
+                            <div class="summary-content">
+                                <div class="summary-value">2.5 hrs</div>
+                                <div class="summary-label">Time Spent</div>
+                            </div>
+                        </div>
+                        <div class="summary-stat">
+                            <div class="summary-icon">⭐</div>
+                            <div class="summary-content">
+                                <div class="summary-value">150 XP</div>
+                                <div class="summary-label">XP Earned</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/theme.js"></script>
+    <script src="../scripts/progress.js"></script>
+</body>
+</html>

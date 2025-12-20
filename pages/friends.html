@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends - StudySphere</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">StudySphere</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="academic-data.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Academic Planner</span>
+                </a>
+                <a href="upload.html" class="nav-item">
+                    <span class="nav-icon">📤</span>
+                    <span class="nav-text">Upload Material</span>
+                </a>
+                <a href="progress.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Daily Progress</span>
+                </a>
+                <a href="flashcards.html" class="nav-item">
+                    <span class="nav-icon">🎴</span>
+                    <span class="nav-text">Flashcards</span>
+                </a>
+                <a href="quizzes.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+                <a href="friends.html" class="nav-item active">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Friends</span>
+                </a>
+                <a href="challenges.html" class="nav-item">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text">Challenges</span>
+                </a>
+                <a href="leaderboard.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
+                </a>
+                <a href="profile-settings.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-level">Level 12</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="logout-btn" title="Logout">
+                    <span>🚪</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Friends</h1>
+                    <p class="page-subtitle">Connect and compete with your study buddies</p>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                    <button class="btn-primary" id="addFriendBtn">+ Add Friend</button>
+                </div>
+            </header>
+
+            <div class="friends-content">
+                <!-- Add Friend Modal (Hidden by default) -->
+                <div class="modal-overlay" id="addFriendModal" style="display: none;">
+                    <div class="modal">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Add Friend</h2>
+                            <button class="modal-close" id="closeModal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="friendEmail" class="form-label">Email or Username</label>
+                                <input 
+                                    type="text" 
+                                    id="friendEmail" 
+                                    class="form-input" 
+                                    placeholder="Enter email or username"
+                                >
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-secondary" id="cancelAdd">Cancel</button>
+                            <button class="btn-primary" id="sendRequest">Send Request</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friends List -->
+                <div class="friends-grid">
+                    <div class="friend-card">
+                        <div class="friend-header">
+                            <div class="friend-avatar">SM</div>
+                            <div class="friend-status online"></div>
+                        </div>
+                        <div class="friend-info">
+                            <h3 class="friend-name">Sarah Miller</h3>
+                            <p class="friend-username">@sarahmiller</p>
+                        </div>
+                        <div class="friend-stats">
+                            <div class="friend-stat">
+                                <span class="stat-icon">🔥</span>
+                                <span class="stat-value">23</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">⭐</span>
+                                <span class="stat-value">3,200</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">🎖️</span>
+                                <span class="stat-value">15</span>
+                            </div>
+                        </div>
+                        <div class="friend-actions">
+                            <a href="friend-profile.html" class="btn-secondary btn-small">View Profile</a>
+                            <button class="btn-primary btn-small">Challenge</button>
+                        </div>
+                    </div>
+
+                    <div class="friend-card">
+                        <div class="friend-header">
+                            <div class="friend-avatar">AJ</div>
+                            <div class="friend-status online"></div>
+                        </div>
+                        <div class="friend-info">
+                            <h3 class="friend-name">Alex Johnson</h3>
+                            <p class="friend-username">@alexj</p>
+                        </div>
+                        <div class="friend-stats">
+                            <div class="friend-stat">
+                                <span class="stat-icon">🔥</span>
+                                <span class="stat-value">18</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">⭐</span>
+                                <span class="stat-value">2,850</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">🎖️</span>
+                                <span class="stat-value">14</span>
+                            </div>
+                        </div>
+                        <div class="friend-actions">
+                            <a href="friend-profile.html" class="btn-secondary btn-small">View Profile</a>
+                            <button class="btn-primary btn-small">Challenge</button>
+                        </div>
+                    </div>
+
+                    <div class="friend-card">
+                        <div class="friend-header">
+                            <div class="friend-avatar">EC</div>
+                            <div class="friend-status offline"></div>
+                        </div>
+                        <div class="friend-info">
+                            <h3 class="friend-name">Emily Chen</h3>
+                            <p class="friend-username">@emilyc</p>
+                        </div>
+                        <div class="friend-stats">
+                            <div class="friend-stat">
+                                <span class="stat-icon">🔥</span>
+                                <span class="stat-value">31</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">⭐</span>
+                                <span class="stat-value">4,100</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">🎖️</span>
+                                <span class="stat-value">18</span>
+                            </div>
+                        </div>
+                        <div class="friend-actions">
+                            <a href="friend-profile.html" class="btn-secondary btn-small">View Profile</a>
+                            <button class="btn-primary btn-small">Challenge</button>
+                        </div>
+                    </div>
+
+                    <div class="friend-card">
+                        <div class="friend-header">
+                            <div class="friend-avatar">MP</div>
+                            <div class="friend-status online"></div>
+                        </div>
+                        <div class="friend-info">
+                            <h3 class="friend-name">Michael Park</h3>
+                            <p class="friend-username">@mikepark</p>
+                        </div>
+                        <div class="friend-stats">
+                            <div class="friend-stat">
+                                <span class="stat-icon">🔥</span>
+                                <span class="stat-value">12</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">⭐</span>
+                                <span class="stat-value">2,100</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">🎖️</span>
+                                <span class="stat-value">11</span>
+                            </div>
+                        </div>
+                        <div class="friend-actions">
+                            <a href="friend-profile.html" class="btn-secondary btn-small">View Profile</a>
+                            <button class="btn-primary btn-small">Challenge</button>
+                        </div>
+                    </div>
+
+                    <div class="friend-card">
+                        <div class="friend-header">
+                            <div class="friend-avatar">LR</div>
+                            <div class="friend-status offline"></div>
+                        </div>
+                        <div class="friend-info">
+                            <h3 class="friend-name">Lisa Rodriguez</h3>
+                            <p class="friend-username">@lisarodriguez</p>
+                        </div>
+                        <div class="friend-stats">
+                            <div class="friend-stat">
+                                <span class="stat-icon">🔥</span>
+                                <span class="stat-value">27</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">⭐</span>
+                                <span class="stat-value">3,650</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">🎖️</span>
+                                <span class="stat-value">16</span>
+                            </div>
+                        </div>
+                        <div class="friend-actions">
+                            <a href="friend-profile.html" class="btn-secondary btn-small">View Profile</a>
+                            <button class="btn-primary btn-small">Challenge</button>
+                        </div>
+                    </div>
+
+                    <div class="friend-card">
+                        <div class="friend-header">
+                            <div class="friend-avatar">DK</div>
+                            <div class="friend-status online"></div>
+                        </div>
+                        <div class="friend-info">
+                            <h3 class="friend-name">David Kim</h3>
+                            <p class="friend-username">@davidkim</p>
+                        </div>
+                        <div class="friend-stats">
+                            <div class="friend-stat">
+                                <span class="stat-icon">🔥</span>
+                                <span class="stat-value">15</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">⭐</span>
+                                <span class="stat-value">2,450</span>
+                            </div>
+                            <div class="friend-stat">
+                                <span class="stat-icon">🎖️</span>
+                                <span class="stat-value">12</span>
+                            </div>
+                        </div>
+                        <div class="friend-actions">
+                            <a href="friend-profile.html" class="btn-secondary btn-small">View Profile</a>
+                            <button class="btn-primary btn-small">Challenge</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friend Requests -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Friend Requests</h2>
+                        <span class="card-badge">2</span>
+                    </div>
+                    <div class="requests-list">
+                        <div class="request-item">
+                            <div class="request-avatar">JW</div>
+                            <div class="request-info">
+                                <div class="request-name">Jessica Wang</div>
+                                <div class="request-username">@jessicaw</div>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-primary btn-small">Accept</button>
+                                <button class="btn-secondary btn-small">Decline</button>
+                            </div>
+                        </div>
+                        <div class="request-item">
+                            <div class="request-avatar">RT</div>
+                            <div class="request-info">
+                                <div class="request-name">Ryan Taylor</div>
+                                <div class="request-username">@ryantaylor</div>
+                            </div>
+                            <div class="request-actions">
+                                <button class="btn-primary btn-small">Accept</button>
+                                <button class="btn-secondary btn-small">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/theme.js"></script>
+    <script src="../scripts/friends.js"></script>
+</body>
+</html>

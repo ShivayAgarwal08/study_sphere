@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Planner - StudySphere</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text gradient-text">StudySphere</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="academic-data.html" class="nav-item active">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Academic Planner</span>
+                </a>
+                <a href="upload.html" class="nav-item">
+                    <span class="nav-icon">📤</span>
+                    <span class="nav-text">Upload Material</span>
+                </a>
+                <a href="progress.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Daily Progress</span>
+                </a>
+                <a href="flashcards.html" class="nav-item">
+                    <span class="nav-icon">🎴</span>
+                    <span class="nav-text">Flashcards</span>
+                </a>
+                <a href="quizzes.html" class="nav-item">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+                <a href="friends.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Friends</span>
+                </a>
+                <a href="challenges.html" class="nav-item">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text">Challenges</span>
+                </a>
+                <a href="leaderboard.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
+                </a>
+                <a href="profile-settings.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-level">Level 12</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="logout-btn" title="Logout">
+                    <span>🚪</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Academic Planner</h1>
+                    <p class="page-subtitle">Organize your subjects, materials, and schedules</p>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                    <button class="notification-btn">
+                        <span>🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="academic-content">
+                <!-- Manage Subjects Section -->
+                <section class="planner-section">
+                    <div class="section-header">
+                        <h2 class="section-title">📂 My Subjects</h2>
+                        <button class="btn-primary" id="addSubjectBtn"><span>➕</span> Add Subject</button>
+                    </div>
+                    <div class="subject-planner-grid" id="subjectGrid">
+                        <!-- Physics Subject Card -->
+                        <div class="card glass subject-planner-card">
+                            <div class="subject-card-header">
+                                <span class="subject-icon">⚛️</span>
+                                <h3 class="subject-name">Physics</h3>
+                            </div>
+                            <div class="subject-materials">
+                                <h4>Study Materials</h4>
+                                <ul class="material-list">
+                                    <li><a href="#">Mechanics_Notes.pdf</a></li>
+                                    <li><a href="#">Quantum_Lec_1.mp4</a></li>
+                                </ul>
+                                <button class="btn-text-icon"><span>🔗</span> Link Material</button>
+                            </div>
+                        </div>
+
+                        <!-- Math Subject Card -->
+                        <div class="card glass subject-planner-card">
+                            <div class="subject-card-header">
+                                <span class="subject-icon">📐</span>
+                                <h3 class="subject-name">Calculus</h3>
+                            </div>
+                            <div class="subject-materials">
+                                <h4>Study Materials</h4>
+                                <ul class="material-list">
+                                    <li><a href="#">Integration_CheatSheet.pdf</a></li>
+                                </ul>
+                                <button class="btn-text-icon"><span>🔗</span> Link Material</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="academic-lower-grid">
+                    <!-- Important Documents Section (Datesheet, Timetable) -->
+                    <div class="card glass docs-card">
+                        <div class="card-header">
+                            <h2 class="card-title">📜 Important Documents</h2>
+                            <button class="btn-icon" id="uploadDocBtn" title="Upload New Document"><span>📤</span></button>
+                        </div>
+                        <div class="doc-list">
+                            <div class="doc-item">
+                                <div class="doc-icon">📅</div>
+                                <div class="doc-info">
+                                    <span class="doc-name">Final_Datesheet_2024.pdf</span>
+                                    <span class="doc-meta">Uploaded 2 days ago • 1.2 MB</span>
+                                </div>
+                                <button class="btn-icon"><span>📥</span></button>
+                            </div>
+                            <div class="doc-item">
+                                <div class="doc-icon">🕒</div>
+                                <div class="doc-info">
+                                    <span class="doc-name">Term_2_Timetable.jpg</span>
+                                    <span class="doc-meta">Uploaded 1 week ago • 0.8 MB</span>
+                                </div>
+                                <button class="btn-icon"><span>📥</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Discover Materials -->
+                    <div class="card glass discover-card">
+                        <h2 class="card-title">🔍 Discover Materials</h2>
+                        <div class="search-box">
+                            <input type="text" placeholder="Search for notes, PYQs..." class="w-full">
+                        </div>
+                        <div class="trending-topics">
+                            <span class="topic-tag">#OrganicChemistry</span>
+                            <span class="topic-tag">#CalculusPYQ</span>
+                            <span class="topic-tag">#PhysicsNotes</span>
+                        </div>
+                        <button class="btn-secondary w-full">Browse Library</button>
+                    </div>
+                </div>
+
+                <!-- Syllbus Sync / Goal Section -->
+                <section class="planner-section mt-1.5">
+                    <div class="card glass syllabus-sync-card">
+                        <h2 class="card-title">📚 Syllabus Tracker</h2>
+                        <div class="syllabus-progress-container grid-cols-3">
+                            <div class="syllabus-track-item">
+                                <div class="track-info">
+                                    <span>Core Physics</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="syllabus-track-item">
+                                <div class="track-info">
+                                    <span>Higher Calculus</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%; background: var(--warning);"></div>
+                                </div>
+                            </div>
+                            <div class="syllabus-track-item">
+                                <div class="track-info">
+                                    <span>Molecular Biology</span>
+                                    <span>20%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 20%; background: var(--error);"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-secondary mt-1">Update Detailed Syllabus Progress</button>
+                    </div>
+                </section>
+            </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals (Mock) -->
+    <div class="modal-overlay" id="addSubjectModal">
+        <div class="modal card">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New Subject</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Subject Name</label>
+                    <input type="text" placeholder="e.g. Organic Chemistry">
+                </div>
+                <div class="form-group">
+                    <label>Subject Icon (Emoji)</label>
+                    <input type="text" placeholder="e.g. 🧪">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="confirmAddSubject">Add Subject</button>
+                <button class="btn-secondary" id="cancelModal">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/theme.js"></script>
+    <script>
+        // Modal logic
+        const addSubjectBtn = document.getElementById('addSubjectBtn');
+        const modal = document.getElementById('addSubjectModal');
+        const closeModal = document.getElementById('closeModal');
+        const cancelModal = document.getElementById('cancelModal');
+        const confirmAddSubject = document.getElementById('confirmAddSubject');
+        const subjectGrid = document.getElementById('subjectGrid');
+
+        addSubjectBtn.onclick = () => modal.style.display = 'flex';
+        closeModal.onclick = () => modal.style.display = 'none';
+        cancelModal.onclick = () => modal.style.display = 'none';
+
+        confirmAddSubject.onclick = () => {
+            const name = modal.querySelector('input[type="text"]').value;
+            const icon = modal.querySelectorAll('input[type="text"]')[1].value || '📚';
+            
+            if (name) {
+                const card = document.createElement('div');
+                card.className = 'card glass subject-planner-card';
+                card.innerHTML = `
+                    <div class="subject-card-header">
+                        <span class="subject-icon">${icon}</span>
+                        <h3 class="subject-name">${name}</h3>
+                    </div>
+                    <div class="subject-materials">
+                        <h4>Study Materials</h4>
+                        <p class="empty-hint">No materials linked yet</p>
+                        <button class="btn-text-icon"><span>🔗</span> Link Material</button>
+                    </div>
+                `;
+                subjectGrid.appendChild(card);
+            }
+            modal.style.display = 'none';
+        }
+
+        window.onclick = (event) => {
+            if (event.target == modal) modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

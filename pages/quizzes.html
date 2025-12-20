@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes - StudySphere</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">StudySphere</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="academic-data.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Academic Planner</span>
+                </a>
+                <a href="upload.html" class="nav-item">
+                    <span class="nav-icon">📤</span>
+                    <span class="nav-text">Upload Material</span>
+                </a>
+                <a href="progress.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Daily Progress</span>
+                </a>
+                <a href="flashcards.html" class="nav-item">
+                    <span class="nav-icon">🎴</span>
+                    <span class="nav-text">Flashcards</span>
+                </a>
+                <a href="quizzes.html" class="nav-item active">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quizzes</span>
+                </a>
+                <a href="friends.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">Friends</span>
+                </a>
+                <a href="challenges.html" class="nav-item">
+                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-text">Challenges</span>
+                </a>
+                <a href="leaderboard.html" class="nav-item">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
+                </a>
+                <a href="profile-settings.html" class="nav-item">
+                    <span class="nav-icon">👤</span>
+                    <span class="nav-text">Profile Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JD</div>
+                    <div class="user-info">
+                        <div class="user-name">John Doe</div>
+                        <div class="user-level">Level 12</div>
+                    </div>
+                </div>
+                <a href="../index.html" class="logout-btn" title="Logout">
+                    <span>🚪</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Quiz Selection View -->
+            <div id="quizSelection" class="quiz-selection">
+                <header class="top-bar">
+                    <div class="page-title">
+                        <h1>Quizzes</h1>
+                        <p class="page-subtitle">Test your knowledge and earn XP</p>
+                    </div>
+                    <div class="top-bar-actions">
+                        <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                            <span class="theme-toggle-icon sun">☀️</span>
+                            <span class="theme-toggle-icon moon">🌙</span>
+                            <div class="theme-toggle-slider"></div>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="quiz-content">
+                    <div class="quiz-grid">
+                        <div class="quiz-card" data-quiz="physics">
+                            <div class="quiz-card-header">
+                                <div class="quiz-icon">⚛️</div>
+                                <span class="quiz-difficulty easy">Easy</span>
+                            </div>
+                            <h3 class="quiz-title">Physics Fundamentals</h3>
+                            <p class="quiz-description">Test your understanding of basic physics concepts</p>
+                            <div class="quiz-meta">
+                                <span>10 Questions</span>
+                                <span>•</span>
+                                <span>15 min</span>
+                                <span>•</span>
+                                <span>+75 XP</span>
+                            </div>
+                            <button class="btn-primary btn-full start-quiz-btn">Start Quiz</button>
+                        </div>
+
+                        <div class="quiz-card" data-quiz="calculus">
+                            <div class="quiz-card-header">
+                                <div class="quiz-icon">🔢</div>
+                                <span class="quiz-difficulty medium">Medium</span>
+                            </div>
+                            <h3 class="quiz-title">Calculus - Derivatives</h3>
+                            <p class="quiz-description">Master the fundamentals of differentiation</p>
+                            <div class="quiz-meta">
+                                <span>15 Questions</span>
+                                <span>•</span>
+                                <span>20 min</span>
+                                <span>•</span>
+                                <span>+100 XP</span>
+                            </div>
+                            <button class="btn-primary btn-full start-quiz-btn">Start Quiz</button>
+                        </div>
+
+                        <div class="quiz-card" data-quiz="chemistry">
+                            <div class="quiz-card-header">
+                                <div class="quiz-icon">🧪</div>
+                                <span class="quiz-difficulty hard">Hard</span>
+                            </div>
+                            <h3 class="quiz-title">Organic Chemistry</h3>
+                            <p class="quiz-description">Challenge yourself with complex organic reactions</p>
+                            <div class="quiz-meta">
+                                <span>20 Questions</span>
+                                <span>•</span>
+                                <span>30 min</span>
+                                <span>•</span>
+                                <span>+150 XP</span>
+                            </div>
+                            <button class="btn-primary btn-full start-quiz-btn">Start Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Taking View (Hidden by default) -->
+            <div id="quizTaking" class="quiz-taking" style="display: none;">
+                <header class="quiz-header">
+                    <div class="quiz-info">
+                        <h2 class="quiz-name" id="quizName">Physics Fundamentals</h2>
+                        <div class="quiz-progress-text">
+                            Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+                        </div>
+                    </div>
+                    <div class="quiz-timer">
+                        <span class="timer-icon">⏱️</span>
+                        <span class="timer-text" id="timer">15:00</span>
+                    </div>
+                </header>
+
+                <div class="quiz-progress-bar">
+                    <div class="progress-fill" id="quizProgress" style="width: 10%"></div>
+                </div>
+
+                <div class="quiz-question-container">
+                    <div class="question-card">
+                        <h3 class="question-text" id="questionText">What is the SI unit of force?</h3>
+                        <div class="options-list" id="optionsList">
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="a">
+                                <span class="option-content">
+                                    <span class="option-letter">A</span>
+                                    <span class="option-text">Joule</span>
+                                </span>
+                            </label>
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="b">
+                                <span class="option-content">
+                                    <span class="option-letter">B</span>
+                                    <span class="option-text">Newton</span>
+                                </span>
+                            </label>
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="c">
+                                <span class="option-content">
+                                    <span class="option-letter">C</span>
+                                    <span class="option-text">Watt</span>
+                                </span>
+                            </label>
+                            <label class="option-item">
+                                <input type="radio" name="answer" value="d">
+                                <span class="option-content">
+                                    <span class="option-letter">D</span>
+                                    <span class="option-text">Pascal</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-navigation">
+                        <button class="btn-secondary" id="prevQuestion" disabled>← Previous</button>
+                        <button class="btn-primary" id="nextQuestion">Next →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Results View (Hidden by default) -->
+            <div id="quizResults" class="quiz-results" style="display: none;">
+                <div class="results-container">
+                    <div class="results-header">
+                        <div class="results-icon">🎉</div>
+                        <h2 class="results-title">Quiz Complete!</h2>
+                        <p class="results-subtitle">Great job on completing the quiz</p>
+                    </div>
+
+                    <div class="results-score">
+                        <div class="score-circle">
+                            <svg class="score-ring" width="200" height="200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="12"/>
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#6366f1" stroke-width="12" 
+                                        stroke-dasharray="565.48" stroke-dashoffset="141.37" 
+                                        transform="rotate(-90 100 100)"/>
+                            </svg>
+                            <div class="score-text">
+                                <div class="score-percentage">75%</div>
+                                <div class="score-label">Score</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <div class="result-stat-icon">✅</div>
+                            <div class="result-stat-value">8</div>
+                            <div class="result-stat-label">Correct</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-icon">❌</div>
+                            <div class="result-stat-value">2</div>
+                            <div class="result-stat-label">Incorrect</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-icon">⭐</div>
+                            <div class="result-stat-value">+75</div>
+                            <div class="result-stat-label">XP Earned</div>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="btn-secondary" id="reviewAnswers">Review Answers</button>
+                        <button class="btn-primary" id="retakeQuiz">Retake Quiz</button>
+                        <a href="dashboard.html" class="btn-primary">Back to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/theme.js"></script>
+    <script src="../scripts/quizzes.js"></script>
+</body>
+</html>
