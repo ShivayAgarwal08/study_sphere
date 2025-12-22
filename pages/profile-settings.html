@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../scripts/theme.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -15,50 +17,50 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
-                    <span class="logo-icon">🚀</span>
+                    <span class="logo-icon gradient-text"><i data-lucide="rocket"></i></span>
                     <span class="logo-text gradient-text">StudySphere</span>
                 </div>
             </div>
             
             <nav class="sidebar-nav">
                 <a href="dashboard.html" class="nav-item">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span>
                     <span class="nav-text">Dashboard</span>
                 </a>
                 <a href="academic-data.html" class="nav-item">
-                    <span class="nav-icon">📅</span>
+                    <span class="nav-icon"><i data-lucide="calendar"></i></span>
                     <span class="nav-text">Academic Planner</span>
                 </a>
                 <a href="upload.html" class="nav-item">
-                    <span class="nav-icon">📤</span>
+                    <span class="nav-icon"><i data-lucide="upload-cloud"></i></span>
                     <span class="nav-text">Upload Material</span>
                 </a>
                 <a href="progress.html" class="nav-item">
-                    <span class="nav-icon">📊</span>
+                    <span class="nav-icon"><i data-lucide="bar-chart-3"></i></span>
                     <span class="nav-text">Daily Progress</span>
                 </a>
                 <a href="flashcards.html" class="nav-item">
-                    <span class="nav-icon">🎴</span>
+                    <span class="nav-icon"><i data-lucide="layers"></i></span>
                     <span class="nav-text">Flashcards</span>
                 </a>
                 <a href="quizzes.html" class="nav-item">
-                    <span class="nav-icon">🎯</span>
+                    <span class="nav-icon"><i data-lucide="target"></i></span>
                     <span class="nav-text">Quizzes</span>
                 </a>
                 <a href="friends.html" class="nav-item">
-                    <span class="nav-icon">👥</span>
+                    <span class="nav-icon"><i data-lucide="users"></i></span>
                     <span class="nav-text">Friends</span>
                 </a>
                 <a href="challenges.html" class="nav-item">
-                    <span class="nav-icon">⚔️</span>
+                    <span class="nav-icon"><i data-lucide="swords"></i></span>
                     <span class="nav-text">Challenges</span>
                 </a>
                 <a href="leaderboard.html" class="nav-item">
-                    <span class="nav-icon">🏆</span>
+                    <span class="nav-icon"><i data-lucide="trophy"></i></span>
                     <span class="nav-text">Leaderboard</span>
                 </a>
                 <a href="profile-settings.html" class="nav-item active">
-                    <span class="nav-icon">👤</span>
+                    <span class="nav-icon"><i data-lucide="user"></i></span>
                     <span class="nav-text">Profile Settings</span>
                 </a>
             </nav>
@@ -72,7 +74,7 @@
                     </div>
                 </div>
                 <a href="../index.html" class="logout-btn" title="Logout">
-                    <span>🚪</span>
+                    <i data-lucide="log-out"></i>
                 </a>
             </div>
         </aside>
@@ -101,7 +103,7 @@
                 <div class="settings-grid">
                     <!-- Profile Picture Section -->
                     <div class="card glass profile-pic-card">
-                        <h2 class="card-title">Profile Picture</h2>
+                                <h3 class="settings-section-title"><i data-lucide="graduation-cap" style="vertical-align: middle; margin-right: 8px; color: var(--secondary);"></i> Academic Background</h3>
                         <div class="profile-pic-container">
                             <div class="profile-pic-preview" id="imagePreview">
                                 <span>JD</span>
@@ -118,7 +120,7 @@
 
                     <!-- Personal Information Form -->
                     <div class="card glass personal-info-card">
-                        <h2 class="card-title">Personal Information</h2>
+                                <h3 class="settings-section-title"><i data-lucide="user" style="vertical-align: middle; margin-right: 8px; color: var(--primary);"></i> Personal Information</h3>
                         <form id="profileForm" class="settings-form">
                             <div class="form-row">
                                 <div class="form-group">
@@ -151,7 +153,7 @@
 
                     <!-- Account Preferences -->
                     <div class="card glass preferences-card">
-                        <h2 class="card-title">Preferences</h2>
+                                <h3 class="settings-section-title"><i data-lucide="bell" style="vertical-align: middle; margin-right: 8px; color: var(--accent);"></i> Notification Preferences</h3>
                         <div class="preference-item">
                             <div class="preference-info">
                                 <h3>Email Notifications</h3>
@@ -178,8 +180,10 @@
         </main>
     </div>
 
-    <script src="../scripts/theme.js"></script>
+    <script src="../scripts/profile-settings.js"></script>
     <script>
+      lucide.createIcons();
+    </script>
         // Image preview logic
         const imageUpload = document.getElementById('imageUpload');
         const imagePreview = document.getElementById('imagePreview');
