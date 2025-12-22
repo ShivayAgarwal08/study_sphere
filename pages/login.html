@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../scripts/theme.js"></script>
 </head>
 <body>
     <div class="auth-page">
@@ -17,7 +18,7 @@
             <div class="auth-branding">
                 <div class="auth-brand-content">
                     <div class="logo-large">
-                        <span class="logo-icon">📚</span>
+                        <span class="logo-icon">🚀</span>
                         <span class="logo-text">StudySphere</span>
                     </div>
                     <h2 class="auth-brand-title">Welcome Back!</h2>
@@ -41,8 +42,18 @@
 
             <!-- Right Side - Login Form -->
             <div class="auth-form-container">
-                <div class="auth-form-content">
+                <div class="auth-form-header">
                     <a href="../index.html" class="back-link">← Back to Home</a>
+                </div>
+                <!-- Fixed Theme Toggle -->
+                <div class="fixed-auth-toggle">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                </div>
+                <div class="auth-form-content">
                     
                     <div class="auth-header">
                         <h1 class="auth-title">Login to Your Account</h1>

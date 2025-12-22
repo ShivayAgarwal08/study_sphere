@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="../scripts/theme.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -71,9 +72,16 @@
                         <div class="user-level">Level 12</div>
                     </div>
                 </div>
-                <a href="../index.html" class="logout-btn" title="Logout">
-                    <span>🚪</span>
-                </a>
+                <div class="sidebar-actions">
+                    <button class="theme-toggle" id="sidebarThemeToggle" title="Toggle dark mode">
+                        <span class="theme-toggle-icon sun">☀️</span>
+                        <span class="theme-toggle-icon moon">🌙</span>
+                        <div class="theme-toggle-slider"></div>
+                    </button>
+                    <a href="../index.html" class="logout-btn" title="Logout">
+                        <span>🚪</span>
+                    </a>
+                </div>
             </div>
         </aside>
 
@@ -281,7 +289,6 @@
         </main>
     </div>
 
-    <script src="../scripts/theme.js"></script>
     <script src="../scripts/progress.js"></script>
 </body>
 </html>
