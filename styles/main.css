@@ -207,9 +207,9 @@ button {
   border-radius: var(--radius-xl);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-color);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
 
 .card:hover {
@@ -242,12 +242,13 @@ input:focus {
 }
 
 .landing-nav {
-  background: white;
-  border-bottom: 1px solid var(--gray-200);
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: var(--shadow-sm);
+  transition: background 0.3s ease;
 }
 
 .nav-container {
@@ -1011,13 +1012,14 @@ input:focus {
 
 .sidebar {
   width: 260px;
-  background: white;
-  border-right: 1px solid var(--gray-200);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   position: fixed;
   height: 100vh;
   z-index: 50;
+  transition: background 0.3s ease;
 }
 
 .sidebar-header {
@@ -1043,8 +1045,8 @@ input:focus {
 }
 
 .nav-item:hover {
-  background: var(--gray-50);
-  color: var(--gray-900);
+  background: var(--bg-hover);
+  color: var(--primary);
 }
 
 .nav-item.active {
@@ -1704,11 +1706,13 @@ input:focus {
   cursor: pointer;
 }
 .progress-form-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 2rem;
   box-shadow: var(--shadow-sm);
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease;
 }
 .progress-form {
   display: flex;
@@ -1738,14 +1742,16 @@ input:focus {
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
-  border: 2px solid var(--gray-200);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.2s;
+  color: var(--text-primary);
 }
 .subject-card:hover {
   border-color: var(--primary);
-  background: var(--gray-50);
+  background: var(--bg-hover);
 }
 .subject-option input:checked + .subject-card {
   border-color: var(--primary);
@@ -1786,15 +1792,17 @@ input:focus {
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.25rem;
-  border: 2px solid var(--gray-200);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
   border-radius: var(--radius-md);
   cursor: pointer;
   font-weight: 500;
+  color: var(--text-primary);
   transition: all 0.2s;
 }
 .time-card:hover {
   border-color: var(--primary);
-  background: var(--gray-50);
+  background: var(--bg-hover);
 }
 .time-option input:checked + .time-card {
   border-color: var(--primary);
@@ -3136,63 +3144,15 @@ input:focus {
   }
 }
 
-/* === DARK MODE COMPONENT OVERRIDES === */
+/* Dark Mode Component Overrides - Simplified by relying more on variables */
 [data-theme="dark"] body {
   background: var(--bg-primary);
   color: var(--text-primary);
 }
-[data-theme="dark"] .landing-nav,
-[data-theme="dark"] .sidebar {
-  background: var(--bg-sidebar);
-  border-color: var(--border-color);
-}
-[data-theme="dark"] .card,
-[data-theme="dark"] .feature-card,
-[data-theme="dark"] .quiz-card,
-[data-theme="dark"] .friend-card,
-[data-theme="dark"] .challenge-card,
-[data-theme="dark"] .stat-card {
-  background: var(--bg-card);
-}
-[data-theme="dark"] .form-input,
-[data-theme="dark"] .form-textarea,
-[data-theme="dark"] .deck-select {
-  background: var(--bg-input);
-  border-color: var(--border-color);
-  color: var(--text-primary);
-}
-[data-theme="dark"] .btn-secondary {
-  background: var(--bg-tertiary);
-  border-color: var(--border-color);
-  color: var(--text-primary);
-}
-[data-theme="dark"] .btn-google {
+
+[data-theme="dark"] .auth-container {
   background: var(--bg-card);
   border-color: var(--border-color);
-  color: var(--text-primary);
-}
-[data-theme="dark"] .auth-form-container {
-  background: var(--bg-card);
-}
-[data-theme="dark"] .flashcard-back {
-  background: var(--bg-card);
-  border-color: var(--border-color);
-}
-[data-theme="dark"] .option-content {
-  border-color: var(--border-color);
-}
-[data-theme="dark"] .podium-stand {
-  background: var(--bg-card);
-}
-[data-theme="dark"] .upload-zone {
-  border-color: var(--border-color);
-}
-[data-theme="dark"] .modal {
-  background: var(--bg-card);
-}
-[data-theme="dark"] .footer,
-[data-theme="dark"] .how-it-works {
-  background: var(--bg-primary);
 }
 
 /* === THEME TOGGLE === */
