@@ -333,13 +333,13 @@ input:focus {
 }
 
 .btn-secondary {
-  background: white;
-  color: var(--gray-700);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 0.625rem 1.25rem;
   border-radius: var(--radius-md);
   font-weight: 600;
   font-size: 0.875rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
@@ -781,7 +781,7 @@ input:focus {
   grid-template-columns: 1fr 1fr;
   max-width: 1000px;
   width: 100%;
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xl);
@@ -967,9 +967,9 @@ input:focus {
 
 .divider span {
   position: relative;
-  background: white;
+  background: var(--bg-card);
   padding: 0 1rem;
-  color: var(--gray-500);
+  color: var(--text-muted);
   font-size: 0.875rem;
 }
 
@@ -979,11 +979,11 @@ input:focus {
   justify-content: center;
   gap: 0.75rem;
   padding: 0.75rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  background: white;
+  background: var(--bg-card);
   font-weight: 500;
-  color: var(--gray-700);
+  color: var(--text-primary);
 }
 
 .btn-google:hover {
@@ -1186,12 +1186,13 @@ input:focus {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: white;
-  border: 1px solid var(--gray-200);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
+  color: var(--text-primary);
 }
 
 .notification-badge {
@@ -2042,9 +2043,10 @@ input:focus {
   gap: 0.5rem;
   padding: 1rem 1.5rem;
   border-radius: var(--radius-md);
-  border: 2px solid var(--gray-200);
-  background: white;
+  border: 2px solid var(--border-color);
+  background: var(--bg-card);
   transition: all 0.2s;
+  color: var(--text-primary);
 }
 .difficulty-btn:hover {
   transform: translateY(-2px);
@@ -2259,7 +2261,7 @@ input:focus {
   font-weight: 600;
 }
 .option-item input:checked + .option-content .option-letter {
-  background: white;
+  background: var(--bg-primary);
   color: var(--primary);
 }
 .option-text {
@@ -2361,17 +2363,18 @@ input:focus {
   z-index: 1000;
 }
 .modal {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-xl);
   max-width: 500px;
   width: 90%;
+  border: 1px solid var(--border-color);
 }
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--border-color);
 }
 .modal-title {
   font-size: 1.25rem;
@@ -2530,11 +2533,12 @@ input:focus {
   margin: 0 auto;
 }
 .profile-header-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 .profile-banner {
   height: 150px;
@@ -2552,8 +2556,8 @@ input:focus {
   width: 6rem;
   height: 6rem;
   border-radius: 50%;
-  background: white;
-  border: 4px solid white;
+  background: var(--bg-card);
+  border: 4px solid var(--primary);
   color: var(--primary);
   display: flex;
   align-items: center;
@@ -2603,11 +2607,12 @@ input:focus {
   margin-bottom: 2rem;
 }
 .profile-stat-card {
-  background: white;
+  background: var(--bg-card);
   padding: 1.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   text-align: center;
+  border: 1px solid var(--border-color);
 }
 .stat-icon-large {
   font-size: 2.5rem;
@@ -2667,10 +2672,11 @@ input:focus {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
-  background: white;
+  background: var(--bg-card);
   padding: 0.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 .tab-btn {
   flex: 1;
@@ -2695,10 +2701,11 @@ input:focus {
   gap: 1.5rem;
 }
 .challenge-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 .challenge-header {
   display: flex;
@@ -2862,10 +2869,11 @@ input:focus {
 .filter-group {
   display: flex;
   gap: 0.5rem;
-  background: white;
+  background: var(--bg-card);
   padding: 0.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 .filter-btn {
   padding: 0.5rem 1rem;
@@ -2946,9 +2954,11 @@ input:focus {
 }
 .podium-stand {
   padding: 2rem 1rem 1rem;
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  border-bottom: none;
 }
 .first-stand {
   padding-top: 3rem;
@@ -3373,12 +3383,13 @@ input:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  background: white;
+  background: var(--bg-card);
   padding: 3rem;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
   text-align: center;
   z-index: 1100;
+  border: 1px solid var(--border-color);
   animation: xpPopup 0.5s ease forwards;
 }
 @keyframes xpPopup {
