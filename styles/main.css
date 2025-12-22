@@ -72,10 +72,10 @@
   --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.15);
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-  --glass-blur: 10px;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --glass-blur: 12px;
 
   /* Typography */
   --font-family: "Outfit", "Inter", -apple-system, sans-serif;
@@ -95,43 +95,44 @@ html {
 
 /* === DARK MODE === */
 [data-theme="dark"] {
-  --gray-50: #111827;
-  --gray-100: #1f2937;
-  --gray-200: #374151;
-  --gray-300: #4b5563;
-  --gray-400: #6b7280;
-  --gray-500: #9ca3af;
-  --gray-600: #d1d5db;
-  --gray-700: #e5e7eb;
-  --gray-800: #f3f4f6;
-  --gray-900: #f9fafb;
+  --gray-50: #0b0f1a;
+  --gray-100: #121826;
+  --gray-200: #1c2533;
+  --gray-300: #334155;
+  --gray-400: #475569;
+  --gray-500: #64748b;
+  --gray-600: #94a3b8;
+  --gray-700: #cbd5e1;
+  --gray-800: #e2e8f0;
+  --gray-900: #f8fafc;
 
   /* Semantic Colors (Dark Mode) */
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --bg-card: #1e293b;
-  --bg-sidebar: #0f172a;
-  --bg-input: #1e293b;
-  --bg-hover: #334155;
+  --bg-primary: #0b0f1a;
+  --bg-secondary: #121826;
+  --bg-tertiary: #1c2533;
+  --bg-card: #121826;
+  --bg-sidebar: #0b0f1a;
+  --bg-input: #121826;
+  --bg-hover: #1c2533;
 
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  --text-inverse: #0f172a;
+  --text-inverse: #0b0f1a;
 
-  --border-color: #334155;
-  --border-light: #1e293b;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.04);
 
   /* Adjusted shadows for dark mode */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
-  /* Glassmorphism - Dark Mode */
-  --glass-bg: rgba(15, 23, 42, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
+
+  /* Glassmorphism - Dark Mode - More Elegant */
+  --glass-bg: rgba(11, 15, 26, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
 }
 
 /* === RESET & BASE === */
@@ -455,10 +456,11 @@ input:focus {
 }
 
 .feature-card {
-  background: white;
+  background: var(--bg-card);
   padding: 2rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -516,7 +518,7 @@ input:focus {
 
 /* === HOW IT WORKS === */
 .how-it-works {
-  background: white;
+  background: var(--bg-secondary);
   padding: 5rem 2rem;
 }
 
@@ -533,8 +535,9 @@ input:focus {
   flex: 1;
   text-align: center;
   padding: 2rem;
-  background: var(--gray-50);
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
 }
 
 /* === ACADEMIC PLANNER COMPONENTS === */
@@ -2107,10 +2110,11 @@ input:focus {
   gap: 1.5rem;
 }
 .quiz-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
   transition: all 0.3s;
 }
 .quiz-card:hover {
@@ -2170,10 +2174,11 @@ input:focus {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   margin-bottom: 1rem;
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 .quiz-info,
 .quiz-name {
@@ -2201,11 +2206,12 @@ input:focus {
   margin: 0 auto;
 }
 .question-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 2rem;
   box-shadow: var(--shadow-sm);
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 .question-text {
   font-size: 1.25rem;
@@ -2235,7 +2241,7 @@ input:focus {
 }
 .option-item:hover .option-content {
   border-color: var(--primary);
-  background: var(--gray-50);
+  background: var(--bg-hover);
 }
 .option-item input:checked + .option-content {
   border-color: var(--primary);
@@ -2400,12 +2406,13 @@ input:focus {
   margin-bottom: 2rem;
 }
 .friend-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
   text-align: center;
   transition: all 0.3s;
+  border: 1px solid var(--border-color);
 }
 .friend-card:hover {
   transform: translateY(-4px);

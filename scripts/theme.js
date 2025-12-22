@@ -41,15 +41,9 @@
     
     // Update all toggle buttons on the page
     function updateToggleButtons(theme) {
-        const toggles = document.querySelectorAll('.theme-toggle');
-        toggles.forEach(toggle => {
-            const sunIcon = toggle.querySelector('.sun');
-            const moonIcon = toggle.querySelector('.moon');
-            if (sunIcon && moonIcon) {
-                sunIcon.style.display = theme === DARK ? 'none' : 'block';
-                moonIcon.style.display = theme === DARK ? 'block' : 'none';
-            }
-        });
+        // We now handle icon visibility purely via CSS using [data-theme="dark"] selectors
+        // This function can remain as a hook if we need to do other things later,
+        // but for now, the CSS handle icons based on the data-theme attribute.
     }
     
     // Attach event listeners to toggle buttons
