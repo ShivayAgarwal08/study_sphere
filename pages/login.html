@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="../scripts/theme.js"></script>
 </head>
 <body>
@@ -17,10 +18,10 @@
             <!-- Left Side - Branding -->
             <div class="auth-branding">
                 <div class="auth-brand-content">
-                    <div class="logo-large">
-                        <span class="logo-icon">🚀</span>
-                        <span class="logo-text">StudySphere</span>
-                    </div>
+                    <div class="logo">
+                    <span class="logo-icon gradient-text"><i data-lucide="rocket"></i></span>
+                    <span class="logo-text gradient-text">StudySphere</span>
+                </div>
                     <h2 class="auth-brand-title">Welcome Back!</h2>
                     <p class="auth-brand-subtitle">Continue your learning journey and keep your streak alive.</p>
                     <div class="auth-features">
@@ -43,7 +44,7 @@
             <!-- Right Side - Login Form -->
             <div class="auth-form-container">
                 <div class="auth-form-header">
-                    <a href="../index.html" class="back-link">← Back to Home</a>
+                    
                 </div>
                 <!-- Fixed Theme Toggle -->
                 <div class="fixed-auth-toggle">
@@ -109,13 +110,19 @@
                     </button>
 
                     <div class="auth-footer">
-                        <p>Don't have an account? <a href="signup.html" class="auth-link">Sign up for free</a></p>
+                        <p>Don't have an account? <a href="signup.html">Create one</a></p>
+                        <a href="../index.html" class="back-link">
+                            <i data-lucide="arrow-left" style="width: 14px; height: 14px; vertical-align: middle;"></i> Back to Home
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/login.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
 </body>
 </html>
