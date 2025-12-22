@@ -79,6 +79,18 @@
 
   /* Typography */
   --font-family: "Outfit", "Inter", -apple-system, sans-serif;
+  
+  /* Animations */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::selection {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* === DARK MODE === */
@@ -261,6 +273,12 @@ input:focus {
   align-items: center;
   justify-content: center;
   color: var(--primary);
+  transition: var(--transition);
+}
+
+.logo:hover .logo-icon {
+  transform: translateY(-3px) rotate(10deg);
+  filter: drop-shadow(0 0 8px var(--primary-light));
 }
 
 .logo-icon i {
@@ -308,8 +326,8 @@ input:focus {
 
 .btn-primary:hover {
   background: var(--primary-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
 }
 
 .btn-secondary {
@@ -444,8 +462,9 @@ input:focus {
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .feature-icon {
@@ -1029,19 +1048,26 @@ input:focus {
 }
 
 .nav-item.active {
-  background: var(--primary);
-  color: white;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary);
+  font-weight: 600;
   position: relative;
+}
+
+.nav-item.active i {
+  color: var(--primary);
 }
 
 .nav-item.active::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--primary-dark);
+  top: 15%;
+  bottom: 15%;
+  width: 4px;
+  background: var(--primary);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 2px 0 10px rgba(99, 102, 241, 0.4);
 }
 
 .nav-icon {
@@ -1123,6 +1149,12 @@ input:focus {
   flex: 1;
   margin-left: 260px;
   padding: 2rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .top-bar {
@@ -1175,11 +1207,18 @@ input:focus {
 
 /* === CARDS === */
 .card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   box-shadow: var(--shadow-sm);
   margin-bottom: 1.5rem;
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
 }
 
 .card-header {
@@ -1208,9 +1247,12 @@ input:focus {
 .motivation-card {
   background: linear-gradient(
     135deg,
-    var(--primary-light) 0%,
-    var(--secondary) 100%
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--primary-dark) 100%
   );
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
   color: white;
   padding: 2rem;
   border-radius: var(--radius-lg);
@@ -1218,6 +1260,13 @@ input:focus {
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .motivation-icon {
@@ -1243,13 +1292,21 @@ input:focus {
 }
 
 .stat-card {
-  background: white;
+  background: var(--bg-card);
   padding: 1.5rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
 }
 
 .stat-icon {
@@ -1281,9 +1338,16 @@ input:focus {
 
 .progress-fill {
   height: 100%;
-  background: var(--primary);
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+  background-size: 200% 100%;
   border-radius: var(--radius-full);
   transition: width 0.3s ease;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .progress-text {
