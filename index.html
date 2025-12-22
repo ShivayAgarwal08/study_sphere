@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="scripts/theme.js"></script>
   </head>
   <body>
@@ -24,7 +25,7 @@
       <nav class="landing-nav">
         <div class="nav-container">
           <div class="logo">
-            <span class="logo-icon">🚀</span>
+            <span class="logo-icon gradient-text"><i data-lucide="rocket"></i></span>
             <span class="logo-text gradient-text">StudySphere</span>
           </div>
           <div class="nav-links">
@@ -49,7 +50,7 @@
       <section class="hero">
         <div class="hero-content">
           <div class="hero-badge">
-            <span class="badge-icon">✨</span>
+            <span class="badge-icon"><i data-lucide="sparkles" style="width: 14px; height: 14px;"></i></span>
             <span>Your Personal Learning Companion</span>
           </div>
           <h1 class="hero-title">
@@ -94,7 +95,9 @@
         </div>
         <div class="features-grid">
           <div class="feature-card glass">
-            <div class="feature-icon gradient-text">📤</div>
+            <div class="feature-icon icon-upload">
+              <i data-lucide="upload-cloud"></i>
+            </div>
             <h3 class="feature-title">Smart Material Upload</h3>
             <p class="feature-description">
               Upload PDFs, notes, and study materials. Our AI processes them
@@ -102,7 +105,9 @@
             </p>
           </div>
           <div class="feature-card glass">
-            <div class="feature-icon gradient-text">📊</div>
+            <div class="feature-icon icon-track">
+              <i data-lucide="bar-chart-3"></i>
+            </div>
             <h3 class="feature-title">Daily Progress Tracking</h3>
             <p class="feature-description">
               Log your study sessions, track time spent, and watch your XP grow
@@ -110,7 +115,9 @@
             </p>
           </div>
           <div class="feature-card glass">
-            <div class="feature-icon gradient-text">🎴</div>
+            <div class="feature-icon icon-flashcards">
+              <i data-lucide="layers"></i>
+            </div>
             <h3 class="feature-title">Interactive Flashcards</h3>
             <p class="feature-description">
               Master concepts with beautifully designed flashcards that adapt to
@@ -118,7 +125,9 @@
             </p>
           </div>
           <div class="feature-card glass">
-            <div class="feature-icon gradient-text">🎯</div>
+            <div class="feature-icon icon-quiz">
+              <i data-lucide="target"></i>
+            </div>
             <h3 class="feature-title">Smart Quizzes</h3>
             <p class="feature-description">
               Test your knowledge with adaptive quizzes that focus on areas you
@@ -126,7 +135,9 @@
             </p>
           </div>
           <div class="feature-card glass">
-            <div class="feature-icon gradient-text">🔥</div>
+            <div class="feature-icon icon-streak">
+              <i data-lucide="zap"></i>
+            </div>
             <h3 class="feature-title">Streak System</h3>
             <p class="feature-description">
               Build consistency with daily streaks. Stay motivated and make
@@ -134,7 +145,9 @@
             </p>
           </div>
           <div class="feature-card glass">
-            <div class="feature-icon gradient-text">👥</div>
+            <div class="feature-icon icon-social">
+              <i data-lucide="users"></i>
+            </div>
             <h3 class="feature-title">Social Learning</h3>
             <p class="feature-description">
               Connect with friends, compete on leaderboards, and challenge each
@@ -199,7 +212,7 @@
         <div class="footer-content">
           <div class="footer-brand">
             <div class="logo">
-              <span class="logo-icon">📚</span>
+              <span class="logo-icon"><i data-lucide="book-open"></i></span>
               <span class="logo-text">StudySphere</span>
             </div>
             <p class="footer-tagline">Learn Smarter, Not Harder</p>
@@ -232,5 +245,8 @@
     </div>
 
     <script src="scripts/main.js"></script>
+    <script>
+      lucide.createIcons();
+    </script>
   </body>
 </html>
