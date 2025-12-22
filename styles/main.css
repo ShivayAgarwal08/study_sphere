@@ -1515,14 +1515,15 @@ input:focus {
   margin: 0 auto;
 }
 .upload-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 3rem;
   box-shadow: var(--shadow-sm);
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 .upload-zone {
-  border: 2px dashed var(--gray-300);
+  border: 2px dashed var(--border-color);
   border-radius: var(--radius-lg);
   padding: 4rem 2rem;
   text-align: center;
@@ -1657,12 +1658,13 @@ input:focus {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
-  background: white;
-  border: 1px solid var(--gray-200);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   transition: all 0.2s;
+  color: var(--text-primary);
 }
 .icon-btn:hover {
-  background: var(--gray-50);
+  background: var(--bg-hover);
 }
 
 /* === PROGRESS PAGE === */
@@ -1676,25 +1678,27 @@ input:focus {
   justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
-  background: white;
+  background: var(--bg-card);
   padding: 1rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 .date-nav-btn {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: var(--gray-100);
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  color: var(--gray-700);
+  color: var(--text-primary);
   transition: all 0.2s;
+  border: 1px solid var(--border-color);
 }
 .date-nav-btn:hover {
-  background: var(--gray-200);
+  background: var(--bg-hover);
 }
 .current-date {
   position: relative;
@@ -1706,7 +1710,7 @@ input:focus {
 }
 .date-display {
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   cursor: pointer;
 }
 .progress-form-card {
@@ -1729,7 +1733,7 @@ input:focus {
 .form-section-title {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 .subject-grid {
@@ -1858,11 +1862,13 @@ input:focus {
   z-index: 1000;
 }
 .xp-reward-content {
-  background: white;
+  background: var(--bg-card);
   padding: 3rem;
   border-radius: var(--radius-xl);
   text-align: center;
   max-width: 400px;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
 }
 .xp-animation {
   margin-bottom: 1.5rem;
@@ -1933,22 +1939,24 @@ input:focus {
 .deck-select {
   flex: 1;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   font-size: 0.9375rem;
-  background: white;
+  background: var(--bg-card);
+  color: var(--text-primary);
 }
 .deck-count,
 .deck-info {
-  color: var(--gray-600);
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 .flashcard-viewer {
-  background: white;
+  background: var(--bg-card);
   border-radius: var(--radius-lg);
   padding: 2rem;
   box-shadow: var(--shadow-sm);
   margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 .flashcard-progress {
   margin-bottom: 2rem;
@@ -1957,7 +1965,7 @@ input:focus {
 .quiz-progress-text {
   text-align: center;
   font-weight: 600;
-  color: var(--gray-700);
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
 }
 .flashcard-container {
@@ -1999,10 +2007,10 @@ input:focus {
   color: white;
 }
 .flashcard-back {
-  background: white;
-  border: 2px solid var(--gray-200);
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
   transform: rotateY(180deg);
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 .card-label {
   font-size: 0.875rem;
@@ -2076,12 +2084,13 @@ input:focus {
 .control-btn {
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-md);
-  background: var(--gray-100);
-  color: var(--gray-700);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   font-weight: 500;
+  border: 1px solid var(--border-color);
 }
 .control-btn:hover {
-  background: var(--gray-200);
+  background: var(--bg-hover);
 }
 .control-btn-primary {
   background: var(--primary);
