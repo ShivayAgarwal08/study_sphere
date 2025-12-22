@@ -268,6 +268,9 @@ input:focus {
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--gray-900);
+  cursor: pointer;
+  text-decoration: none !important;
+  user-select: none;
 }
 
 .logo-icon {
