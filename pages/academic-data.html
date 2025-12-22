@@ -11,9 +11,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="../scripts/theme.js"></script>
     <script src="../scripts/academic-data.js"></script>
-    <script>
-      lucide.createIcons();
-    </script>
 </head>
 <body>
     <div class="app-container">
@@ -94,7 +91,7 @@
         <main class="main-content">
             <header class="top-bar">
                 <div class="page-title">
-                    <h1>Academic Planner</h1>
+                    <h1><i data-lucide="rocket" class="gradient-text" style="vertical-align: middle; margin-right: 10px;"></i>Academic Planner</h1>
                     <p class="page-subtitle">Organize your subjects, materials, and schedules</p>
                 </div>
                 <div class="top-bar-actions">
@@ -104,7 +101,7 @@
                         <div class="theme-toggle-slider"></div>
                     </button>
                     <button class="notification-btn">
-                        <span>🔔</span>
+                        <i data-lucide="bell"></i>
                         <span class="notification-badge">3</span>
                     </button>
                 </div>
@@ -318,6 +315,9 @@
         window.onclick = (event) => {
             if (event.target == modal) modal.style.display = 'none';
         }
+    </script>
+    <script>
+      lucide.createIcons();
     </script>
 </body>
 </html>
