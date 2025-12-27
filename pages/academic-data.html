@@ -99,23 +99,119 @@
 
             <div class="academic-content">
                 <style>
-                    /* Page Specific Styles for Layout Change */
+                    /* Page Specific Styles */
                     .academic-manager-grid {
                         display: grid;
-                        grid-template-columns: 300px 1fr;
+                        grid-template-columns: 320px 1fr;
                         gap: 24px;
                         align-items: start;
-                        height: calc(100vh - 140px); /* Fill remaining height */
+                        height: calc(100vh - 140px);
                     }
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 900px) {
                         .academic-manager-grid {
                             grid-template-columns: 1fr;
                             height: auto;
                         }
                     }
 
-                    /* Subject List Styles */
+                    /* Tabs */
+                    .academic-tabs {
+                        display: flex;
+                        gap: 4px;
+                        margin-bottom: 24px;
+                        background: rgba(0, 0, 0, 0.2);
+                        padding: 6px;
+                        border-radius: 12px;
+                        width: fit-content;
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                    }
+
+                    .tab-btn {
+                        padding: 10px 24px;
+                        background: transparent;
+                        border: none;
+                        color: var(--text-secondary);
+                        font-weight: 500;
+                        cursor: pointer;
+                        border-radius: 8px;
+                        transition: all 0.3s ease;
+                        font-size: 0.95rem;
+                    }
+
+                    .tab-btn:hover {
+                        color: var(--text-primary);
+                        background: rgba(255, 255, 255, 0.05);
+                    }
+
+                    .tab-btn.active {
+                        background: var(--primary);
+                        color: white;
+                        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+                    }
+
+                    /* Inline Forms */
+                    .inline-form {
+                        background: rgba(255, 255, 255, 0.03);
+                        padding: 24px;
+                        margin-bottom: 24px;
+                        border-radius: 16px;
+                        border: 1px dashed rgba(255, 255, 255, 0.15);
+                        display: grid;
+                        gap: 16px;
+                        animation: slideDown 0.3s ease-out;
+                    }
+
+                    @keyframes slideDown {
+                        from { opacity: 0; transform: translateY(-10px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+
+                    .form-row {
+                        display: grid;
+                        gap: 16px;
+                        align-items: end;
+                    }
+
+                    .form-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr auto; }
+                    .form-grid-3 { grid-template-columns: 1fr 2fr 1fr auto; }
+                    .form-grid-mats { grid-template-columns: 2fr 2fr 1fr auto; }
+                    
+                    @media (max-width: 768px) {
+                        .form-grid-4, .form-grid-3, .form-grid-mats { grid-template-columns: 1fr; }
+                    }
+
+                    .form-input {
+                        width: 100%;
+                        background: rgba(0, 0, 0, 0.2);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        padding: 12px 16px;
+                        border-radius: 8px;
+                        color: white;
+                        font-family: inherit;
+                        transition: all 0.2s;
+                    }
+
+                    .form-input::placeholder {
+                        color: rgba(255,255,255,0.3);
+                    }
+
+                    .form-input:focus {
+                        border-color: var(--primary);
+                        background: rgba(0, 0, 0, 0.4);
+                        outline: none;
+                        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+                    }
+
+                    .form-label {
+                        display: block;
+                        font-size: 0.85rem;
+                        margin-bottom: 8px;
+                        color: var(--text-secondary);
+                        font-weight: 500;
+                    }
+
+                    /* Subject List */
                     .subject-list-container {
                         display: flex;
                         flex-direction: column;
@@ -128,36 +224,36 @@
                     .subject-item {
                         display: flex;
                         align-items: center;
-                        gap: 12px;
+                        gap: 16px;
                         padding: 16px;
                         border-radius: 12px;
                         cursor: pointer;
-                        transition: all 0.3s ease;
+                        transition: all 0.2s ease;
                         border: 1px solid rgba(255, 255, 255, 0.05);
-                        background: rgba(255, 255, 255, 0.03);
+                        background: rgba(255, 255, 255, 0.02);
                     }
 
                     .subject-item:hover {
-                        background: rgba(255, 255, 255, 0.08);
-                        border-color: rgba(255, 255, 255, 0.2);
-                        transform: translateX(4px);
+                        background: rgba(255, 255, 255, 0.05);
+                        border-color: rgba(255, 255, 255, 0.1);
+                        transform: translateY(-2px);
                     }
 
                     .subject-item.active {
-                        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+                        background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
                         border-color: var(--primary);
-                        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+                        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
                     }
 
                     .subject-emoji {
                         font-size: 1.5rem;
-                        background: rgba(255,255,255,0.1);
-                        width: 40px;
-                        height: 40px;
+                        background: rgba(255,255,255,0.05);
+                        width: 44px;
+                        height: 44px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        border-radius: 50%;
+                        border-radius: 12px;
                     }
 
                     .subject-details {
@@ -168,6 +264,7 @@
                         font-weight: 600;
                         color: var(--text-primary);
                         display: block;
+                        margin-bottom: 2px;
                     }
 
                     .subject-count {
@@ -207,13 +304,13 @@
                     .material-left {
                         display: flex;
                         align-items: center;
-                        gap: 12px;
+                        gap: 16px;
                     }
 
                     .material-icon-box {
-                        width: 36px;
-                        height: 36px;
-                        border-radius: 8px;
+                        width: 42px;
+                        height: 42px;
+                        border-radius: 10px;
                         background: rgba(99, 102, 241, 0.1);
                         color: var(--primary);
                         display: flex;
@@ -225,11 +322,11 @@
                         color: var(--text-primary);
                         text-decoration: none;
                         font-weight: 500;
+                        font-size: 1.05rem;
                     }
 
                     .material-link:hover {
                         color: var(--primary);
-                        text-decoration: underline;
                     }
 
                     .delete-btn {
@@ -238,6 +335,9 @@
                         padding: 8px;
                         border-radius: 6px;
                         transition: all 0.2s;
+                        cursor: pointer;
+                        background: transparent;
+                        border: none;
                     }
 
                     .material-item:hover .delete-btn {
@@ -247,16 +347,87 @@
                     .delete-btn:hover {
                         background: rgba(239, 68, 68, 0.1);
                     }
+
+                    /* Schedule Table */
+                    .schedule-table-container {
+                        overflow-x: auto;
+                        padding: 8px;
+                    }
+
+                    .schedule-table {
+                        width: 100%;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                    }
+
+                    .schedule-table th {
+                        text-align: left;
+                        padding: 16px;
+                        color: var(--text-secondary);
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                        font-weight: 500;
+                    }
+
+                    .schedule-table td {
+                        padding: 16px;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+                    }
+
+                    .schedule-table tr:hover td {
+                        background: rgba(255, 255, 255, 0.02);
+                    }
+
+                    /* If no class, show text center dash */
+                    .schedule-empty {
+                        color: var(--text-secondary);
+                        opacity: 0.3;
+                        text-align: center;
+                    }
+
+                    /* Exam List */
+                    .exam-list {
+                        display: grid;
+                        gap: 16px;
+                        padding: 8px 0;
+                    }
+
+                    .exam-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 20px;
+                        background: rgba(255, 255, 255, 0.03);
+                        border-radius: 16px;
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                        transition: transform 0.2s, background 0.2s;
+                    }
+
+                    .exam-item:hover {
+                        background: rgba(255, 255, 255, 0.05);
+                        transform: translateY(-2px);
+                        border-color: rgba(255, 255, 255, 0.1);
+                    }
+
+                    .exam-date-box {
+                        width: 60px;
+                        height: 60px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 12px;
+                        background: rgba(255,255,255,0.05);
+                    }
                 </style>
 
                 <!-- Navigation Tabs -->
-                <div class="academic-tabs" style="display: flex; gap: 16px; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <button class="tab-btn active" onclick="switchTab('subjects')" id="tab-btn-subjects" style="padding: 12px 24px; background: none; border: none; color: white; border-bottom: 2px solid var(--primary); font-weight: 500; cursor: pointer;">Subject Planner</button>
-                    <button class="tab-btn" onclick="switchTab('timetable')" id="tab-btn-timetable" style="padding: 12px 24px; background: none; border: none; color: var(--text-secondary); font-weight: 500; cursor: pointer;">Timetable</button>
-                    <button class="tab-btn" onclick="switchTab('exams')" id="tab-btn-exams" style="padding: 12px 24px; background: none; border: none; color: var(--text-secondary); font-weight: 500; cursor: pointer;">Exam Calendar</button>
+                <div class="academic-tabs">
+                    <button class="tab-btn active" onclick="switchTab('subjects')" id="tab-btn-subjects">Subject Planner</button>
+                    <button class="tab-btn" onclick="switchTab('timetable')" id="tab-btn-timetable">Timetable</button>
+                    <button class="tab-btn" onclick="switchTab('exams')" id="tab-btn-exams">Exam Calendar</button>
                 </div>
 
-                <!-- Tab 1: Subject Planner (Existing) -->
+                <!-- Tab 1: Subject Planner -->
                 <div id="tab-subjects" class="tab-content">
                     <div class="academic-manager-grid">
                         <!-- Left Column: Subject List -->
@@ -267,16 +438,22 @@
                             </div>
                             
                             <!-- Inline Add Subject Form -->
-                            <div class="inline-add-subject" id="addSubjectInline" style="display: none; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-direction: column; gap: 8px;">
-                                <input type="text" id="inlineSubjectName" placeholder="Subject Name" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
-                                <div style="display: flex; gap: 8px;">
-                                    <input type="text" id="inlineSubjectIcon" placeholder="Emoji" style="width: 60px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white; text-align: center;">
-                                    <button class="btn-primary w-full" id="confirmAddSubjectInline">Add</button>
+                            <div class="inline-form" id="addSubjectInline" style="display: none;">
+                                <div class="form-row" style="grid-template-columns: 1fr auto;">
+                                    <div>
+                                        <label class="form-label">Subject Name</label>
+                                        <input type="text" id="inlineSubjectName" placeholder="e.g. Advanced Physics" class="form-input">
+                                    </div>
+                                    <div style="width: 80px;">
+                                        <label class="form-label">Emoji</label>
+                                        <input type="text" id="inlineSubjectIcon" placeholder="⚛️" class="form-input" style="text-align: center;">
+                                    </div>
                                 </div>
+                                <button class="btn-primary w-full" id="confirmAddSubjectInline">Add Subject</button>
                             </div>
 
                             <div class="subject-list-container" id="subjectList">
-                                <!-- Subjects rendered here -->
+                                <!-- Subjects rendered dynamically -->
                             </div>
                         </div>
 
@@ -298,58 +475,15 @@
                     <div class="card glass">
                         <div class="card-header">
                             <h2 class="card-title">Weekly Schedule</h2>
-                            <button class="btn-secondary btn-small">Edit Schedule</button>
-                        </div>
-                        <div style="overflow-x: auto;">
-                            <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
-                                <thead>
-                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Time</th>
-                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Mon</th>
-                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Tue</th>
-                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Wed</th>
-                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Thu</th>
-                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Fri</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                        <td style="padding: 16px; color: var(--text-secondary);">09:00 AM</td>
-                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Physics</span></td>
-                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">Math</span></td>
-                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Physics</span></td>
-                                        <td style="padding: 16px;">-</td>
-                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">Math</span></td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                        <td style="padding: 16px; color: var(--text-secondary);">11:00 AM</td>
-                                        <td style="padding: 16px;">-</td>
-                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;">Chem</span></td>
-                                        <td style="padding: 16px;">-</td>
-                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;">Chem</span></td>
-                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(52, 211, 153, 0.2); color: #34d399;">Bio</span></td>
-                                    </tr>
-                                    <!-- More rows can be added dynamically -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab 2: Timetable -->
-                <div id="tab-timetable" class="tab-content" style="display: none;">
-                    <div class="card glass">
-                        <div class="card-header">
-                            <h2 class="card-title">Weekly Schedule</h2>
                             <button class="btn-secondary btn-small" id="toggleAddClass">Add Class</button>
                         </div>
                         
                         <!-- Inline Add Class Form -->
-                        <div class="inline-add-class" id="addClassInline" style="display: none; padding: 16px; margin: 16px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 8px; align-items: end;">
+                        <div class="inline-form" id="addClassInline" style="display: none;">
+                            <div class="form-row form-grid-4">
                                 <div>
-                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Day</label>
-                                    <select id="newClassDay" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                    <label class="form-label">Day</label>
+                                    <select id="newClassDay" class="form-input">
                                         <option value="Mon">Monday</option>
                                         <option value="Tue">Tuesday</option>
                                         <option value="Wed">Wednesday</option>
@@ -358,8 +492,8 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Time Slot</label>
-                                    <select id="newClassTime" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                    <label class="form-label">Time Slot</label>
+                                    <select id="newClassTime" class="form-input">
                                         <option value="09:00 AM">09:00 AM</option>
                                         <option value="10:00 AM">10:00 AM</option>
                                         <option value="11:00 AM">11:00 AM</option>
@@ -370,12 +504,12 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Subject</label>
-                                    <input type="text" id="newClassSubject" placeholder="e.g. Physics" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" id="newClassSubject" placeholder="e.g. Physics" class="form-input">
                                 </div>
                                 <div>
-                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Type</label>
-                                    <select id="newClassType" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                    <label class="form-label">Type</label>
+                                    <select id="newClassType" class="form-input">
                                         <option value="Lecture">Lecture</option>
                                         <option value="Lab">Lab</option>
                                         <option value="Tutorial">Tutorial</option>
@@ -385,16 +519,16 @@
                             </div>
                         </div>
 
-                        <div style="overflow-x: auto;">
-                            <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+                        <div class="schedule-table-container">
+                            <table class="schedule-table">
                                 <thead>
-                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                                        <th style="min-width: 100px; text-align: left; padding: 12px; color: var(--text-secondary);">Time</th>
-                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Mon</th>
-                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Tue</th>
-                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Wed</th>
-                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Thu</th>
-                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Fri</th>
+                                    <tr>
+                                        <th style="width: 120px;">Time</th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
                                     </tr>
                                 </thead>
                                 <tbody id="timetableBody">
@@ -414,19 +548,19 @@
                         </div>
                         
                         <!-- Inline Add Exam Form -->
-                        <div class="inline-add-exam" id="addExamInline" style="display: none; padding: 16px; margin: 16px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="display: grid; grid-template-columns: 1fr 2fr 1fr auto; gap: 8px; align-items: end;">
+                        <div class="inline-form" id="addExamInline" style="display: none;">
+                            <div class="form-row form-grid-3">
                                 <div>
-                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Date</label>
-                                    <input type="date" id="newExamDate" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                    <label class="form-label">Date</label>
+                                    <input type="date" id="newExamDate" class="form-input">
                                 </div>
                                 <div>
-                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Exam Title</label>
-                                    <input type="text" id="newExamTitle" placeholder="e.g. Physics Mid-Term" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                    <label class="form-label">Exam Title</label>
+                                    <input type="text" id="newExamTitle" placeholder="e.g. Physics Mid-Term" class="form-input">
                                 </div>
                                 <div>
-                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Priority</label>
-                                    <select id="newExamPriority" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                    <label class="form-label">Priority</label>
+                                    <select id="newExamPriority" class="form-input">
                                         <option value="High">High</option>
                                         <option value="Medium">Medium</option>
                                         <option value="Low">Low</option>
@@ -436,7 +570,7 @@
                             </div>
                         </div>
 
-                        <div class="exam-list" id="examList" style="display: grid; gap: 16px; margin-top: 16px;">
+                        <div class="exam-list" id="examList">
                             <!-- Dynamic exams -->
                         </div>
                     </div>
@@ -445,10 +579,6 @@
             </div>
         </main>
     </div>
-
-
-
-
 
     <script>
         // State Management
@@ -499,7 +629,7 @@
         // Toggle Inline Subject Form
         document.getElementById('toggleAddSubject').onclick = () => {
             if (addSubjectForm.style.display === 'none') {
-                addSubjectForm.style.display = 'flex';
+                addSubjectForm.style.display = 'grid';
                 document.getElementById('inlineSubjectName').focus();
             } else {
                 addSubjectForm.style.display = 'none';
@@ -590,12 +720,11 @@
                     </div>
                 </div>
                 
-                <!-- Inline Add Material Form -->
-                <div class="inline-add-material" style="background: rgba(255,255,255,0.03); padding: 16px; margin: 16px; border-radius: 8px; border: 1px dashed rgba(255,255,255,0.1);">
-                    <div style="display: grid; grid-template-columns: 2fr 2fr 1fr auto; gap: 8px; align-items: center;">
-                        <input type="text" id="inlineMatName" placeholder="Material Name" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
-                        <input type="text" id="inlineMatLink" placeholder="Link URL" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
-                        <select id="inlineMatType" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                <div class="inline-form" style="margin: 16px 0; padding: 16px;">
+                    <div class="form-row form-grid-mats">
+                        <input type="text" id="inlineMatName" placeholder="Material Name" class="form-input">
+                        <input type="text" id="inlineMatLink" placeholder="Link URL" class="form-input">
+                        <select id="inlineMatType" class="form-input">
                             <option value="PDF">PDF</option>
                             <option value="Video">Video</option>
                             <option value="Link">Link</option>
@@ -654,15 +783,15 @@
             const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
             
             tbody.innerHTML = timeSlots.map(time => `
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                    <td style="padding: 16px; color: var(--text-secondary); font-size: 0.9rem;">${time}</td>
+                <tr>
+                    <td style="color: var(--text-secondary); font-size: 0.9rem;">${time}</td>
                     ${days.map(day => {
                         const classSession = classSchedule.find(c => c.day === day && c.time === time);
                         if (classSession) {
                             const color = getColorForSubject(classSession.subject);
-                            return `<td style="padding: 12px;"><span class="chip" style="background: ${color.bg}; color: ${color.text}; width: 100%; display: block; text-align: center;">${classSession.subject}</span></td>`;
+                            return `<td><span class="chip" style="background: ${color.bg}; color: ${color.text}; width: 100%; display: block; text-align: center; border-radius: 6px; padding: 4px;">${classSession.subject}</span></td>`;
                         } else {
-                            return `<td style="padding: 12px; opacity: 0.1;">-</td>`;
+                            return `<td class="schedule-empty">-</td>`;
                         }
                     }).join('')}
                 </tr>
@@ -703,15 +832,15 @@
                 if(exam.priority === 'Medium') { priorityColor = '#fbbf24'; priorityBg = 'rgba(251, 191, 36, 0.1)'; }
 
                 return `
-                <div class="exam-item" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div style="background: ${priorityBg}; color: ${priorityColor}; width: 50px; height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 8px;">
-                            <span style="font-weight: bold; font-size: 1.2rem;">${day}</span>
-                            <span style="font-size: 0.7rem; text-transform: uppercase;">${month}</span>
+                <div class="exam-item">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div class="exam-date-box" style="background: ${priorityBg}; color: ${priorityColor};">
+                            <span style="font-weight: bold; font-size: 1.3rem;">${day}</span>
+                            <span style="font-size: 0.75rem; text-transform: uppercase;">${month}</span>
                         </div>
                         <div>
-                            <h3 style="margin: 0; font-size: 1.1rem;">${exam.title}</h3>
-                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">${exam.priority} Priority</p>
+                            <h3 style="margin: 0; font-size: 1.1rem; margin-bottom: 4px;">${exam.title}</h3>
+                            <span class="chip" style="background: ${priorityBg}; color: ${priorityColor}; font-size: 0.7rem;">${exam.priority} Priority</span>
                         </div>
                     </div>
                     <button class="delete-btn btn-icon" onclick="deleteExam(${exam.id})"><i data-lucide="trash-2"></i></button>
@@ -760,11 +889,11 @@
         // Toggles
         document.getElementById('toggleAddClass').onclick = () => {
              const el = document.getElementById('addClassInline');
-             el.style.display = el.style.display === 'none' ? 'block' : 'none';
+             el.style.display = el.style.display === 'none' ? 'grid' : 'none';
         }
         document.getElementById('toggleAddExam').onclick = () => {
              const el = document.getElementById('addExamInline');
-             el.style.display = el.style.display === 'none' ? 'block' : 'none';
+             el.style.display = el.style.display === 'none' ? 'grid' : 'none';
         }
 
         // Tab Switcher Logic
@@ -772,12 +901,10 @@
             // Update Tab Buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.style.color = 'var(--text-secondary)';
-                btn.style.borderBottom = 'none';
                 btn.classList.remove('active');
             });
             const activeBtn = document.getElementById(`tab-btn-${tabName}`);
             activeBtn.style.color = 'white';
-            activeBtn.style.borderBottom = '2px solid var(--primary)';
             activeBtn.classList.add('active');
 
             // Update Tab Content
@@ -794,10 +921,8 @@
         renderSubjects();
         renderTimetable();
         renderExams();
+        lucide.createIcons();
 
-    </script>
-    <script>
-      lucide.createIcons();
     </script>
 </body>
 </html>
