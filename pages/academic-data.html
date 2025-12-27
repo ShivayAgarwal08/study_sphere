@@ -249,27 +249,195 @@
                     }
                 </style>
 
-                <div class="academic-manager-grid">
-                    <!-- Left Column: Subject List -->
-                    <div class="card glass h-full flex flex-col">
-                        <div class="card-header">
-                            <h2 class="card-title">My Subjects</h2>
-                            <button class="btn-icon" id="addSubjectBtn" title="Add Subject"><i data-lucide="plus"></i></button>
+                <!-- Navigation Tabs -->
+                <div class="academic-tabs" style="display: flex; gap: 16px; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <button class="tab-btn active" onclick="switchTab('subjects')" id="tab-btn-subjects" style="padding: 12px 24px; background: none; border: none; color: white; border-bottom: 2px solid var(--primary); font-weight: 500; cursor: pointer;">Subject Planner</button>
+                    <button class="tab-btn" onclick="switchTab('timetable')" id="tab-btn-timetable" style="padding: 12px 24px; background: none; border: none; color: var(--text-secondary); font-weight: 500; cursor: pointer;">Timetable</button>
+                    <button class="tab-btn" onclick="switchTab('exams')" id="tab-btn-exams" style="padding: 12px 24px; background: none; border: none; color: var(--text-secondary); font-weight: 500; cursor: pointer;">Exam Calendar</button>
+                </div>
+
+                <!-- Tab 1: Subject Planner (Existing) -->
+                <div id="tab-subjects" class="tab-content">
+                    <div class="academic-manager-grid">
+                        <!-- Left Column: Subject List -->
+                        <div class="card glass h-full flex flex-col">
+                            <div class="card-header">
+                                <h2 class="card-title">My Subjects</h2>
+                                <button class="btn-icon" id="toggleAddSubject" title="Add Subject"><i data-lucide="plus"></i></button>
+                            </div>
+                            
+                            <!-- Inline Add Subject Form -->
+                            <div class="inline-add-subject" id="addSubjectInline" style="display: none; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-direction: column; gap: 8px;">
+                                <input type="text" id="inlineSubjectName" placeholder="Subject Name" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="text" id="inlineSubjectIcon" placeholder="Emoji" style="width: 60px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white; text-align: center;">
+                                    <button class="btn-primary w-full" id="confirmAddSubjectInline">Add</button>
+                                </div>
+                            </div>
+
+                            <div class="subject-list-container" id="subjectList">
+                                <!-- Subjects rendered here -->
+                            </div>
                         </div>
-                        <div class="subject-list-container" id="subjectList">
-                            <!-- Subjects rendered here -->
+
+                        <!-- Right Column: Detail View -->
+                        <div class="card glass h-full flex flex-col" style="min-height: 500px;">
+                            <div id="detailViewContent" class="h-full">
+                                <div class="detail-view-placeholder">
+                                    <i data-lucide="book-open" style="width: 64px; height: 64px; opacity: 0.5; margin-bottom: 16px;"></i>
+                                    <h3>Select a subject</h3>
+                                    <p>Click on a subject to manage study materials</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Right Column: Detail View -->
-                    <div class="card glass h-full flex flex-col" style="min-height: 500px;">
-                        <div id="detailViewContent" class="h-full">
-                            <!-- Dynamic Content -->
-                            <div class="detail-view-placeholder">
-                                <i data-lucide="book-open" style="width: 64px; height: 64px; opacity: 0.5; margin-bottom: 16px;"></i>
-                                <h3>Select a subject</h3>
-                                <p>Click on a subject to manage study materials</p>
+                <!-- Tab 2: Timetable -->
+                <div id="tab-timetable" class="tab-content" style="display: none;">
+                    <div class="card glass">
+                        <div class="card-header">
+                            <h2 class="card-title">Weekly Schedule</h2>
+                            <button class="btn-secondary btn-small">Edit Schedule</button>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Time</th>
+                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Mon</th>
+                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Tue</th>
+                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Wed</th>
+                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Thu</th>
+                                        <th style="text-align: left; padding: 12px; color: var(--text-secondary);">Fri</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 16px; color: var(--text-secondary);">09:00 AM</td>
+                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Physics</span></td>
+                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">Math</span></td>
+                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">Physics</span></td>
+                                        <td style="padding: 16px;">-</td>
+                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(168, 85, 247, 0.2); color: #c084fc;">Math</span></td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 16px; color: var(--text-secondary);">11:00 AM</td>
+                                        <td style="padding: 16px;">-</td>
+                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;">Chem</span></td>
+                                        <td style="padding: 16px;">-</td>
+                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(236, 72, 153, 0.2); color: #f472b6;">Chem</span></td>
+                                        <td style="padding: 16px;"><span class="chip" style="background: rgba(52, 211, 153, 0.2); color: #34d399;">Bio</span></td>
+                                    </tr>
+                                    <!-- More rows can be added dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Timetable -->
+                <div id="tab-timetable" class="tab-content" style="display: none;">
+                    <div class="card glass">
+                        <div class="card-header">
+                            <h2 class="card-title">Weekly Schedule</h2>
+                            <button class="btn-secondary btn-small" id="toggleAddClass">Add Class</button>
+                        </div>
+                        
+                        <!-- Inline Add Class Form -->
+                        <div class="inline-add-class" id="addClassInline" style="display: none; padding: 16px; margin: 16px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 8px; align-items: end;">
+                                <div>
+                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Day</label>
+                                    <select id="newClassDay" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                        <option value="Mon">Monday</option>
+                                        <option value="Tue">Tuesday</option>
+                                        <option value="Wed">Wednesday</option>
+                                        <option value="Thu">Thursday</option>
+                                        <option value="Fri">Friday</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Time Slot</label>
+                                    <select id="newClassTime" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                        <option value="09:00 AM">09:00 AM</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="11:00 AM">11:00 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="01:00 PM">01:00 PM</option>
+                                        <option value="02:00 PM">02:00 PM</option>
+                                        <option value="03:00 PM">03:00 PM</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Subject</label>
+                                    <input type="text" id="newClassSubject" placeholder="e.g. Physics" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                </div>
+                                <div>
+                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Type</label>
+                                    <select id="newClassType" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                        <option value="Lecture">Lecture</option>
+                                        <option value="Lab">Lab</option>
+                                        <option value="Tutorial">Tutorial</option>
+                                    </select>
+                                </div>
+                                <button class="btn-primary" onclick="addClassSlot()">Save</button>
                             </div>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <th style="min-width: 100px; text-align: left; padding: 12px; color: var(--text-secondary);">Time</th>
+                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Mon</th>
+                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Tue</th>
+                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Wed</th>
+                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Thu</th>
+                                        <th style="min-width: 120px; text-align: left; padding: 12px; color: var(--text-secondary);">Fri</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="timetableBody">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Exam Calendar -->
+                <div id="tab-exams" class="tab-content" style="display: none;">
+                    <div class="card glass">
+                        <div class="card-header">
+                            <h2 class="card-title">Upcoming Exams</h2>
+                            <button class="btn-primary btn-small" id="toggleAddExam">+ Add Exam</button>
+                        </div>
+                        
+                        <!-- Inline Add Exam Form -->
+                        <div class="inline-add-exam" id="addExamInline" style="display: none; padding: 16px; margin: 16px; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                            <div style="display: grid; grid-template-columns: 1fr 2fr 1fr auto; gap: 8px; align-items: end;">
+                                <div>
+                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Date</label>
+                                    <input type="date" id="newExamDate" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                </div>
+                                <div>
+                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Exam Title</label>
+                                    <input type="text" id="newExamTitle" placeholder="e.g. Physics Mid-Term" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                </div>
+                                <div>
+                                    <label style="display: block; font-size: 0.8rem; margin-bottom: 4px; color: var(--text-secondary);">Priority</label>
+                                    <select id="newExamPriority" style="width: 100%; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                                        <option value="High">High</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Low">Low</option>
+                                    </select>
+                                </div>
+                                <button class="btn-primary" onclick="addExam()">Save</button>
+                            </div>
+                        </div>
+
+                        <div class="exam-list" id="examList" style="display: grid; gap: 16px; margin-top: 16px;">
+                            <!-- Dynamic exams -->
                         </div>
                     </div>
                 </div>
@@ -278,59 +446,9 @@
         </main>
     </div>
 
-    <!-- Add Subject Modal -->
-    <div class="modal-overlay" id="addSubjectModal">
-        <div class="modal card">
-            <div class="modal-header">
-                <h2 class="modal-title">Add New Subject</h2>
-                <button class="modal-close" id="closeSubjectModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Subject Name</label>
-                    <input type="text" id="newSubjectName" placeholder="e.g. Organic Chemistry">
-                </div>
-                <div class="form-group">
-                    <label>Icon (Emoji)</label>
-                    <input type="text" id="newSubjectIcon" placeholder="e.g. 🧪">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-primary" id="confirmAddSubject">Create Subject</button>
-            </div>
-        </div>
-    </div>
 
-    <!-- Add Material Modal -->
-    <div class="modal-overlay" id="addMaterialModal">
-        <div class="modal card">
-            <div class="modal-header">
-                <h2 class="modal-title">Add Study Material</h2>
-                <button class="modal-close" id="closeMaterialModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Material Title</label>
-                    <input type="text" id="newMaterialName" placeholder="e.g. Chapter 1 Notes">
-                </div>
-                <div class="form-group">
-                    <label>Source Link</label>
-                    <input type="text" id="newMaterialLink" placeholder="https://...">
-                </div>
-                <div class="form-group">
-                    <label>Type</label>
-                    <div class="chip-group">
-                        <span class="chip active">PDF</span>
-                        <span class="chip">Video</span>
-                        <span class="chip">Link</span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-primary" id="confirmAddMaterial">Add Material</button>
-            </div>
-        </div>
-    </div>
+
+
 
     <script>
         // State Management
@@ -360,15 +478,53 @@
             }
         ];
 
+        let classSchedule = [
+            { id: 1, day: 'Mon', time: '09:00 AM', subject: 'Physics', type: 'Lecture' },
+            { id: 2, day: 'Mon', time: '11:00 AM', subject: 'Calculus', type: 'Tutorial' },
+            { id: 3, day: 'Wed', time: '09:00 AM', subject: 'Physics', type: 'Lab' }
+        ];
+
+        let exams = [
+            { id: 1, title: 'Physics Mid-Term', date: '2025-05-12', priority: 'High' },
+            { id: 2, title: 'Calculus Quiz', date: '2025-05-24', priority: 'Medium' }
+        ];
+
         let selectedSubjectId = null;
 
         // DOM Elements
         const subjectListEl = document.getElementById('subjectList');
         const detailViewEl = document.getElementById('detailViewContent');
-        
-        // Modals
-        const subjectModal = document.getElementById('addSubjectModal');
-        const materialModal = document.getElementById('addMaterialModal');
+        const addSubjectForm = document.getElementById('addSubjectInline');
+
+        // Toggle Inline Subject Form
+        document.getElementById('toggleAddSubject').onclick = () => {
+            if (addSubjectForm.style.display === 'none') {
+                addSubjectForm.style.display = 'flex';
+                document.getElementById('inlineSubjectName').focus();
+            } else {
+                addSubjectForm.style.display = 'none';
+            }
+        };
+
+        // Add Subject Inline
+        document.getElementById('confirmAddSubjectInline').onclick = () => {
+            const name = document.getElementById('inlineSubjectName').value;
+            const icon = document.getElementById('inlineSubjectIcon').value || '📚';
+            
+            if (name) {
+                subjects.push({
+                    id: Date.now(),
+                    name: name,
+                    icon: icon,
+                    materials: []
+                });
+                document.getElementById('inlineSubjectName').value = '';
+                document.getElementById('inlineSubjectIcon').value = '';
+                addSubjectForm.style.display = 'none';
+                renderSubjects();
+                selectSubject(subjects[subjects.length-1].id);
+            }
+        };
 
         // Initial Render
         function renderSubjects() {
@@ -384,7 +540,6 @@
                         <span class="subject-name-text">${subject.name}</span>
                         <span class="subject-count">${subject.materials.length} Materials</span>
                     </div>
-                    <i data-lucide="chevron-right" style="opacity: 0.5; width: 16px;"></i>
                 `;
                 subjectListEl.appendChild(el);
             });
@@ -393,7 +548,7 @@
 
         function selectSubject(id) {
             selectedSubjectId = id;
-            renderSubjects(); // Update active state
+            renderSubjects(); 
             renderDetailView();
         }
 
@@ -433,8 +588,22 @@
                             <p style="margin: 0; font-size: 0.9rem; opacity: 0.7;">Manage your study resources</p>
                         </div>
                     </div>
-                    <button class="btn-primary" onclick="openMaterialModal()">+ Add Material</button>
                 </div>
+                
+                <!-- Inline Add Material Form -->
+                <div class="inline-add-material" style="background: rgba(255,255,255,0.03); padding: 16px; margin: 16px; border-radius: 8px; border: 1px dashed rgba(255,255,255,0.1);">
+                    <div style="display: grid; grid-template-columns: 2fr 2fr 1fr auto; gap: 8px; align-items: center;">
+                        <input type="text" id="inlineMatName" placeholder="Material Name" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                        <input type="text" id="inlineMatLink" placeholder="Link URL" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                        <select id="inlineMatType" style="background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 6px; color: white;">
+                            <option value="PDF">PDF</option>
+                            <option value="Video">Video</option>
+                            <option value="Link">Link</option>
+                        </select>
+                        <button class="btn-primary btn-small" onclick="addMaterialInline()">Add</button>
+                    </div>
+                </div>
+
                 <div class="material-list-container" style="flex: 1; overflow-y: auto;">
                     ${materialsHtml}
                 </div>
@@ -442,87 +611,189 @@
             lucide.createIcons();
         }
 
-        // Helper: Icon mapping
-        function getIconForType(type) {
-            if (type === 'Video') return 'video';
-            if (type === 'Link') return 'link';
-            return 'file-text'; // default PDF
-        }
+        function addMaterialInline() {
+            const nameEl = document.getElementById('inlineMatName');
+            const linkEl = document.getElementById('inlineMatLink');
+            const typeEl = document.getElementById('inlineMatType');
 
-        // Actions
-        function openMaterialModal() {
-            materialModal.style.display = 'flex';
-        }
+            const name = nameEl.value;
+            const link = linkEl.value || '#';
+            const type = typeEl.value;
 
-        function deleteMaterial(materialId) {
-            const subject = subjects.find(s => s.id === selectedSubjectId);
-            if(subject) {
-                subject.materials = subject.materials.filter(m => m.id !== materialId);
-                renderSubjects(); // update counts
-                renderDetailView();
-            }
-        }
-
-        // --- Event Listeners for Modals ---
-        
-        // Add Subject
-        document.getElementById('addSubjectBtn').onclick = () => subjectModal.style.display = 'flex';
-        document.getElementById('closeSubjectModal').onclick = () => subjectModal.style.display = 'none';
-
-        document.getElementById('confirmAddSubject').onclick = () => {
-            const name = document.getElementById('newSubjectName').value;
-            const icon = document.getElementById('newSubjectIcon').value || '📚';
-            
-            if (name) {
-                subjects.push({
-                    id: Date.now(),
-                    name: name,
-                    icon: icon,
-                    materials: []
-                });
-                document.getElementById('newSubjectName').value = '';
-                document.getElementById('newSubjectIcon').value = '';
-                subjectModal.style.display = 'none';
-                renderSubjects();
-                
-                // Auto Select new subject
-                selectSubject(subjects[subjects.length-1].id);
-            }
-        };
-
-        // Add Material
-        document.getElementById('closeMaterialModal').onclick = () => materialModal.style.display = 'none';
-        
-        document.getElementById('confirmAddMaterial').onclick = () => {
-            const name = document.getElementById('newMaterialName').value;
-            const link = document.getElementById('newMaterialLink').value || '#';
-            
             if (name && selectedSubjectId) {
                 const subject = subjects.find(s => s.id === selectedSubjectId);
                 subject.materials.push({
                     id: Date.now(),
                     name: name,
                     link: link,
-                    type: 'PDF' // Mock type for now
+                    type: type
                 });
-                
-                document.getElementById('newMaterialName').value = '';
-                document.getElementById('newMaterialLink').value = '';
-                materialModal.style.display = 'none';
-                
-                renderSubjects();
+                renderDetailView(); // Re-render to show new item and clear inputs implicitly
+            }
+        }
+
+        function getIconForType(type) {
+            if (type === 'Video') return 'video';
+            if (type === 'Link') return 'link';
+            return 'file-text'; 
+        }
+
+        function deleteMaterial(materialId) {
+            const subject = subjects.find(s => s.id === selectedSubjectId);
+            if(subject) {
+                subject.materials = subject.materials.filter(m => m.id !== materialId);
+                renderSubjects(); 
                 renderDetailView();
             }
-        };
+        }
 
-        // Close on outside click
-        window.onclick = (e) => {
-            if (e.target == subjectModal) subjectModal.style.display = 'none';
-            if (e.target == materialModal) materialModal.style.display = 'none';
+        // --- New Render Functions ---
+        function renderTimetable() {
+            const tbody = document.getElementById('timetableBody');
+            const timeSlots = ['09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM'];
+            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+            
+            tbody.innerHTML = timeSlots.map(time => `
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 16px; color: var(--text-secondary); font-size: 0.9rem;">${time}</td>
+                    ${days.map(day => {
+                        const classSession = classSchedule.find(c => c.day === day && c.time === time);
+                        if (classSession) {
+                            const color = getColorForSubject(classSession.subject);
+                            return `<td style="padding: 12px;"><span class="chip" style="background: ${color.bg}; color: ${color.text}; width: 100%; display: block; text-align: center;">${classSession.subject}</span></td>`;
+                        } else {
+                            return `<td style="padding: 12px; opacity: 0.1;">-</td>`;
+                        }
+                    }).join('')}
+                </tr>
+            `).join('');
+        }
+
+        function getColorForSubject(subjectName) {
+            const colors = [
+                { bg: 'rgba(99, 102, 241, 0.2)', text: '#818cf8' }, 
+                { bg: 'rgba(168, 85, 247, 0.2)', text: '#c084fc' }, 
+                { bg: 'rgba(236, 72, 153, 0.2)', text: '#f472b6' }, 
+                { bg: 'rgba(52, 211, 153, 0.2)', text: '#34d399' }  
+            ];
+            let hash = 0;
+            for (let i = 0; i < subjectName.length; i++) {
+                hash = subjectName.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return colors[Math.abs(hash) % colors.length];
+        }
+
+        function renderExams() {
+            const listEl = document.getElementById('examList');
+            exams.sort((a,b) => new Date(a.date) - new Date(b.date));
+            
+            if(exams.length === 0) {
+                listEl.innerHTML = '<div style="text-align:center; opacity:0.5; padding:20px;">No upcoming exams</div>';
+                return;
+            }
+
+            listEl.innerHTML = exams.map(exam => {
+                const dateObj = new Date(exam.date);
+                const day = dateObj.getDate();
+                const month = dateObj.toLocaleString('default', { month: 'short' });
+                
+                let priorityColor = '#94a3b8';
+                let priorityBg = 'rgba(148, 163, 184, 0.1)';
+                if(exam.priority === 'High') { priorityColor = '#f87171'; priorityBg = 'rgba(239, 68, 68, 0.1)'; }
+                if(exam.priority === 'Medium') { priorityColor = '#fbbf24'; priorityBg = 'rgba(251, 191, 36, 0.1)'; }
+
+                return `
+                <div class="exam-item" style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div style="background: ${priorityBg}; color: ${priorityColor}; width: 50px; height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 8px;">
+                            <span style="font-weight: bold; font-size: 1.2rem;">${day}</span>
+                            <span style="font-size: 0.7rem; text-transform: uppercase;">${month}</span>
+                        </div>
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.1rem;">${exam.title}</h3>
+                            <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">${exam.priority} Priority</p>
+                        </div>
+                    </div>
+                    <button class="delete-btn btn-icon" onclick="deleteExam(${exam.id})"><i data-lucide="trash-2"></i></button>
+                </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        // Add Functions
+        function addClassSlot() {
+            const day = document.getElementById('newClassDay').value;
+            const time = document.getElementById('newClassTime').value;
+            const subject = document.getElementById('newClassSubject').value;
+            const type = document.getElementById('newClassType').value;
+
+            if(subject) {
+                // Remove existing if collision
+                classSchedule = classSchedule.filter(c => !(c.day === day && c.time === time));
+                classSchedule.push({ id: Date.now(), day, time, subject, type });
+                document.getElementById('newClassSubject').value = '';
+                document.getElementById('addClassInline').style.display = 'none';
+                renderTimetable();
+            }
+        }
+
+        function addExam() {
+            const date = document.getElementById('newExamDate').value;
+            const title = document.getElementById('newExamTitle').value;
+            const priority = document.getElementById('newExamPriority').value;
+
+            if(date && title) {
+                exams.push({ id: Date.now(), date, title, priority });
+                document.getElementById('newExamTitle').value = '';
+                document.getElementById('newExamDate').value = '';
+                document.getElementById('addExamInline').style.display = 'none';
+                renderExams();
+            }
+        }
+
+        function deleteExam(id) {
+            exams = exams.filter(e => e.id !== id);
+            renderExams();
+        }
+
+        // Toggles
+        document.getElementById('toggleAddClass').onclick = () => {
+             const el = document.getElementById('addClassInline');
+             el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+        document.getElementById('toggleAddExam').onclick = () => {
+             const el = document.getElementById('addExamInline');
+             el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Tab Switcher Logic
+        function switchTab(tabName) {
+            // Update Tab Buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.style.color = 'var(--text-secondary)';
+                btn.style.borderBottom = 'none';
+                btn.classList.remove('active');
+            });
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.style.color = 'white';
+            activeBtn.style.borderBottom = '2px solid var(--primary)';
+            activeBtn.classList.add('active');
+
+            // Update Tab Content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(`tab-${tabName}`).style.display = 'block';
+
+            // Re-init icons for the visible tab
+            lucide.createIcons();
         }
 
         // Init
         renderSubjects();
+        renderTimetable();
+        renderExams();
 
     </script>
     <script>
