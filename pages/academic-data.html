@@ -90,11 +90,6 @@
                     <p class="page-subtitle">Organize your subjects, materials, and schedules</p>
                 </div>
                 <div class="top-bar-actions">
-                    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">
-                        <span class="theme-toggle-icon sun">☀️</span>
-                        <span class="theme-toggle-icon moon">🌙</span>
-                        <div class="theme-toggle-slider"></div>
-                    </button>
                     <button class="notification-btn">
                         <i data-lucide="bell"></i>
                         <span class="notification-badge">3</span>
@@ -103,213 +98,432 @@
             </header>
 
             <div class="academic-content">
-                <!-- Manage Subjects Section -->
-                <div class="card glass">
-                    <div class="card-header">
-                        <h2 class="card-title"><i data-lucide="book" style="display: inline; vertical-align: middle; margin-right: 8px; color: var(--primary);"></i> My Subjects</h2>
-                        <button class="btn-primary btn-small" id="addSubjectBtn">+ Add Subject</button>
-                    </div>
-                    <div class="subject-planner-grid" id="subjectGrid">
-                        <!-- Physics Subject Card -->
-                        <div class="card glass subject-planner-card">
-                            <div class="subject-card-header">
-                                <span class="subject-icon">⚛️</span>
-                                <h3 class="subject-name">Physics</h3>
-                            </div>
-                            <div class="subject-materials">
-                                <h4>Study Materials</h4>
-                                <ul class="material-list">
-                                    <li><a href="#">Mechanics_Notes.pdf</a></li>
-                                    <li><a href="#">Quantum_Lec_1.mp4</a></li>
-                                </ul>
-                                <button class="btn-text-icon"><span>🔗</span> Link Material</button>
-                            </div>
-                        </div>
+                <style>
+                    /* Page Specific Styles for Layout Change */
+                    .academic-manager-grid {
+                        display: grid;
+                        grid-template-columns: 300px 1fr;
+                        gap: 24px;
+                        align-items: start;
+                        height: calc(100vh - 140px); /* Fill remaining height */
+                    }
 
-                        <!-- Math Subject Card -->
-                        <div class="card glass subject-planner-card">
-                            <div class="subject-card-header">
-                                <span class="subject-icon">📐</span>
-                                <h3 class="subject-name">Calculus</h3>
-                            </div>
-                            <div class="subject-materials">
-                                <h4>Study Materials</h4>
-                                <ul class="material-list">
-                                    <li><a href="#">Integration_CheatSheet.pdf</a></li>
-                                </ul>
-                                <button class="btn-text-icon"><span>🔗</span> Link Material</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @media (max-width: 768px) {
+                        .academic-manager-grid {
+                            grid-template-columns: 1fr;
+                            height: auto;
+                        }
+                    }
 
-                <div class="card glass">
-                    <div class="card-header">
-                        <h2 class="card-title"><i data-lucide="layers" style="display: inline; vertical-align: middle; margin-right: 8px; color: var(--accent);"></i> Study Materials</h2>
-                        <div class="header-actions">
-                            <select class="form-select-small" id="subjectFilter">
-                                <option value="all">All Subjects</option>
-                            </select>
-                            <a href="upload.html" class="btn-primary btn-small">+ Upload</a>
-                        </div>
-                    </div>
-                </div>
+                    /* Subject List Styles */
+                    .subject-list-container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                        max-height: 100%;
+                        overflow-y: auto;
+                        padding-right: 8px;
+                    }
 
-                <div class="academic-lower-grid">
-                    <!-- Important Documents Section (Datesheet, Timetable) -->
-                    <div class="card glass docs-card">
+                    .subject-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        padding: 16px;
+                        border-radius: 12px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                        background: rgba(255, 255, 255, 0.03);
+                    }
+
+                    .subject-item:hover {
+                        background: rgba(255, 255, 255, 0.08);
+                        border-color: rgba(255, 255, 255, 0.2);
+                        transform: translateX(4px);
+                    }
+
+                    .subject-item.active {
+                        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+                        border-color: var(--primary);
+                        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+                    }
+
+                    .subject-emoji {
+                        font-size: 1.5rem;
+                        background: rgba(255,255,255,0.1);
+                        width: 40px;
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                    }
+
+                    .subject-details {
+                        flex: 1;
+                    }
+
+                    .subject-name-text {
+                        font-weight: 600;
+                        color: var(--text-primary);
+                        display: block;
+                    }
+
+                    .subject-count {
+                        font-size: 0.8rem;
+                        color: var(--text-secondary);
+                    }
+
+                    /* Material Detail View */
+                    .detail-view-placeholder {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        min-height: 400px;
+                        color: var(--text-secondary);
+                        text-align: center;
+                    }
+
+                    .material-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 16px;
+                        border-bottom: 1px solid rgba(255,255,255,0.05);
+                        transition: background 0.2s;
+                    }
+                    
+                    .material-item:last-child {
+                        border-bottom: none;
+                    }
+
+                    .material-item:hover {
+                        background: rgba(255, 255, 255, 0.02);
+                    }
+
+                    .material-left {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                    }
+
+                    .material-icon-box {
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 8px;
+                        background: rgba(99, 102, 241, 0.1);
+                        color: var(--primary);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .material-link {
+                        color: var(--text-primary);
+                        text-decoration: none;
+                        font-weight: 500;
+                    }
+
+                    .material-link:hover {
+                        color: var(--primary);
+                        text-decoration: underline;
+                    }
+
+                    .delete-btn {
+                        opacity: 0;
+                        color: var(--error);
+                        padding: 8px;
+                        border-radius: 6px;
+                        transition: all 0.2s;
+                    }
+
+                    .material-item:hover .delete-btn {
+                        opacity: 1;
+                    }
+
+                    .delete-btn:hover {
+                        background: rgba(239, 68, 68, 0.1);
+                    }
+                </style>
+
+                <div class="academic-manager-grid">
+                    <!-- Left Column: Subject List -->
+                    <div class="card glass h-full flex flex-col">
                         <div class="card-header">
-                            <h2 class="card-title">📜 Important Documents</h2>
-                            <button class="btn-icon" id="uploadDocBtn" title="Upload New Document"><span>📤</span></button>
+                            <h2 class="card-title">My Subjects</h2>
+                            <button class="btn-icon" id="addSubjectBtn" title="Add Subject"><i data-lucide="plus"></i></button>
                         </div>
-                        <div class="doc-list">
-                            <div class="doc-item">
-                                <div class="doc-icon">📅</div>
-                                <div class="doc-info">
-                                    <span class="doc-name">Final_Datesheet_2024.pdf</span>
-                                    <span class="doc-meta">Uploaded 2 days ago • 1.2 MB</span>
-                                </div>
-                                <button class="btn-icon"><span>📥</span></button>
-                            </div>
-                            <div class="doc-item">
-                                <div class="doc-icon">🕒</div>
-                                <div class="doc-info">
-                                    <span class="doc-name">Term_2_Timetable.jpg</span>
-                                    <span class="doc-meta">Uploaded 1 week ago • 0.8 MB</span>
-                                </div>
-                                <button class="btn-icon"><span>📥</span></button>
-                            </div>
+                        <div class="subject-list-container" id="subjectList">
+                            <!-- Subjects rendered here -->
                         </div>
                     </div>
 
-                    <!-- Discover Materials -->
-                    <div class="card glass discover-card">
-                        <h2 class="card-title">🔍 Discover Materials</h2>
-                        <div class="search-box">
-                            <input type="text" placeholder="Search for notes, PYQs..." class="w-full">
+                    <!-- Right Column: Detail View -->
+                    <div class="card glass h-full flex flex-col" style="min-height: 500px;">
+                        <div id="detailViewContent" class="h-full">
+                            <!-- Dynamic Content -->
+                            <div class="detail-view-placeholder">
+                                <i data-lucide="book-open" style="width: 64px; height: 64px; opacity: 0.5; margin-bottom: 16px;"></i>
+                                <h3>Select a subject</h3>
+                                <p>Click on a subject to manage study materials</p>
+                            </div>
                         </div>
-                        <div class="trending-topics">
-                            <span class="topic-tag">#OrganicChemistry</span>
-                            <span class="topic-tag">#CalculusPYQ</span>
-                            <span class="topic-tag">#PhysicsNotes</span>
-                        </div>
-                        <button class="btn-secondary w-full">Browse Library</button>
                     </div>
                 </div>
-
-                <!-- Syllbus Sync / Goal Section -->
-                <section class="planner-section mt-1.5">
-                    <div class="card glass syllabus-sync-card">
-                    <div class="card-header">
-                        <h2 class="card-title"><i data-lucide="check-square" style="display: inline; vertical-align: middle; margin-right: 8px; color: var(--success);"></i> Syllabus Tracker</h2>
-                        <div class="header-actions">
-                            <select class="form-select-small" id="syllabusSubjectFilter">
-                                <option value="mathematics">Mathematics</option>
-                                <option value="physics">Physics</option>
-                                <option value="chemistry">Chemistry</option>
-                            </select>
-                        </div>
-                    </div>
-                        <div class="syllabus-progress-container grid-cols-3">
-                            <div class="syllabus-track-item">
-                                <div class="track-info">
-                                    <span>Core Physics</span>
-                                    <span>80%</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 80%;"></div>
-                                </div>
-                            </div>
-                            <div class="syllabus-track-item">
-                                <div class="track-info">
-                                    <span>Higher Calculus</span>
-                                    <span>45%</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 45%; background: var(--warning);"></div>
-                                </div>
-                            </div>
-                            <div class="syllabus-track-item">
-                                <div class="track-info">
-                                    <span>Molecular Biology</span>
-                                    <span>20%</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: 20%; background: var(--error);"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-secondary mt-1">Update Detailed Syllabus Progress</button>
-                    </div>
-                </section>
             </div>
             </div>
         </main>
     </div>
 
-    <!-- Modals (Mock) -->
+    <!-- Add Subject Modal -->
     <div class="modal-overlay" id="addSubjectModal">
         <div class="modal card">
             <div class="modal-header">
                 <h2 class="modal-title">Add New Subject</h2>
-                <button class="modal-close" id="closeModal">&times;</button>
+                <button class="modal-close" id="closeSubjectModal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label>Subject Name</label>
-                    <input type="text" placeholder="e.g. Organic Chemistry">
+                    <input type="text" id="newSubjectName" placeholder="e.g. Organic Chemistry">
                 </div>
                 <div class="form-group">
-                    <label>Subject Icon (Emoji)</label>
-                    <input type="text" placeholder="e.g. 🧪">
+                    <label>Icon (Emoji)</label>
+                    <input type="text" id="newSubjectIcon" placeholder="e.g. 🧪">
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn-primary" id="confirmAddSubject">Add Subject</button>
-                <button class="btn-secondary" id="cancelModal">Cancel</button>
+                <button class="btn-primary" id="confirmAddSubject">Create Subject</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Material Modal -->
+    <div class="modal-overlay" id="addMaterialModal">
+        <div class="modal card">
+            <div class="modal-header">
+                <h2 class="modal-title">Add Study Material</h2>
+                <button class="modal-close" id="closeMaterialModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Material Title</label>
+                    <input type="text" id="newMaterialName" placeholder="e.g. Chapter 1 Notes">
+                </div>
+                <div class="form-group">
+                    <label>Source Link</label>
+                    <input type="text" id="newMaterialLink" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <div class="chip-group">
+                        <span class="chip active">PDF</span>
+                        <span class="chip">Video</span>
+                        <span class="chip">Link</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="confirmAddMaterial">Add Material</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Modal logic
-        const addSubjectBtn = document.getElementById('addSubjectBtn');
-        const modal = document.getElementById('addSubjectModal');
-        const closeModal = document.getElementById('closeModal');
-        const cancelModal = document.getElementById('cancelModal');
-        const confirmAddSubject = document.getElementById('confirmAddSubject');
-        const subjectGrid = document.getElementById('subjectGrid');
+        // State Management
+        let subjects = [
+            { 
+                id: 1, 
+                name: 'Physics', 
+                icon: '⚛️', 
+                materials: [
+                    { id: 101, name: 'Mechanics Notes.pdf', link: '#', type: 'PDF' },
+                    { id: 102, name: 'Quantum Physics Intro', link: '#', type: 'Video' }
+                ] 
+            },
+            { 
+                id: 2, 
+                name: 'Calculus', 
+                icon: '📐', 
+                materials: [
+                    { id: 201, name: 'Integration Cheatsheet', link: '#', type: 'PDF' }
+                ] 
+            },
+            { 
+                id: 3, 
+                name: 'Computer Science', 
+                icon: '💻', 
+                materials: [] 
+            }
+        ];
 
-        addSubjectBtn.onclick = () => modal.style.display = 'flex';
-        closeModal.onclick = () => modal.style.display = 'none';
-        cancelModal.onclick = () => modal.style.display = 'none';
+        let selectedSubjectId = null;
 
-        confirmAddSubject.onclick = () => {
-            const name = modal.querySelector('input[type="text"]').value;
-            const icon = modal.querySelectorAll('input[type="text"]')[1].value || '📚';
+        // DOM Elements
+        const subjectListEl = document.getElementById('subjectList');
+        const detailViewEl = document.getElementById('detailViewContent');
+        
+        // Modals
+        const subjectModal = document.getElementById('addSubjectModal');
+        const materialModal = document.getElementById('addMaterialModal');
+
+        // Initial Render
+        function renderSubjects() {
+            subjectListEl.innerHTML = '';
+            
+            subjects.forEach(subject => {
+                const el = document.createElement('div');
+                el.className = `subject-item ${selectedSubjectId === subject.id ? 'active' : ''}`;
+                el.onclick = () => selectSubject(subject.id);
+                el.innerHTML = `
+                    <div class="subject-emoji">${subject.icon}</div>
+                    <div class="subject-details">
+                        <span class="subject-name-text">${subject.name}</span>
+                        <span class="subject-count">${subject.materials.length} Materials</span>
+                    </div>
+                    <i data-lucide="chevron-right" style="opacity: 0.5; width: 16px;"></i>
+                `;
+                subjectListEl.appendChild(el);
+            });
+            lucide.createIcons();
+        }
+
+        function selectSubject(id) {
+            selectedSubjectId = id;
+            renderSubjects(); // Update active state
+            renderDetailView();
+        }
+
+        function renderDetailView() {
+            const subject = subjects.find(s => s.id === selectedSubjectId);
+            
+            if (!subject) return;
+
+            // Generate Material List HTML
+            const materialsHtml = subject.materials.length > 0 ? subject.materials.map(mat => `
+                <div class="material-item">
+                    <div class="material-left">
+                        <div class="material-icon-box">
+                            <i data-lucide="${getIconForType(mat.type)}"></i>
+                        </div>
+                        <div>
+                            <a href="${mat.link}" class="material-link">${mat.name}</a>
+                            <div style="font-size: 0.75rem; color: var(--text-secondary);">${mat.type}</div>
+                        </div>
+                    </div>
+                    <button class="delete-btn btn-icon" onclick="deleteMaterial(${mat.id})">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                </div>
+            `).join('') : `
+                <div class="empty-state" style="padding: 40px; text-align: center; color: var(--text-secondary);">
+                    <p>No study materials added yet.</p>
+                </div>
+            `;
+
+            detailViewEl.innerHTML = `
+                <div class="card-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px; margin-bottom: 0;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 2rem;">${subject.icon}</span>
+                        <div>
+                            <h2 class="card-title" style="margin: 0;">${subject.name}</h2>
+                            <p style="margin: 0; font-size: 0.9rem; opacity: 0.7;">Manage your study resources</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="openMaterialModal()">+ Add Material</button>
+                </div>
+                <div class="material-list-container" style="flex: 1; overflow-y: auto;">
+                    ${materialsHtml}
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Helper: Icon mapping
+        function getIconForType(type) {
+            if (type === 'Video') return 'video';
+            if (type === 'Link') return 'link';
+            return 'file-text'; // default PDF
+        }
+
+        // Actions
+        function openMaterialModal() {
+            materialModal.style.display = 'flex';
+        }
+
+        function deleteMaterial(materialId) {
+            const subject = subjects.find(s => s.id === selectedSubjectId);
+            if(subject) {
+                subject.materials = subject.materials.filter(m => m.id !== materialId);
+                renderSubjects(); // update counts
+                renderDetailView();
+            }
+        }
+
+        // --- Event Listeners for Modals ---
+        
+        // Add Subject
+        document.getElementById('addSubjectBtn').onclick = () => subjectModal.style.display = 'flex';
+        document.getElementById('closeSubjectModal').onclick = () => subjectModal.style.display = 'none';
+
+        document.getElementById('confirmAddSubject').onclick = () => {
+            const name = document.getElementById('newSubjectName').value;
+            const icon = document.getElementById('newSubjectIcon').value || '📚';
             
             if (name) {
-                const card = document.createElement('div');
-                card.className = 'card glass subject-planner-card';
-                card.innerHTML = `
-                    <div class="subject-card-header">
-                        <span class="subject-icon">${icon}</span>
-                        <h3 class="subject-name">${name}</h3>
-                    </div>
-                    <div class="subject-materials">
-                        <h4>Study Materials</h4>
-                        <p class="empty-hint">No materials linked yet</p>
-                        <button class="btn-text-icon"><span>🔗</span> Link Material</button>
-                    </div>
-                `;
-                subjectGrid.appendChild(card);
+                subjects.push({
+                    id: Date.now(),
+                    name: name,
+                    icon: icon,
+                    materials: []
+                });
+                document.getElementById('newSubjectName').value = '';
+                document.getElementById('newSubjectIcon').value = '';
+                subjectModal.style.display = 'none';
+                renderSubjects();
+                
+                // Auto Select new subject
+                selectSubject(subjects[subjects.length-1].id);
             }
-            modal.style.display = 'none';
+        };
+
+        // Add Material
+        document.getElementById('closeMaterialModal').onclick = () => materialModal.style.display = 'none';
+        
+        document.getElementById('confirmAddMaterial').onclick = () => {
+            const name = document.getElementById('newMaterialName').value;
+            const link = document.getElementById('newMaterialLink').value || '#';
+            
+            if (name && selectedSubjectId) {
+                const subject = subjects.find(s => s.id === selectedSubjectId);
+                subject.materials.push({
+                    id: Date.now(),
+                    name: name,
+                    link: link,
+                    type: 'PDF' // Mock type for now
+                });
+                
+                document.getElementById('newMaterialName').value = '';
+                document.getElementById('newMaterialLink').value = '';
+                materialModal.style.display = 'none';
+                
+                renderSubjects();
+                renderDetailView();
+            }
+        };
+
+        // Close on outside click
+        window.onclick = (e) => {
+            if (e.target == subjectModal) subjectModal.style.display = 'none';
+            if (e.target == materialModal) materialModal.style.display = 'none';
         }
 
-        window.onclick = (event) => {
-            if (event.target == modal) modal.style.display = 'none';
-        }
+        // Init
+        renderSubjects();
+
     </script>
     <script>
       lucide.createIcons();
