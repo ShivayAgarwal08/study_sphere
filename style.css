@@ -687,6 +687,194 @@ body.light-theme .sidebar {
     color: var(--text-muted);
 }
 
+/* Profile Stats */
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--card-glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover::before {
+    opacity: 0.3;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.level-card {
+    --card-glow: var(--primary);
+}
+
+.level-card .stat-icon {
+    color: #fbbf24;
+}
+
+.xp-card {
+    --card-glow: var(--secondary);
+}
+
+.xp-card .stat-icon {
+    color: #fbbf24;
+}
+
+.streak-card {
+    --card-glow: #f97316;
+}
+
+.streak-card .stat-icon {
+    color: #f97316;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.circular-progress {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+}
+
+.circular-progress svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circular-progress circle {
+    fill: none;
+    stroke-width: 8px;
+}
+
+.circular-progress circle:first-child {
+    stroke: rgba(255, 255, 255, 0.1);
+}
+
+body.light-theme .circular-progress circle:first-child {
+    stroke: rgba(99, 102, 241, 0.15);
+}
+
+.level-card .circular-progress circle:last-child {
+    stroke: url(#levelGradient);
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.xp-card .circular-progress circle:last-child {
+    stroke: url(#xpGradient);
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.streak-card .circular-progress circle:last-child {
+    stroke: url(#streakGradient);
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+}
+
+/* Fallback colors if gradients don't work */
+.level-card .circular-progress circle:last-child {
+    stroke: var(--primary);
+}
+
+.xp-card .circular-progress circle:last-child {
+    stroke: var(--secondary);
+}
+
+.streak-card .circular-progress circle:last-child {
+    stroke: #f97316;
+}
+
+.stat-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.big-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.level-card .big-number {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.xp-card .big-number {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.streak-card .big-number {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    font-weight: 600;
+}
+
+.stat-footer {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.stat-footer span {
+    display: inline-block;
+}
+
+
 /* Theme Toggle */
 .theme-toggle {
     position: fixed;

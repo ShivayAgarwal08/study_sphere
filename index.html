@@ -373,6 +373,71 @@
                 <header class="section-header">
                     <h1>Profile Settings</h1>
                 </header>
+
+                <!-- Stats Overview -->
+                <div class="profile-stats-grid">
+                    <!-- Level Card -->
+                    <div class="glass-card stat-card level-card">
+                        <div class="stat-icon">
+                            <i class="ph ph-trophy-fill"></i>
+                        </div>
+                        <div class="circular-progress">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54"></circle>
+                                <circle cx="60" cy="60" r="54" id="level-progress-circle"></circle>
+                            </svg>
+                            <div class="stat-value">
+                                <span class="big-number" id="profile-level">1</span>
+                                <span class="stat-label">Level</span>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <span id="level-progress-text">0 / 100 XP to next level</span>
+                        </div>
+                    </div>
+
+                    <!-- XP Card -->
+                    <div class="glass-card stat-card xp-card">
+                        <div class="stat-icon">
+                            <i class="ph ph-star-fill"></i>
+                        </div>
+                        <div class="circular-progress">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54"></circle>
+                                <circle cx="60" cy="60" r="54" id="xp-progress-circle"></circle>
+                            </svg>
+                            <div class="stat-value">
+                                <span class="big-number" id="profile-xp">0</span>
+                                <span class="stat-label">Total XP</span>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <span>Keep completing tasks!</span>
+                        </div>
+                    </div>
+
+                    <!-- Streak Card -->
+                    <div class="glass-card stat-card streak-card">
+                        <div class="stat-icon">
+                            <i class="ph ph-fire-fill"></i>
+                        </div>
+                        <div class="circular-progress">
+                            <svg viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="54"></circle>
+                                <circle cx="60" cy="60" r="54" id="streak-progress-circle"></circle>
+                            </svg>
+                            <div class="stat-value">
+                                <span class="big-number" id="profile-streak">0</span>
+                                <span class="stat-label">Day Streak</span>
+                            </div>
+                        </div>
+                        <div class="stat-footer">
+                            <span id="streak-status">🔥 Keep it going!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Details -->
                 <div class="glass-card profile-card">
                     <div class="profile-header">
                         <div class="profile-pic-wrapper">

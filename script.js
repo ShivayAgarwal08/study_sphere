@@ -107,6 +107,7 @@ const app = {
         document.getElementById('profile-edit-img').src = AppState.user.avatar;
         
         app.updateStats();
+        profileStats.update();
         todoManager.render();
         notesManager.render();
         friendsManager.render();
@@ -119,6 +120,7 @@ const app = {
         document.getElementById('xp-display').textContent = AppState.data.xp;
         document.getElementById('level-display').textContent = 'Lvl ' + Math.floor(AppState.data.xp / 100 + 1);
         document.getElementById('streak-display').textContent = AppState.data.streak;
+        profileStats.update();
         app.saveData();
     },
 
@@ -459,7 +461,58 @@ const friendsManager = {
     }
 };
 
-// 7. THEME MANAGER
+// 7. PROFILE STATS MANAGER
+const profileStats = {
+    update: () => {
+        const xp = AppState.data.xp;
+        const level = Math.floor(xp / 100) + 1;
+        const xpInCurrentLevel = xp % 100;
+        const xpToNextLevel = 100;
+        const streak = AppState.data.streak;
+
+        // Update Level
+        document.getElementById('profile-level').textContent = level;
+        document.getElementById('level-progress-text').textContent = 
+            `${xpInCurrentLevel} / ${xpToNextLevel} XP to next level`;
+        
+        // Update XP
+        document.getElementById('profile-xp').textContent = xp;
+        
+        // Update Streak
+        document.getElementById('profile-streak').textContent = streak;
+        
+        // Update streak status message
+        const streakStatus = document.getElementById('streak-status');
+        if (streak === 0) {
+            streakStatus.textContent = '💪 Start your streak today!';
+        } else if (streak < 7) {
+            streakStatus.textContent = '🔥 Keep it going!';
+        } else if (streak < 30) {
+            streakStatus.textContent = '🚀 Amazing streak!';
+        } else {
+            streakStatus.textContent = '👑 Legendary streak!';
+        }
+
+        // Animate circular progress
+        setTimeout(() => {
+            profileStats.animateProgress('level-progress-circle', xpInCurrentLevel / xpToNextLevel);
+            profileStats.animateProgress('xp-progress-circle', Math.min(xp / 500, 1)); // Max 500 for visual
+            profileStats.animateProgress('streak-progress-circle', Math.min(streak / 30, 1)); // Max 30 days for visual
+        }, 100);
+    },
+
+    animateProgress: (elementId, percentage) => {
+        const circle = document.getElementById(elementId);
+        if (!circle) return;
+        
+        const circumference = 339.292; // 2 * PI * 54
+        const offset = circumference - (percentage * circumference);
+        
+        circle.style.strokeDashoffset = offset;
+    }
+};
+
+// 8. THEME MANAGER
 const themeManager = {
     init: () => {
         // Check for saved theme preference
