@@ -459,6 +459,32 @@ const friendsManager = {
     }
 };
 
+// 7. THEME MANAGER
+const themeManager = {
+    init: () => {
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('studySphereTheme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+        }
+    },
+
+    toggle: () => {
+        document.body.classList.toggle('light-theme');
+        
+        // Save preference
+        const isLight = document.body.classList.contains('light-theme');
+        localStorage.setItem('studySphereTheme', isLight ? 'light' : 'dark');
+        
+        // Add a subtle animation effect
+        const button = document.querySelector('.theme-toggle');
+        button.style.transform = 'scale(0.9) rotate(180deg)';
+        setTimeout(() => {
+            button.style.transform = '';
+        }, 300);
+    }
+};
+
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
     // Event Listeners for Forms
@@ -483,6 +509,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('menu-toggle').addEventListener('click', () => {
         document.querySelector('.sidebar').classList.toggle('open');
     });
+
+    // Initialize theme
+    themeManager.init();
 
     router.init();
 });
