@@ -59,6 +59,25 @@ const api = {
         return await res.json();
     },
 
+    // User / Profile
+    updateProfile: async (fullName) => {
+        const res = await fetch(`${API_URL}/users/profile`, {
+            method: 'PUT',
+            headers: api.getHeaders(),
+            body: JSON.stringify({ full_name: fullName })
+        });
+        return await res.json();
+    },
+
+    addXP: async (xpGain) => {
+        const res = await fetch(`${API_URL}/users/add-xp`, {
+            method: 'POST',
+            headers: api.getHeaders(),
+            body: JSON.stringify({ xp_gain: xpGain })
+        });
+        return await res.json();
+    },
+
     // Tasks
     getTasks: async () => {
         const res = await fetch(`${API_URL}/tasks/`, {
@@ -73,10 +92,15 @@ const api = {
             headers: api.getHeaders(),
             body: JSON.stringify({ text, completed: false })
         });
+        // Rewards XP for creation too? why not.
         return await res.json();
     },
 
     toggleTask: async (taskId, currentStatus, text) => {
+        // If completing, add XP
+        if (!currentStatus) {
+            await api.addXP(10);
+        }
         const res = await fetch(`${API_URL}/tasks/${taskId}`, {
             method: 'PUT',
             headers: api.getHeaders(),
@@ -102,6 +126,23 @@ const api = {
                 syllabus: typeof syllabus === 'string' ? syllabus : syllabus.join(','),
                 next_class: nextClass 
             })
+        });
+        return await res.json();
+    },
+
+    // Notes
+    getNotes: async () => {
+        const res = await fetch(`${API_URL}/notes/`, {
+            headers: api.getHeaders()
+        });
+        return await res.json();
+    },
+
+    createNote: async (title, body) => {
+        const res = await fetch(`${API_URL}/notes/`, {
+            method: 'POST',
+            headers: api.getHeaders(),
+            body: JSON.stringify({ title, body })
         });
         return await res.json();
     }

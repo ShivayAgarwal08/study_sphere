@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySphere - Ultimate Student Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        @keyframes pulse-gold {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+        .pulse-animation { animation: pulse-gold 1s ease-out; }
+        .hidden { display: none !important; }
+        .timer-card { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div id="notification-container"></div>
+
+    <!-- LANDING PAGE -->
+    <section id="landing-page" class="page active">
+        <nav class="landing-nav">
+            <div class="logo">StudySphere <span>.</span></div>
+            <div class="nav-links">
+                <button onclick="router.navigateTo('auth-page'); authManager.toggleAuth('login')" class="btn btn-secondary">Login</button>
+                <button onclick="router.navigateTo('auth-page'); authManager.toggleAuth('signup')" class="btn btn-primary">Sign Up</button>
+            </div>
+        </nav>
+        
+        <header class="hero">
+            <div class="hero-content">
+                <h1>Master Your Studies with <span class="gradient-text">Gamified Focus</span></h1>
+                <p>Track assignments, compete with friends, and boost your grades with the all-in-one student productivity ecosystem.</p>
+                <div class="hero-stats">
+                    <div class="stat-pill"><i class="ph ph-lightning"></i> Boost Focus</div>
+                    <div class="stat-pill"><i class="ph ph-trophy"></i> Earn XP</div>
+                    <div class="stat-pill"><i class="ph ph-users"></i> Study Together</div>
+                </div>
+                <button onclick="router.navigateTo('auth-page'); authManager.toggleAuth('signup')" class="btn btn-lg btn-glow">Get Started Free</button>
+            </div>
+            <div class="hero-visual">
+                <div class="glass-card visual-mockup">
+                    <div class="mockup-header">
+                        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="skeleton-line w-75"></div>
+                        <div class="skeleton-line w-50"></div>
+                        <div class="row">
+                            <div class="skeleton-card"></div>
+                            <div class="skeleton-card"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="features">
+            <div class="feature-card">
+                <i class="ph ph-chart-line-up"></i>
+                <h3>Analytics</h3>
+                <p>Visualize your progress and identify weak spots.</p>
+            </div>
+            <div class="feature-card">
+                <i class="ph ph-game-controller"></i>
+                <h3>Gamification</h3>
+                <p>Earn XP and maintain streaks to stay motivated.</p>
+            </div>
+            <div class="feature-card">
+                <i class="ph ph-brain"></i>
+                <h3>AI Assistant</h3>
+                <p>Generate flashcards and summaries instantly.</p>
+            </div>
+        </section>
+    </section>
+
+    <!-- AUTH PAGES -->
+    <section id="auth-page" class="page">
+        <div class="auth-container">
+            <div class="glass-card auth-card">
+                <div class="logo center">StudySphere</div>
+                <form id="login-form" class="auth-form active">
+                    <h2>Welcome Back</h2>
+                    <div class="input-group">
+                        <i class="ph ph-envelope"></i>
+                        <input type="email" placeholder="Email Address" required value="student@example.com">
+                    </div>
+                    <div class="input-group">
+                        <i class="ph ph-lock"></i>
+                        <input type="password" placeholder="Password" required value="password123">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                    <p class="switch-auth">Don't have an account? <span onclick="authManager.toggleAuth('signup')">Sign Up</span></p>
+                </form>
+
+                <form id="signup-form" class="auth-form">
+                    <h2>Create Account</h2>
+                    <div class="input-group">
+                        <i class="ph ph-user"></i>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="ph ph-envelope"></i>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="ph ph-lock"></i>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="ph ph-lock-key"></i>
+                        <input type="password" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    <p class="switch-auth">Already have an account? <span onclick="authManager.toggleAuth('login')">Log In</span></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN APP LAYOUT -->
+    <div id="app-layout" class="page">
+        <aside class="sidebar">
+            <div class="logo-small">SS <span class="dot">.</span></div>
+            <nav class="menu">
+                <a href="#" class="menu-item active" data-target="dashboard"><i class="ph ph-squares-four"></i><span class="tooltip">Dashboard</span></a>
+                <a href="#" class="menu-item" data-target="academic"><i class="ph ph-graduation-cap"></i><span class="tooltip">Academic</span></a>
+                <a href="#" class="menu-item" data-target="tasks"><i class="ph ph-check-circle"></i><span class="tooltip">Tasks</span></a>
+                <a href="#" class="menu-item" data-target="notes"><i class="ph ph-notebook"></i><span class="tooltip">Notes</span></a>
+                <a href="#" class="menu-item" data-target="profile"><i class="ph ph-user-circle"></i><span class="tooltip">Profile</span></a>
+            </nav>
+            <div class="profile-menu">
+                <a href="#" onclick="authManager.logout()" class="menu-item logout"><i class="ph ph-sign-out"></i></a>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <header class="mobile-header">
+                <div class="logo">StudySphere</div>
+                <button id="menu-toggle"><i class="ph ph-list"></i></button>
+            </header>
+
+            <!-- 1. DASHBOARD -->
+            <div id="dashboard" class="view-section active fa-fade-in">
+                <header class="section-header">
+                    <div>
+                        <h1>Hello, <span id="user-name-display">Student</span>! 👋</h1>
+                        <p>Ready to maintain your <span id="streak-display">0</span> day streak?</p>
+                    </div>
+                    <div class="xp-pill">
+                        <i class="ph ph-star-fill"></i>
+                        <span id="xp-display">0</span> XP
+                        <div class="level-badge" id="level-display">Lvl 1</div>
+                    </div>
+                </header>
+
+                <div class="grid-layout">
+                    <div class="glass-card wide-card">
+                        <h3>Today's Plan 📅</h3>
+                        <ul class="task-list" id="dashboard-tasks"></ul>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Quick Stats</h3>
+                        <div class="progress-bar-container">
+                            <div class="label"><span>Study Goal</span> <span>60%</span></div>
+                            <div class="progress-bar"><div class="fill" style="width: 60%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ACADEMIC DETAILS -->
+            <div id="academic" class="view-section">
+                <header class="section-header">
+                    <h1>Academic Hub</h1>
+                    <button class="btn btn-sm btn-primary" onclick="academicManager.addSubject()">+ Add Subject</button>
+                </header>
+                <div class="subjects-grid" id="subjects-container"></div>
+            </div>
+
+            <!-- 3. TASKS -->
+            <div id="tasks" class="view-section">
+                <header class="section-header">
+                    <h1>Tasks & To-Do</h1>
+                    <div class="add-task-wrapper">
+                        <input type="text" id="new-task-input" placeholder="Add a new task...">
+                        <button class="btn btn-primary" onclick="todoManager.addFromInput()"><i class="ph ph-plus"></i></button>
+                    </div>
+                </header>
+                <div class="task-filter">
+                    <button class="filter-btn active" onclick="todoManager.filter('all')">All</button>
+                    <button class="filter-btn" onclick="todoManager.filter('pending')">Pending</button>
+                    <button class="filter-btn" onclick="todoManager.filter('completed')">Completed</button>
+                </div>
+                <ul class="full-task-list" id="full-task-list"></ul>
+            </div>
+
+            <!-- 4. NOTES -->
+            <div id="notes" class="view-section">
+                <header class="section-header">
+                    <h1>My Notes</h1>
+                    <button class="btn btn-primary" onclick="notesManager.createNew()">+ New Note</button>
+                </header>
+                <div class="notes-grid" id="notes-container"></div>
+            </div>
+
+            <!-- 5. PROFILE -->
+            <div id="profile" class="view-section">
+                 <header class="section-header"><h1>Profile Settings</h1></header>
+                 <div class="glass-card profile-card">
+                    <form onsubmit="event.preventDefault(); profileManager.save()">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="profile-name-input" placeholder="Your Name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODALS -->
+    <div id="note-editor" class="modal hidden">
+        <div class="glass-card modal-content">
+            <div class="modal-header">
+                <input type="text" id="note-title-input" placeholder="Note Title">
+                <button class="btn-icon" onclick="notesManager.closeEditor()"><i class="ph ph-x"></i></button>
+            </div>
+            <textarea id="note-body-input" placeholder="Start typing your notes here..." style="min-height: 200px;"></textarea>
+            <button class="btn btn-primary full-width" onclick="notesManager.saveCurrent()">Save Note</button>
+        </div>
+    </div>
+
+    <button class="theme-toggle" aria-label="Toggle Theme">
+        <i class="ph ph-moon"></i>
+        <i class="ph ph-sun"></i>
+    </button>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/subjects.js"></script>
+    <script src="js/notes.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const profileManager = {
+            init: () => {
+                const user = JSON.parse(localStorage.getItem('user_data') || '{}');
+                const nameInput = document.getElementById('profile-name-input');
+                if (nameInput) nameInput.value = user.full_name || '';
+            },
+            save: async () => {
+                const name = document.getElementById('profile-name-input').value;
+                if (!name) return;
+                try {
+                    await api.updateProfile(name);
+                    alert('Profile updated!');
+                    app.refreshUser();
+                } catch (e) {
+                    alert('Update failed');
+                }
+            }
+        };
+        const originalNavigate = router.navigateTo;
+        router.navigateTo = (pageId) => {
+            originalNavigate(pageId);
+            if (pageId === 'profile') profileManager.init();
+        }
+    </script>
+</body>
+</html>
