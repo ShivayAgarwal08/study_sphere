@@ -59,21 +59,29 @@ const api = {
         return await res.json();
     },
 
-    // User / Profile
-    updateProfile: async (fullName) => {
+    // User / Profile / XP
+    updateProfile: async (profileData) => {
         const res = await fetch(`${API_URL}/users/profile`, {
             method: 'PUT',
             headers: api.getHeaders(),
-            body: JSON.stringify({ full_name: fullName })
+            body: JSON.stringify(profileData)
         });
         return await res.json();
     },
 
-    addXP: async (xpGain) => {
-        const res = await fetch(`${API_URL}/users/add-xp`, {
+    requestXPReward: async (actionType, referenceId = null) => {
+        const res = await fetch(`${API_URL}/users/reward-xp`, {
             method: 'POST',
             headers: api.getHeaders(),
-            body: JSON.stringify({ xp_gain: xpGain })
+            body: JSON.stringify({ action_type: actionType, reference_id: referenceId })
+        });
+        return await res.json();
+    },
+
+    upgradePro: async () => {
+        const res = await fetch(`${API_URL}/users/upgrade-pro`, {
+            method: 'POST',
+            headers: api.getHeaders()
         });
         return await res.json();
     },
@@ -92,21 +100,21 @@ const api = {
             headers: api.getHeaders(),
             body: JSON.stringify({ text, completed: false })
         });
-        // Rewards XP for creation too? why not.
         return await res.json();
     },
 
     toggleTask: async (taskId, currentStatus, text) => {
-        // If completing, add XP
-        if (!currentStatus) {
-            await api.addXP(10);
-        }
         const res = await fetch(`${API_URL}/tasks/${taskId}`, {
             method: 'PUT',
             headers: api.getHeaders(),
             body: JSON.stringify({ text, completed: !currentStatus })
         });
-        return await res.json();
+        const data = await res.json();
+        // Request XP if completed
+        if (data.completed) {
+            await api.requestXPReward('task', taskId);
+        }
+        return data;
     },
 
     // Subjects
@@ -127,7 +135,9 @@ const api = {
                 next_class: nextClass 
             })
         });
-        return await res.json();
+        const data = await res.json();
+        await api.requestXPReward('subject');
+        return data;
     },
 
     // Notes
@@ -143,6 +153,47 @@ const api = {
             method: 'POST',
             headers: api.getHeaders(),
             body: JSON.stringify({ title, body })
+        });
+        return await res.json();
+    },
+
+    // Groups & Messages
+    getGroups: async () => {
+        const res = await fetch(`${API_URL}/groups/`, {
+            headers: api.getHeaders()
+        });
+        return await res.json();
+    },
+
+    createGroup: async (name, description, goal) => {
+        const res = await fetch(`${API_URL}/groups/`, {
+            method: 'POST',
+            headers: api.getHeaders(),
+            body: JSON.stringify({ name, description, goal })
+        });
+        return await res.json();
+    },
+
+    getMessages: async (groupId) => {
+        const res = await fetch(`${API_URL}/groups/${groupId}/messages`, {
+            headers: api.getHeaders()
+        });
+        return await res.json();
+    },
+
+    sendMessage: async (groupId, content) => {
+        const res = await fetch(`${API_URL}/groups/${groupId}/messages`, {
+            method: 'POST',
+            headers: api.getHeaders(),
+            body: JSON.stringify({ content })
+        });
+        return await res.json();
+    },
+
+    joinGroup: async (groupId) => {
+        const res = await fetch(`${API_URL}/groups/${groupId}/join`, {
+            method: 'POST',
+            headers: api.getHeaders()
         });
         return await res.json();
     }
