@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySphere - Ultimate Student Companion</title>
+    <title>StudySphere - Premium Student Productivity</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
+        /* Essential Overlay Styles */
         @keyframes pulse-gold {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
             70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
@@ -35,14 +36,14 @@
         
         <header class="hero">
             <div class="hero-content">
-                <h1>Master Your Studies with <span class="gradient-text">Gamified Focus</span></h1>
-                <p>Track assignments, compete with friends, and boost your grades with the all-in-one student productivity ecosystem.</p>
+                <h1>Level Up Your <span class="gradient-text">Academic Journey</span></h1>
+                <p>The ultimate 100% serverless companion. Manage tasks, earn XP, and unlock focus modes with state-of-the-art aesthetics.</p>
                 <div class="hero-stats">
-                    <div class="stat-pill"><i class="ph ph-lightning"></i> Boost Focus</div>
-                    <div class="stat-pill"><i class="ph ph-trophy"></i> Earn XP</div>
-                    <div class="stat-pill"><i class="ph ph-users"></i> Study Together</div>
+                    <div class="stat-pill"><i class="ph ph-lightning"></i> Fast</div>
+                    <div class="stat-pill"><i class="ph ph-shield-check"></i> Private</div>
+                    <div class="stat-pill"><i class="ph ph-fire"></i> Gamified</div>
                 </div>
-                <button onclick="router.navigateTo('auth-page'); authManager.toggleAuth('signup')" class="btn btn-lg btn-glow">Get Started Free</button>
+                <button onclick="router.navigateTo('auth-page'); authManager.toggleAuth('signup')" class="btn btn-lg btn-glow">Enter the Sphere</button>
             </div>
             <div class="hero-visual">
                 <div class="glass-card visual-mockup">
@@ -51,7 +52,11 @@
                     </div>
                     <div class="mockup-body">
                         <div class="skeleton-line w-75"></div>
-                        <div class="skeleton-line w-50"></div>
+                        <div class="skeleton-line w-50" style="margin-top: 20px;"></div>
+                        <div style="display: flex; gap: 10px; margin-top: 30px;">
+                            <div class="skeleton-card" style="height: 60px;"></div>
+                            <div class="skeleton-card" style="height: 60px;"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,11 +72,11 @@
                     <h2>Welcome Back</h2>
                     <div class="input-group">
                         <i class="ph ph-envelope"></i>
-                        <input type="email" placeholder="Email Address" required value="student@example.com">
+                        <input type="email" placeholder="Email Address" required>
                     </div>
                     <div class="input-group">
                         <i class="ph ph-lock"></i>
-                        <input type="password" placeholder="Password" required value="password123">
+                        <input type="password" placeholder="Password" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Log In</button>
                     <p class="switch-auth">Don't have an account? <span onclick="authManager.toggleAuth('signup')">Sign Up</span></p>
@@ -79,6 +84,7 @@
 
                 <form id="signup-form" class="auth-form">
                     <h2>Create Account</h2>
+                    <p style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">Your data stays in your browser.</p>
                     <div class="input-group">
                         <i class="ph ph-user"></i>
                         <input type="text" placeholder="Full Name" required>
@@ -111,9 +117,10 @@
                 <a href="#" class="menu-item" data-target="academic"><i class="ph ph-graduation-cap"></i><span class="tooltip">Academic</span></a>
                 <a href="#" class="menu-item" data-target="tasks"><i class="ph ph-check-circle"></i><span class="tooltip">Tasks</span></a>
                 <a href="#" class="menu-item" data-target="notes"><i class="ph ph-notebook"></i><span class="tooltip">Notes</span></a>
-                <a href="#" class="menu-item" data-target="groups"><i class="ph ph-users"></i><span class="tooltip">Groups</span></a>
-                <a href="#" class="menu-item" data-target="analytics"><i class="ph ph-chart-bar"></i><span class="tooltip">Analytics</span></a>
-                <a href="#" class="menu-item" data-target="profile"><i class="ph ph-user-circle"></i><span class="tooltip">Profile</span></a>
+                <a href="#" class="menu-item" data-target="study-room"><i class="ph ph-headphones"></i><span class="tooltip">Study Room</span></a>
+                <a href="#" class="menu-item" data-target="groups"><i class="ph ph-users-three"></i><span class="tooltip">Community</span></a>
+                <a href="#" class="menu-item" data-target="analytics"><i class="ph ph-chart-line"></i><span class="tooltip">Insights</span></a>
+                <a href="#" class="menu-item" data-target="profile"><i class="ph ph-user"></i><span class="tooltip">Profile</span></a>
             </nav>
             <div class="profile-menu">
                 <a href="#" onclick="authManager.logout()" class="menu-item logout"><i class="ph ph-sign-out"></i></a>
@@ -130,22 +137,41 @@
             <div id="dashboard" class="view-section active fa-fade-in">
                 <header class="section-header">
                     <div>
-                        <h1>Hello, <span id="user-name-display">Student</span>! 👋</h1>
-                        <p id="motivational-quote">"Your future is created by what you do today."</p>
+                        <h1>Welcome back, <span id="user-name-display">Guest</span>! 👋</h1>
+                        <p id="motivational-quote">"Focus determines your reality."</p>
                     </div>
                     <div class="xp-pill">
-                        <i class="ph ph-star-fill"></i>
+                        <i class="ph ph-sparkle-fill" style="color: #ffda44;"></i>
                         <span id="xp-display">0</span> XP
                         <div class="level-badge" id="level-display">Lvl 1</div>
                     </div>
                 </header>
 
-                <div class="grid-layout" id="dashboard-grid">
-                    <div class="glass-card wide-card">
-                        <h3>Today's Plan 📅</h3>
-                        <ul class="task-list" id="dashboard-tasks"></ul>
+                <div class="dashboard-grid">
+                    <!-- Progress Card -->
+                    <div class="glass-card flex-col center-content stat-highlight">
+                         <div class="circular-progress-large" id="main-progress">
+                             <svg width="150" height="150">
+                                 <circle cx="75" cy="75" r="65" stroke="rgba(255,255,255,0.05)" stroke-width="12" fill="none"></circle>
+                                 <circle id="progress-value" cx="75" cy="75" r="65" stroke="var(--primary)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="408" stroke-dashoffset="408"></circle>
+                             </svg>
+                             <div class="progress-text">
+                                 <span id="daily-progress-pct">0%</span>
+                                 <small>Daily Goal</small>
+                             </div>
+                         </div>
+                         <div style="margin-top: 1rem; text-align: center;">
+                             <h3 id="streak-count">0 Days</h3>
+                             <p class="small">Current Streak</p>
+                         </div>
                     </div>
-                    <!-- Timer and other widgets injected by JS -->
+
+                    <!-- Tasks Widget -->
+                    <div class="glass-card wide-card">
+                        <h3>Up Next 🎯</h3>
+                        <ul class="task-list" id="dashboard-tasks"></ul>
+                        <button class="btn btn-sm btn-secondary full-width" style="margin-top: 1rem;" onclick="router.navigateTo('tasks')">Manage All Tasks</button>
+                    </div>
                 </div>
             </div>
 
@@ -161,16 +187,16 @@
             <!-- 3. TASKS -->
             <div id="tasks" class="view-section">
                 <header class="section-header">
-                    <h1>Tasks & To-Do</h1>
+                    <h1>Active Focus Tasks</h1>
                     <div class="add-task-wrapper">
-                        <input type="text" id="new-task-input" placeholder="Add a new task...">
+                        <input type="text" id="new-task-input" placeholder="What needs doing?">
                         <button class="btn btn-primary" onclick="todoManager.addFromInput()"><i class="ph ph-plus"></i></button>
                     </div>
                 </header>
                 <div class="task-filter">
                     <button class="filter-btn active" onclick="todoManager.filter('all')">All</button>
-                    <button class="filter-btn" onclick="todoManager.filter('pending')">Pending</button>
-                    <button class="filter-btn" onclick="todoManager.filter('completed')">Completed</button>
+                    <button class="filter-btn" onclick="todoManager.filter('pending')">Active</button>
+                    <button class="filter-btn" onclick="todoManager.filter('completed')">Done</button>
                 </div>
                 <ul class="full-task-list" id="full-task-list"></ul>
             </div>
@@ -178,40 +204,81 @@
             <!-- 4. NOTES -->
             <div id="notes" class="view-section">
                 <header class="section-header">
-                    <h1>My Notes</h1>
-                    <button class="btn btn-primary" onclick="notesManager.createNew()">+ New Note</button>
+                    <h1>Knowledge base</h1>
+                    <button class="btn btn-primary" onclick="notesManager.createNew()">+ New Entry</button>
                 </header>
                 <div class="notes-grid" id="notes-container"></div>
             </div>
 
-            <!-- 5. GROUPS -->
+            <!-- 5. STUDY ROOM -->
+            <div id="study-room" class="view-section">
+                <header class="section-header">
+                    <h1>Deep Focus Room</h1>
+                </header>
+                <div class="grid-layout">
+                    <div class="glass-card timer-card">
+                        <h3>Pomodoro</h3>
+                        <div id="timer-container-mount"></div>
+                    </div>
+                    <div class="glass-card ambience-card">
+                        <h3>Lo-Fi Ambience</h3>
+                        <div class="ambience-controls">
+                            <div class="ambience-item" onclick="ambience.play('Rain')">
+                                <i class="ph ph-cloud-rain"></i>
+                                <span>Soft Rain</span>
+                            </div>
+                            <div class="ambience-item" onclick="ambience.play('Cafe')">
+                                <i class="ph ph-coffee"></i>
+                                <span>Study Cafe</span>
+                            </div>
+                            <div class="ambience-item active" onclick="ambience.play('Lofi')">
+                                <i class="ph ph-music-note"></i>
+                                <span>Lofi Beats</span>
+                            </div>
+                        </div>
+                        <div class="visualizer-container">
+                            <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. GROUPS -->
             <div id="groups" class="view-section">
                 <header class="section-header">
-                    <h1>Study Groups</h1>
-                    <button class="btn btn-primary" onclick="groupsManager.create()">+ Create Group</button>
+                    <h1>Global Community</h1>
+                    <button class="btn btn-primary" onclick="groupsManager.create()">+ Start Circle</button>
                 </header>
                 <div class="subjects-grid" id="groups-container"></div>
             </div>
 
-            <!-- 6. ANALYTICS -->
+            <!-- 7. ANALYTICS -->
             <div id="analytics" class="view-section">
                 <header class="section-header">
-                    <h1>Performance Analytics</h1>
+                    <h1>Insights & Habits</h1>
                 </header>
                 <div id="analytics-content"></div>
             </div>
 
-            <!-- 7. PROFILE -->
+            <!-- 8. PROFILE -->
             <div id="profile" class="view-section">
-                 <header class="section-header"><h1>Profile Overview</h1></header>
-                 <div class="glass-card profile-card" id="profile-container">
-                    <form onsubmit="event.preventDefault(); profileManager.save()">
-                        <div class="form-group"><label>Full Name</label><input type="text" id="profile-name-input"></div>
-                        <div class="form-group"><label>Course / Exam</label><input type="text" id="profile-course-input"></div>
-                        <div class="form-group"><label>Semester / Year</label><input type="text" id="profile-semester-input"></div>
-                        <div class="form-group"><label>Study Goal (Hours/Day)</label><input type="number" id="profile-goal-input"></div>
-                        <button type="submit" class="btn btn-primary">Save Profile</button>
-                    </form>
+                 <header class="section-header"><h1>User Settings</h1></header>
+                 <div class="grid-layout">
+                    <div class="glass-card profile-card" id="profile-container">
+                        <form onsubmit="event.preventDefault(); profileManager.save()">
+                            <div class="form-group"><label>Display Name</label><input type="text" id="profile-name-input"></div>
+                            <div class="form-group"><label>Major / Goal</label><input type="text" id="profile-course-input"></div>
+                            <div class="form-group"><label>Current Year</label><input type="text" id="profile-semester-input"></div>
+                            <div class="form-group"><label>Daily Target (hrs)</label><input type="number" id="profile-goal-input"></div>
+                            <button type="submit" class="btn btn-primary full-width">Update Metadata</button>
+                        </form>
+                    </div>
+                    <div class="glass-card achievements-card">
+                        <h3>Achievements</h3>
+                        <div class="achievement-grid" id="achievement-list">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
                  </div>
             </div>
         </main>
@@ -221,11 +288,11 @@
     <div id="note-editor" class="modal hidden">
         <div class="glass-card modal-content">
             <div class="modal-header">
-                <input type="text" id="note-title-input" placeholder="Note Title">
+                <input type="text" id="note-title-input" placeholder="Title...">
                 <button class="btn-icon" onclick="notesManager.closeEditor()"><i class="ph ph-x"></i></button>
             </div>
-            <textarea id="note-body-input" style="min-height: 200px;"></textarea>
-            <button class="btn btn-primary full-width" onclick="notesManager.saveCurrent()">Save Note</button>
+            <textarea id="note-body-input" style="min-height: 300px;" placeholder="Start writing..."></textarea>
+            <button class="btn btn-primary full-width" onclick="notesManager.saveCurrent()">Save to Local Storage</button>
         </div>
     </div>
 
@@ -233,13 +300,13 @@
     <div id="chat-modal" class="modal hidden">
         <div class="glass-card modal-content" style="max-width: 500px; height: 500px;">
             <div class="modal-header">
-                <h3 id="chat-group-name">Group Chat</h3>
+                <h3 id="chat-group-name">Circle Chat</h3>
                 <button class="btn-icon" onclick="groupsManager.closeChat()"><i class="ph ph-x"></i></button>
             </div>
             <input type="hidden" id="current-group-id">
             <div id="message-list" class="message-list"></div>
-            <div class="chat-input" style="padding: 1rem; border-top: 1px solid var(--glass-border); display: flex; gap: 8px;">
-                <input type="text" id="chat-input" placeholder="Type a message..." style="margin-bottom: 0;">
+            <div class="chat-input" style="padding: 1rem; background: rgba(0,0,0,0.1); display: flex; gap: 8px;">
+                <input type="text" id="chat-input" placeholder="Say something..." style="margin-bottom: 0;">
                 <button class="btn btn-primary" onclick="groupsManager.sendMessage()">Send</button>
             </div>
         </div>
@@ -262,10 +329,14 @@
         const profileManager = {
             init: () => {
                 const user = JSON.parse(localStorage.getItem('user_data') || '{}');
-                document.getElementById('profile-name-input').value = user.full_name || '';
-                document.getElementById('profile-course-input').value = user.course_type || '';
-                document.getElementById('profile-semester-input').value = user.semester || '';
-                document.getElementById('profile-goal-input').value = user.study_goal_hours || 2;
+                const fieldMap = {
+                    'profile-name-input': user.full_name || '',
+                    'profile-course-input': user.course_type || '',
+                    'profile-semester-input': user.semester || '',
+                    'profile-goal-input': user.study_goal_hours || 2
+                };
+                Object.entries(fieldMap).forEach(([id, val]) => document.getElementById(id).value = val);
+                profileManager.renderAchievements();
             },
             save: async () => {
                 const data = {
@@ -274,11 +345,33 @@
                     semester: document.getElementById('profile-semester-input').value,
                     study_goal_hours: parseFloat(document.getElementById('profile-goal-input').value)
                 };
-                try {
-                    await api.updateProfile(data);
-                    alert("Profile updated successfully!");
-                    app.refreshUser();
-                } catch (e) { alert("Update failed"); }
+                await api.updateProfile(data);
+                app.refreshUser();
+                alert("Metadata Updated!");
+            },
+            renderAchievements: () => {
+                const list = document.getElementById('achievement-list');
+                const user = JSON.parse(localStorage.getItem('user_data') || '{}');
+                const achievements = [
+                    { name: 'Fresh Start', desc: 'Join the Sphere', icon: 'ph-star', earned: true },
+                    { name: 'Early Bird', desc: 'Login before 8 AM', icon: 'ph-sun', earned: user.xp > 100 },
+                    { name: 'Xp King', desc: 'Reach Level 10', icon: 'ph-crown', earned: user.level >= 10 },
+                    { name: 'Scholar', desc: 'Create 5 Notes', icon: 'ph-books', earned: false }
+                ];
+                list.innerHTML = achievements.map(a => `
+                    <div class="achievement-badge ${a.earned ? 'earned' : 'locked'}">
+                        <i class="ph ${a.icon}"></i>
+                        <span class="tooltip">${a.name}: ${a.desc}</span>
+                    </div>
+                `).join('');
+            }
+        };
+
+        const ambience = {
+            play: (type) => {
+                document.querySelectorAll('.ambience-item').forEach(i => i.classList.remove('active'));
+                event.currentTarget.classList.add('active');
+                // Mock visualizer animation start
             }
         };
     </script>

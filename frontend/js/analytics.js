@@ -3,37 +3,49 @@ const analyticsManager = {
         const container = document.getElementById('analytics-content');
         if (!container) return;
         
-        // Simple visualization for MVP
-        // In a real app we'd fetch actual study session logs
-        const user = JSON.parse(localStorage.getItem('user_data'));
+        const user = JSON.parse(localStorage.getItem('user_data') || '{}');
+        const tasks = await api.getTasks();
+        const done = tasks.filter(t => t.completed).length;
         
         container.innerHTML = `
-            <div class="glass-card">
-                <h3>Consistency Score</h3>
-                <div class="consistency-chart" style="display:flex; gap: 8px; margin-top: 1rem;">
-                    ${[...Array(7)].map((_, i) => `
-                        <div class="day-bar" style="flex:1; height: ${Math.random()*100 + 20}px; background: var(--primary); border-radius: 4px;"></div>
-                    `).join('')}
+            <div class="grid-layout">
+                <div class="glass-card">
+                    <h3>Focus Distribution</h3>
+                    <div style="height: 200px; display: flex; align-items: flex-end; gap: 10px; padding-top: 2rem;">
+                        ${[60, 80, 45, 90, 70, 50, 85].map((h, i) => `
+                            <div style="flex: 1; height: ${h}%; background: var(--primary); border-radius: 6px; position: relative;" title="${h} mins">
+                                <span style="position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; color: var(--text-muted);">${['M','T','W','T','F','S','S'][i]}</span>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
-                <div style="display:flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.7rem; color: var(--text-muted);">
-                    <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+
+                <div class="glass-card flex-col center">
+                    <h3>Productivity</h3>
+                    <div style="font-size: 3rem; font-weight: 700; color: var(--accent); margin: 1rem 0;">${done}</div>
+                    <p>Tasks Completed</p>
+                    <small style="color: var(--text-muted);">Keep it up!</small>
                 </div>
             </div>
             
-            <div class="glass-card" style="margin-top: 1.5rem;">
-                <h3>Status: ${user.is_pro ? '💎 PRO Member' : 'Basic Member'}</h3>
-                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-muted);">
-                    ${user.is_pro ? 'You have full access to all insights and unlimited groups.' : 'Upgrade to Pro to unlock advanced analytics and deeper insights!'}
-                </p>
-                ${!user.is_pro ? `<button class="btn btn-primary" style="margin-top: 1rem;" onclick="analyticsManager.upgrade()">Upgrade to Pro</button>` : ''}
+            <div class="glass-card" style="margin-top: 1.5rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3>Status: ${user.is_pro ? '💎 PRO Member' : 'Sphere Basic'}</h3>
+                        <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            ${user.is_pro ? 'Full access unlocked. You are in the elite tier.' : 'Unlock detailed heatmaps and AI subject coaching.'}
+                        </p>
+                    </div>
+                    ${!user.is_pro ? `<button class="btn btn-primary" onclick="analyticsManager.upgrade()">Upgrade</button>` : '<i class="ph ph-seal-check" style="font-size: 2.5rem; color: var(--accent);"></i>'}
+                </div>
             </div>
         `;
     },
     
     upgrade: async () => {
-        if (confirm("Proceed to upgrade to StudySphere Pro?")) {
+        if (confirm("Unlock StudySphere Pro Features?")) {
             await api.upgradePro();
-            alert("Congratulations! You are now a PRO member! 🚀");
+            alert("Welcome to the elite! PRO status activated. 🚀");
             app.refreshUser();
             analyticsManager.render();
         }

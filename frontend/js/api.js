@@ -1,11 +1,9 @@
 /**
  * StudySphere STANDALONE API
  * This module replaces the backend server with LocalStorage.
- * It provides the same interface as the real API to keep the UI logic intact.
  */
 
 const api = {
-    // Utility to get/set data from localStorage
     _db: {
         get: (key) => JSON.parse(localStorage.getItem(`ss_db_${key}`)) || [],
         set: (key, data) => localStorage.setItem(`ss_db_${key}`, JSON.stringify(data)),
@@ -19,12 +17,13 @@ const api = {
         },
         update: (key, id, updates) => {
             let data = api._db.get(key);
-            let item = data.find(i => i.id === id);
-            if (item) {
-                Object.assign(item, updates);
+            let index = data.findIndex(i => i.id === id);
+            if (index !== -1) {
+                data[index] = { ...data[index], ...updates };
                 api._db.set(key, data);
+                return data[index];
             }
-            return item;
+            return null;
         }
     },
 
@@ -37,154 +36,110 @@ const api = {
 
     clearToken: () => {
         api.token = null;
+        api.currentUserId = null;
         localStorage.removeItem('access_token');
+        localStorage.removeItem('current_user_id');
+        localStorage.removeItem('user_data');
     },
 
-    // Auth
     login: async (email, password) => {
-        // Mock delay
-        await new Promise(r => setTimeout(r, 500));
+        await new Promise(r => setTimeout(r, 400));
         const users = api._db.get('users');
         const user = users.find(u => u.email === email && u.password === password);
+        if (!user) throw new Error('Invalid credentials');
         
-        if (!user) throw new Error('Invalid email or password');
-        
-        const token = "mock-jwt-token-" + user.id;
-        api.setToken(token);
+        api.setToken("mock-token-" + user.id);
         localStorage.setItem('current_user_id', user.id);
-        return { access_token: token, token_type: "bearer" };
+        localStorage.setItem('user_data', JSON.stringify(user));
+        return { access_token: api.token };
     },
 
     signup: async (email, full_name, password) => {
-        await new Promise(r => setTimeout(r, 500));
-        const users = api._db.get('users');
-        if (users.find(u => u.email === email)) throw new Error('Email already registered');
+        await new Promise(r => setTimeout(r, 400));
+        if (api._db.find('users', u => u.email === email)) throw new Error('Email exists');
 
-        const newUser = {
-            email,
-            full_name,
-            password,
-            xp: 0,
-            level: 1,
-            streak: 0,
-            is_pro: false,
-            course_type: "",
-            semester: "",
-            study_goal_hours: 2,
-            avatar: null
-        };
+        const user = api._db.insert('users', {
+            email, full_name, password,
+            xp: 0, level: 1, streak: 1,
+            is_pro: false, course_type: "", semester: "", study_goal_hours: 2
+        });
         
-        const createdUser = api._db.insert('users', newUser);
-        const token = "mock-jwt-token-" + createdUser.id;
-        api.setToken(token);
-        localStorage.setItem('current_user_id', createdUser.id);
-        return { access_token: token, token_type: "bearer" };
+        api.setToken("mock-token-" + user.id);
+        localStorage.setItem('current_user_id', user.id);
+        localStorage.setItem('user_data', JSON.stringify(user));
+        return { access_token: api.token };
     },
 
     getMe: async () => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        const user = api._db.get('users').find(u => u.id === userId);
-        if (!user) throw new Error('Not logged in');
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        const user = api._db.find('users', u => u.id === id);
+        if (!user) throw new Error('Auth required');
+        localStorage.setItem('user_data', JSON.stringify(user)); // Sync
         return user;
     },
 
-    // User / Profile / XP
-    updateProfile: async (profileData) => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.update('users', userId, profileData);
-    },
-
-    requestXPReward: async (actionType, referenceId = null) => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        const user = api._db.find('users', u => u.id === userId);
-        
-        let xp_gain = 0;
-        if (actionType === 'task') xp_gain = 10;
-        else if (actionType === 'pomodoro') xp_gain = 50;
-        else if (actionType === 'subject') xp_gain = 20;
-
-        if (xp_gain > 0) {
-            user.xp += xp_gain;
-            user.level = Math.floor(user.xp / 100) + 1;
-            api._db.update('users', userId, { xp: user.xp, level: user.level });
-        }
-        return user;
-    },
-
-    upgradePro: async () => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.update('users', userId, { is_pro: true });
-    },
-
-    // Tasks
-    getTasks: async () => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.get('tasks').filter(t => t.owner_id === userId);
-    },
-
-    createTask: async (text) => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.insert('tasks', { text, completed: false, owner_id: userId });
-    },
-
-    toggleTask: async (taskId, currentStatus, text) => {
-        const updated = api._db.update('tasks', taskId, { completed: !currentStatus });
-        if (updated.completed) await api.requestXPReward('task', taskId);
+    updateProfile: async (data) => {
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        const updated = api._db.update('users', id, data);
+        localStorage.setItem('user_data', JSON.stringify(updated));
         return updated;
     },
 
-    // Subjects
+    requestXPReward: async (type) => {
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        const user = api._db.find('users', u => u.id === id);
+        let gain = type === 'task' ? 10 : (type === 'pomodoro' ? 50 : 20);
+        
+        const newXp = user.xp + gain;
+        const newLvl = Math.floor(newXp / 100) + 1;
+        return api.updateProfile({ xp: newXp, level: newLvl });
+    },
+
+    getTasks: async () => {
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        return api._db.get('tasks').filter(t => t.owner_id === id);
+    },
+
+    createTask: async (text) => {
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        return api._db.insert('tasks', { text, completed: false, owner_id: id });
+    },
+
+    toggleTask: async (id, status, text) => {
+        const updated = api._db.update('tasks', id, { completed: !status });
+        if (updated.completed) await api.requestXPReward('task');
+        return updated;
+    },
+
     getSubjects: async () => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.get('subjects').filter(s => s.owner_id === userId);
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        return api._db.get('subjects').filter(s => s.owner_id === id);
     },
 
-    createSubject: async (name, syllabus, nextClass) => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        const newSub = api._db.insert('subjects', { 
-            name, 
-            syllabus: typeof syllabus === 'string' ? syllabus : syllabus.join(','), 
-            next_class: nextClass,
-            owner_id: userId,
-            progress: 0
-        });
+    createSubject: async (name, syllabus, next) => {
+        const id = parseInt(localStorage.getItem('current_user_id'));
         await api.requestXPReward('subject');
-        return newSub;
+        return api._db.insert('subjects', { name, syllabus, next_class: next, owner_id: id, progress: 0 });
     },
 
-    // Notes
     getNotes: async () => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.get('notes').filter(n => n.owner_id === userId);
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        return api._db.get('notes').filter(n => n.owner_id === id);
     },
 
     createNote: async (title, body) => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.insert('notes', { title, body, created_at: new Date().toISOString(), owner_id: userId });
+        const id = parseInt(localStorage.getItem('current_user_id'));
+        return api._db.insert('notes', { title, body, owner_id: id, created_at: new Date().toISOString() });
     },
 
-    // Groups & Messages
-    getGroups: async () => {
-        // In local mode, we'll just show all created groups as joined
-        return api._db.get('groups');
-    },
-
+    getGroups: async () => api._db.get('groups'),
     createGroup: async (name, description, goal) => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        return api._db.insert('groups', { name, description, goal, created_at: new Date().toISOString() });
+        return api._db.insert('groups', { name, description, goal, members: 1 });
     },
-
-    getMessages: async (groupId) => {
-        return api._db.get('messages').filter(m => m.groupId === groupId);
-    },
-
+    getMessages: async (groupId) => api._db.get('msgs').filter(m => m.groupId === groupId),
     sendMessage: async (groupId, content) => {
-        const userId = parseInt(localStorage.getItem('current_user_id'));
-        const user = api._db.find('users', u => u.id === userId);
-        return api._db.insert('messages', { groupId, content, sender_id: userId, sender_name: user.full_name, timestamp: new Date().toISOString() });
+        const user = JSON.parse(localStorage.getItem('user_data'));
+        return api._db.insert('msgs', { groupId, content, sender: user.full_name, time: new Date().toLocaleTimeString() });
     },
-
-    joinGroup: async (groupId) => {
-        return { message: "Joined successfully" };
-    }
+    joinGroup: async () => ({ message: "Success" })
 };
