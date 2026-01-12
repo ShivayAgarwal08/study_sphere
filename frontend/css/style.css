@@ -288,6 +288,7 @@ body.light-theme textarea:focus {
 .gradient-text {
     background: linear-gradient(to right, var(--primary), var(--accent));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .hero-content p {
@@ -463,21 +464,22 @@ body.light-theme .sidebar {
 .menu-item i { font-size: 1.2rem; }
 .profile-menu {
     border-top: 1px solid var(--glass-border);
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
-.profile-menu img { 
-    width: 40px; 
-    height: 40px; 
-    border-radius: 50%;
-    border: 2px solid var(--primary);
-    transition: transform 0.3s ease;
+.profile-menu .menu-item {
+    flex: 1;
+    margin: 0;
 }
-
-.profile-menu img:hover {
-    transform: scale(1.1);
+.profile-menu .logout {
+    color: var(--danger);
+    background: rgba(239, 68, 68, 0.1);
+}
+.profile-menu .logout:hover {
+    background: var(--danger);
+    color: white;
 }
 
 .content-area {
