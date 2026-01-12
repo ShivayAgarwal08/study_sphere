@@ -23,14 +23,11 @@ def update_profile(profile: schemas.UserProfileUpdate, db: Session = Depends(dat
 def reward_xp(reward: schemas.XPRewardRequest, db: Session = Depends(database.get_db), current_user: models.User = Depends(auth.get_current_user)):
     xp_gain = 0
     if reward.action_type == 'task':
-        # Verify task is actually completed? For MVP we trust the call if it's task-based
-        # But master prompt says "Backend is source of truth"
         if reward.reference_id:
             task = db.query(models.Task).filter(models.Task.id == reward.reference_id, models.Task.owner_id == current_user.id).first()
             if task and task.completed:
                 xp_gain = 10
     elif reward.action_type == 'pomodoro':
-        # Pomodoro reward is 50 XP
         xp_gain = 50
     elif reward.action_type == 'subject':
         xp_gain = 20

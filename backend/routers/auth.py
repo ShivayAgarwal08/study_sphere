@@ -25,7 +25,6 @@ def signup(user: schemas.UserCreate, db: Session = Depends(database.get_db)):
     db.commit()
     db.refresh(new_user)
     
-    # Auto login
     access_token_expires = timedelta(minutes=auth.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = auth.create_access_token(
         data={"sub": new_user.email}, expires_delta=access_token_expires

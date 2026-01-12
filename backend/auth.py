@@ -5,7 +5,7 @@ from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from . import schemas, models, database
+import schemas, models, database
 
 # SECRET_KEY should be in env but hardcoding for MVP
 SECRET_KEY = "supersecretkey" 
